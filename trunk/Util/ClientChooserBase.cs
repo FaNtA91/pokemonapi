@@ -34,11 +34,11 @@ namespace Pokemon.Util
                         dialog.Filter =
                            "Executable files (*.exe)|*.exe|All files (*.*)|*.*";
                         dialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-                        dialog.Title = "Select a Tibia client executable";
+                        dialog.Title = "Select a Poke Games client executable";
                         if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                         {
                             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(dialog.FileName);
-                            if (fvi.ProductName.Equals("Tibia Player"))
+                            if (fvi.ProductName.Equals("Poke Games"))
                             {
                                 client = Client.Open(dialog.FileName, options.Arguments);
                                 if (options.SaveClientPath == true)
