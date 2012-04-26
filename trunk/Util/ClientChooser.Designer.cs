@@ -108,11 +108,12 @@ namespace Pokemon.Util
             this.AcceptButton = this.uxChoose;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(287, 85);
+            this.ClientSize = new System.Drawing.Size(287, 30);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.uxChoose);
             this.Controls.Add(this.uxClients);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "ClientChooser";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
