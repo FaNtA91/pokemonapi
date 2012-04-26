@@ -136,10 +136,7 @@ namespace Pokemon.Packets
 
         public int GetPacketHeaderSize()
         {
-            if (Client.VersionNumber >= 831)
-                return 6; // 4 bytes for Adler checksum
-            else
-                return 2;
+            return 2;
         }
 
         #endregion
@@ -374,10 +371,6 @@ namespace Pokemon.Packets
             if (!XteaEncrypt(XteaKey))
                 return false;
 
-            if (Client.VersionNumber >= 831)
-            {
-                AddAdler32();
-            }
             InsertPacketHeader();
 
             return true;

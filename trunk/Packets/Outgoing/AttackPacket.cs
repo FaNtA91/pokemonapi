@@ -23,37 +23,19 @@ namespace Pokemon.Packets.Outgoing
             Type = OutgoingPacketType.Attack;
 
             CreatureId = msg.GetUInt32();
-
-            if (Client.VersionNumber >= 860)
-            {
-                Count = msg.GetUInt32();
-            }
-
             return true;
         }
 
         public override void ToNetworkMessage(NetworkMessage msg)
         {
             msg.AddByte((byte)Type);
-
             msg.AddUInt32(CreatureId);
-
-            if (Client.VersionNumber >= 860)
-            {
-                msg.AddUInt32(Count);
-            }
         }
 
         public static bool Send(Objects.Client client, uint creatureId)
         {
             AttackPacket p = new AttackPacket(client);
             p.CreatureId = creatureId;
-
-            if (client.VersionNumber >= 860)
-            {
-                uint count = client.Player.AttackCount;
-                p.Count = count;
-            }
             return p.Send();
         }
     }

@@ -268,18 +268,6 @@ namespace Pokemon.Packets
                 loginClientTcp.Stop();
                 worldClientTcp.Stop();
 
-                if (Version.CurrentVersion >= 854)
-                {
-                    int type = (int)ar.AsyncState;
-                    //we have to connect to the world server now.. and send w8 for response..
-                    if (type == 1)
-                    {
-                        serverTcp = new TcpClient(BitConverter.GetBytes(charList[client.Login.SelectedChar].WorldIP).ToIPString(), charList[client.Login.SelectedChar].WorldPort);
-                        serverStream = serverTcp.GetStream();
-                        serverStream.BeginRead(serverRecvMsg.GetBuffer(), 0, 2, new AsyncCallback(ServerReadCallBack), null);
-                    }
-                }
-
                 clientStream = new NetworkStream(clientSocket);
                 clientStream.BeginRead(clientRecvMsg.GetBuffer(), 0, 2, new AsyncCallback(ClientReadCallBack), null);
             }
