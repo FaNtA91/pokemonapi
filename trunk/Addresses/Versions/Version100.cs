@@ -9,7 +9,7 @@ namespace Pokemon
             BattleList.Start = 0x613BD0;
             BattleList.End = 0x619990;
             BattleList.StepCreatures = 0xA0;
-            BattleList.MaxCreatures = 100;
+            BattleList.MaxCreatures = 150;
 
             Client.StartTime = 0x76D90C;
             Client.XTeaKey = 0x768C7C;
