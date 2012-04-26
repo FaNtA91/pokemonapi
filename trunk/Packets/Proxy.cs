@@ -421,14 +421,7 @@ namespace Pokemon.Packets
                         xteaKey[2] = clientRecvMsg.GetUInt32();
                         xteaKey[3] = clientRecvMsg.GetUInt32();
 
-                        if (Version.CurrentVersion >= 830)
-                        {
-                            clientRecvMsg.GetString(); // account name
-                        }
-                        else
-                        {
-                            clientRecvMsg.GetUInt32(); // account number
-                        }
+                        clientRecvMsg.GetUInt32(); // account number
                         clientRecvMsg.GetString(); // password
 
                         if (isOtServer)
@@ -436,10 +429,6 @@ namespace Pokemon.Packets
                         else
                             clientRecvMsg.RsaCipEncrypt(position);
 
-                        if (Version.CurrentVersion >= 830)
-                        {
-                            clientRecvMsg.AddAdler32();
-                        }
                         clientRecvMsg.InsertPacketHeader();
 
                         serverTcp = new TcpClient(loginServers[selectedLoginServer].Server, loginServers[selectedLoginServer].Port);
@@ -473,15 +462,7 @@ namespace Pokemon.Packets
 
                         clientRecvMsg.GetByte(); // GM mode
 
-                        if (Version.CurrentVersion >= 830)
-                        {
-                            clientRecvMsg.GetString(); // account name
-                        }
-                        else
-                        {
-                            clientRecvMsg.GetUInt32(); // account number
-                        }
-
+                        clientRecvMsg.GetUInt32(); // account number
                         string characterName = clientRecvMsg.GetString();
 
                         clientRecvMsg.GetString(); // password
@@ -491,10 +472,6 @@ namespace Pokemon.Packets
                         else
                             clientRecvMsg.RsaCipEncrypt(position);
 
-                        if (Version.CurrentVersion >= 830)
-                        {
-                            clientRecvMsg.AddAdler32();
-                        }
                         clientRecvMsg.InsertPacketHeader();
 
                         int index = GetSelectedIndex(characterName);
