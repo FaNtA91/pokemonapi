@@ -127,22 +127,9 @@ namespace Pokemon.Objects
         /// <returns></returns>
         public bool Attack()
         {
-            if (client.VersionNumber >= 860)
-            {
-                if (client.Player.TargetId != Id)
-                {
-                    if (client.VersionNumber >= 872)
-                    {
-                        client.Player.AttackCount += 2;
-                    }
-                    else
-                    {
-                        client.Player.AttackCount += 1;
-                    }
-                }
-            }
-            client.Player.TargetId = Id;
-            return Packets.Outgoing.AttackPacket.Send(client, (uint)Id);
+            uint creatureId = Id;
+            client.Player.TargetId = creatureId;
+            return Packets.Outgoing.AttackPacket.Send(client, (uint)creatureId);
         }
 
         /// <summary>
@@ -162,22 +149,9 @@ namespace Pokemon.Objects
         /// <returns></returns>
         public bool Follow()
         {
-            if (client.VersionNumber >= 860)
-            {
-                if (client.Player.TargetId != Id)
-                {
-                    if (client.VersionNumber >= 872)
-                    {
-                        client.Player.FollowCount += 2;
-                    }
-                    else
-                    {
-                        client.Player.FollowCount += 1;
-                    }
-                }
-            }
-            client.Player.GreenSquare = Id;
-            return Packets.Outgoing.FollowPacket.Send(client, (uint)Id);
+            uint creatureId = Id;
+            client.Player.GreenSquare = creatureId;
+            return Packets.Outgoing.FollowPacket.Send(client, (uint)creatureId);
         }
 
         /// <summary>
