@@ -1,0 +1,7 @@
+#summary Complete change log of Pokemon Api.
+
+= v1.0 =
+
+ * Initial release
+ * Corrected some addresses of TibiaApi to work with PXG client.
+ * Corrected client chooser to work with the PXG client.
