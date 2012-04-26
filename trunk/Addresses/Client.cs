@@ -82,6 +82,11 @@ namespace Pokemon.Addresses
         public static uint AttackMode;
 
         /// <summary>
+        /// The current window
+        /// </summary>
+        public static uint CurrentWindow;
+
+        /// <summary>
         /// Action state (formerly MouseCursor icon)
         /// </summary>
         public static uint ActionState;

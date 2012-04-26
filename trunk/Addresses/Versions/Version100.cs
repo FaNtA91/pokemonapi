@@ -15,20 +15,25 @@ namespace Pokemon
             Client.XTeaKey = 0x768C7C;
             Client.SocketStruct = 0x768C50;
             Client.SendPointer = 0x597600;
+
             Client.FrameRatePointer = 0x76CE0C;
             Client.FrameRateCurrentOffset = 0x00;
             Client.FrameRateLimitOffset = 0x58;
-            Client.MultiClient = 0;//?
+
+            Client.MultiClient = 0xF8944;
             Client.Status = 0x76C2C8;
+
             Client.SafeMode = 0x76909C;
             Client.FollowMode = Client.SafeMode + 4;
             Client.AttackMode = Client.FollowMode + 4;
             Client.ActionState = 0x76C328;
-            //Client.CurrentWindow = 0x61E984;
-            Client.LastMSGAuthor = Client.LastMSGText - 0x28;
+
+            Client.CurrentWindow = 0x61E984;
             Client.LastMSGText = 0x76DB78;
+            Client.LastMSGAuthor = Client.LastMSGText - 0x28;
             Client.StatusbarText = 0x76D928;
             Client.StatusbarTime = Client.StatusbarText - 4;
+
             Client.ClickId = 0x76C364;
             Client.ClickCount = Client.ClickId + 4;
             Client.ClickZ = Client.ClickId - 0x68;
@@ -36,13 +41,17 @@ namespace Pokemon
             Client.SeeCount = Client.SeeId + 4;
             Client.SeeZ = Client.SeeId - 0x68;
             Client.SeeText = 0x76DB50;
+
             Client.LoginServerStart = 0x763BB8;
             Client.StepLoginServer = 112;
             Client.DistancePort = 100;
             Client.MaxLoginServers = 10;
             Client.RSA = 0x597610;
+
             Client.LoginCharList = 0x76C28C;
+            Client.LoginSelectedChar = 0x76C288;
             Client.LoginCharListLength = 0x76C290;
+
             Client.GameWindowRectPointer = 0x12D624;
             Client.DatPointer = 0x768C9C;
             Client.DialogPointer = 0x61E984;
@@ -51,6 +60,7 @@ namespace Pokemon
             Client.DialogWidth = 0x1C;
             Client.DialogHeight = 0x20;
             Client.DialogCaption = 0x50;
+
             Client.LoginAccountNum = 0x76C2C0;
             Client.LoginAccount = 0x76C2B4;
             Client.LoginPassword = 0x76C294;
@@ -145,15 +155,18 @@ namespace Pokemon
             Map.MaxTiles = 2016;
             Map.ZAxisDefault = 7;
             Map.PlayerTile = 0x3E3A08;
+
             Map.NameSpy1 = 0x4DF469;
-            Map.NameSpy2 = 0x004DF473;
+            Map.NameSpy2 = 0x4DF473;
             Map.NameSpy1Default = 19061;
             Map.NameSpy2Default = 16501;
+
             Map.LevelSpy1 = 0x4E115A;
             Map.LevelSpy2 = 0x4E125F;
             Map.LevelSpy3 = 0x4E12E0;
             Map.LevelSpyPtr = 0x61B608;
             Map.LevelSpyAdd2 = 0x25D8;
+
             Map.RevealInvisible1 = 0x453AF3;
             Map.RevealInvisible2 = 0x4DE734;
 
