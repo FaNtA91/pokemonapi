@@ -1,0 +1,8 @@
+#summary How to compile the TibiaAPI from the latest repository source code
+#labels Featured
+
+ # Checkout the latest version of the code (see [SVNSetup])
+ # Open the project file trunk/PokemonApi.csproj in Visual Studio 2008.
+ # Build the project by clicking Build > Build Solution
+ # You need to build in Release mode first, so the injected dll can be added as a resource for PokemonApi
+ # The DLL can be found at trunk/Pokemon_Inject.dll
