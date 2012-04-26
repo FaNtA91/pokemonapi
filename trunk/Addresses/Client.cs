@@ -266,8 +266,7 @@ namespace Pokemon.Addresses
         /// Auto login stuff
         /// </summary>
         public static uint LoginPassword;
-        public static uint LoginAccount;
-        public static uint LoginAccountNum; // deprecated
+        public static uint LoginAccountNum;
 
         public static uint LoginPatch;
         public static uint LoginPatch2;

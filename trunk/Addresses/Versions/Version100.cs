@@ -61,8 +61,7 @@ namespace Pokemon
             Client.DialogHeight = 0x20;
             Client.DialogCaption = 0x50;
 
-            Client.LoginAccountNum = 0x76C2C0;
-            Client.LoginAccount = 0x76C2B4;
+            Client.LoginAccountNum = 0x76C2B4;
             Client.LoginPassword = 0x76C294;
             Client.LoginPatch = 0x47935E;
             Client.LoginPatch2 = 0x47A2B3;
