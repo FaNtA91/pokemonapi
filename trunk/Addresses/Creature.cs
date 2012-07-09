@@ -24,7 +24,6 @@ namespace Pokemon.Addresses
         public static uint DistanceColorLegs;
         public static uint DistanceColorFeet;
         public static uint DistanceAddon;
-        public static uint DistanceMountId;
 
         public static uint DistanceLight;
         public static uint DistanceLightColor;

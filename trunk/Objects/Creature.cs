@@ -345,18 +345,12 @@ namespace Pokemon.Objects
             set { client.Memory.WriteInt32(address + Addresses.Creature.DistanceAddon, (int)value); }
         }
 
-        public int MountId
-        {
-            get { return client.Memory.ReadInt32(address + Addresses.Creature.DistanceMountId); }
-            set { client.Memory.WriteInt32(address + Addresses.Creature.DistanceMountId, (int)value); }
-        }
-
         public Outfit Outfit
         {
             get
             {
                 return new Outfit(this, (ushort)OutfitType, (byte)HeadColor, (byte)BodyColor,
-                    (byte)LegsColor, (byte)FeetColor, (byte)Addon, (byte)MountId);
+                    (byte)LegsColor, (byte)FeetColor, (byte)Addon);
             }
             set
             {
@@ -366,7 +360,6 @@ namespace Pokemon.Objects
                 LegsColor = (int)value.Legs;
                 FeetColor = (int)value.Feet;
                 Addon = (Constants.OutfitAddon)value.Addons;
-                MountId = value.MountId;
             }
         }
 

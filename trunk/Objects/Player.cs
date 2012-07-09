@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Pokemon.Packets;
 
 namespace Pokemon.Objects
 {
@@ -24,7 +26,12 @@ namespace Pokemon.Objects
         /// <returns></returns>
         public bool Turn(Constants.Direction direction)
         {
+            byte[] packet = new byte[3];
+            packet[0] = 0x01;
+            packet[1] = 0x00;
+            packet[2] = Convert.ToByte(0x6F + direction);
             return client.Player.Turn(direction);
+            //return client.Player.Turn(direction);
         }
 
         /// <summary>

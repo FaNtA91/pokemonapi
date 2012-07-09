@@ -202,7 +202,6 @@ namespace Pokemon.Packets
         public Objects.Outfit GetOutfit()
         {
             byte head, body, legs, feet, addons;
-            ushort mountId = 0;
             ushort looktype = GetUInt16();
 
             if (looktype != 0)
@@ -212,12 +211,8 @@ namespace Pokemon.Packets
                 legs = GetByte();
                 feet = GetByte();
                 addons = GetByte();
-                if (Client.VersionNumber >= 870)
-                {
-                    mountId = GetUInt16();
-                }
 
-                return new Objects.Outfit(looktype, head, body, legs, feet, addons, mountId);
+                return new Objects.Outfit(looktype, head, body, legs, feet, addons);
             }
             else
                 return new Pokemon.Objects.Outfit(looktype, GetUInt16());

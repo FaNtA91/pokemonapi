@@ -12,7 +12,6 @@ namespace Pokemon.Objects
         private byte legs;
         private byte feet;
         private byte addons;
-        private ushort mountId;
 
         public ushort LookType
         {
@@ -49,11 +48,6 @@ namespace Pokemon.Objects
             get { return addons; }
             set { addons = value; TrySetOutfit(); }
         }
-        public ushort MountId
-        {
-            get { return mountId; }
-            set { mountId = value; TrySetOutfit(); }
-        }
 
         public Outfit(ushort looktype, ushort lookitem)
         {
@@ -61,9 +55,9 @@ namespace Pokemon.Objects
             this.lookType = looktype;
         }
 
-        public Outfit(ushort looktype, byte head, byte body, byte legs, byte feet, byte addons, ushort mountId) : this(null, looktype, head, body, legs, feet, addons, mountId) { }
+        public Outfit(ushort looktype, byte head, byte body, byte legs, byte feet, byte addons) : this(null, looktype, head, body, legs, feet, addons) { }
 
-        public Outfit(Creature creature, ushort looktype, byte head, byte body, byte legs, byte feet, byte addons, ushort mountId)
+        public Outfit(Creature creature, ushort looktype, byte head, byte body, byte legs, byte feet, byte addons)
         {
             this.creature = creature;
             this.lookType = looktype;
@@ -72,7 +66,6 @@ namespace Pokemon.Objects
             this.legs = legs;
             this.feet = feet;
             this.addons = addons;
-            this.mountId = mountId;
         }
 
         private void TrySetOutfit()
@@ -96,7 +89,6 @@ namespace Pokemon.Objects
                 temp[4] = Legs;
                 temp[5] = Feet;
                 temp[6] = Addons;
-                Array.Copy(BitConverter.GetBytes(mountId), 0, temp, 7, 2);
             }
             else
             {

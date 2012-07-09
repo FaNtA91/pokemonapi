@@ -60,9 +60,9 @@ namespace Pokemon.Objects
             /// <summary>
             /// Set the player's outfit. Sends a packet.
             /// </summary>
-            public bool SetOutfit(Constants.OutfitType outfitType, byte headColor, byte bodyColor, byte legsColor, byte feetColor, Constants.OutfitAddon addons, byte mountId)
+            public bool SetOutfit(Constants.OutfitType outfitType, byte headColor, byte bodyColor, byte legsColor, byte feetColor, Constants.OutfitAddon addons)
             {
-                return Packets.Outgoing.SetOutfitPacket.Send(client, new Outfit((ushort)outfitType, headColor, bodyColor, legsColor, feetColor, (byte)addons, mountId));
+                return Packets.Outgoing.SetOutfitPacket.Send(client, new Outfit((ushort)outfitType, headColor, bodyColor, legsColor, feetColor, (byte)addons));
             }
 
             /// <summary>

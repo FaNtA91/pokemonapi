@@ -14,16 +14,16 @@ namespace Pokemon.Packets.Outgoing
 
             switch (direction)
             {
-                case Pokemon.Constants.Direction.Down:
+                case Constants.Direction.Down:
                     Type = OutgoingPacketType.TurnDown;
                     break;
-                case Pokemon.Constants.Direction.Up:
+                case Constants.Direction.Up:
                     Type = OutgoingPacketType.TurnUp;
                     break;
-                case Pokemon.Constants.Direction.Right:
+                case Constants.Direction.Right:
                     Type = OutgoingPacketType.TurnRight;
                     break;
-                case Pokemon.Constants.Direction.Left:
+                case Constants.Direction.Left:
                     Type = OutgoingPacketType.TurnLeft;
                     break;
                 default:
