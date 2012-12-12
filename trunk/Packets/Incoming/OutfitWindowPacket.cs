@@ -56,9 +56,7 @@ namespace Pokemon.Packets.Incoming
         public override void ToNetworkMessage(NetworkMessage msg)
         {
             msg.AddByte((byte)Type);
-
             msg.AddOutfit(Default);
-
             msg.AddByte((byte)OutfitList.Count);
 
             foreach (AvalibleOutfit i in OutfitList)
