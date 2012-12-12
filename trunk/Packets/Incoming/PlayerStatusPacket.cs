@@ -38,14 +38,7 @@ namespace Pokemon.Packets.Incoming
             MaxHealth = msg.GetUInt16();
             Capacity = msg.GetUInt32();
 
-            if (Client.VersionNumber >= 870)
-            {
-                Experience = msg.GetUInt64();
-            }
-            else
-            {
-                Experience = msg.GetUInt32();
-            }
+            Experience = msg.GetUInt32();
 
             Level = msg.GetUInt16();
 
@@ -71,14 +64,7 @@ namespace Pokemon.Packets.Incoming
             msg.AddUInt16(MaxHealth);
             msg.AddUInt32(Capacity);
 
-            if (Client.VersionNumber >= 870)
-            {
-                msg.AddUInt64(Experience);
-            }
-            else
-            {
-                msg.AddUInt32((uint)Experience);
-            }
+            msg.AddUInt32((uint)Experience);
 
             msg.AddUInt16(Level);
 

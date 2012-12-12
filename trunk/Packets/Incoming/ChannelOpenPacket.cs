@@ -31,20 +31,6 @@ namespace Pokemon.Packets.Incoming
             ChannelId = (ChatChannel)msg.GetUInt16();
             ChannelName = msg.GetString();
 
-            if (Client.VersionNumber >= 872)
-            {
-                NumberOfParticipants = msg.GetUInt16();
-                for (ushort p = 0; p < NumberOfParticipants; p++)
-                {
-                    Participants[p] = msg.GetString();
-                }
-                NumberOfInvitees = msg.GetUInt16();
-                for (ushort i = 0; i < NumberOfInvitees; i++)
-                {
-                    Invitees[i] = msg.GetString();
-                }
-            }
-
             return true;
         }
 
@@ -53,20 +39,6 @@ namespace Pokemon.Packets.Incoming
             msg.AddByte((byte)Type);
             msg.AddUInt16((ushort)ChannelId);
             msg.AddString(ChannelName);
-
-            if (Client.VersionNumber >= 872)
-            {
-                msg.AddUInt16(NumberOfParticipants);
-                for (ushort p = 0; p < NumberOfParticipants; p++)
-                {
-                    msg.AddString(Participants[p]);
-                }
-                msg.AddUInt16(NumberOfInvitees);
-                for (ushort i = 0; i < NumberOfInvitees; i++)
-                {
-                    msg.AddString(Invitees[i]);
-                }
-            }
         }
 
         public static bool Send(Objects.Client client, ChatChannel channel, string name, string[] participants, string[] invitees)
@@ -74,20 +46,6 @@ namespace Pokemon.Packets.Incoming
             ChannelOpenPacket p = new ChannelOpenPacket(client);
             p.ChannelId = channel;
             p.ChannelName = name;
-
-            if (client.VersionNumber >= 872)
-            {
-                p.NumberOfParticipants = (ushort)(participants.Length);
-                for (ushort n = 0; n < p.NumberOfParticipants; n++)
-                {
-                    p.Participants[n] = participants[n];
-                }
-                p.NumberOfInvitees = (ushort)(invitees.Length);
-                for (ushort i = 0; i < p.NumberOfInvitees; i++)
-                {
-                    p.Invitees[i] = invitees[i];
-                }
-            }
 
             return p.Send();
         }

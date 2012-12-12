@@ -12,16 +12,9 @@ namespace Pokemon.Packets.Incoming
         public AvalibleOutfit() { }
     }
 
-    public class MountDescription
-    {
-        public ushort Id { get; set; }
-        public string Name { get; set; }
-    }
-
     public class OutfitWindowPacket : IncomingPacket
     {
         public List<AvalibleOutfit> OutfitList { get; set; }
-        public List<MountDescription> MountList { get; set; }
         public Objects.Outfit Default { get; set; }
 
         public OutfitWindowPacket(Objects.Client c)
@@ -57,22 +50,6 @@ namespace Pokemon.Packets.Incoming
                 OutfitList.Add(outfit);
             }
 
-            if (Client.VersionNumber >= 870)
-            {
-                count = msg.GetByte();
-                MountList = new List<MountDescription> { };
-
-                for (int i = 0; i < count; i++)
-                {
-                    MountDescription mount = new MountDescription();
-
-                    mount.Id = msg.GetUInt16();
-                    mount.Name = msg.GetString();
-
-                    MountList.Add(mount);
-                }
-            }
-
             return true;
         }
 
@@ -89,17 +66,6 @@ namespace Pokemon.Packets.Incoming
                 msg.AddUInt16(i.Id);
                 msg.AddString(i.Name);
                 msg.AddByte(i.Addons);
-            }
-
-            if (Client.VersionNumber >= 870)
-            {
-                msg.AddByte((byte)MountList.Count);
-
-                foreach (MountDescription i in MountList)
-                {
-                    msg.AddUInt16(i.Id);
-                    msg.AddString(i.Name);
-                }
             }
         }
     }
