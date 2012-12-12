@@ -130,7 +130,6 @@
     <Compile Include="Objects\Tile.cs" />
     <Compile Include="Objects\Vip.cs" />
     <Compile Include="Objects\VipList.cs" />
-    <Compile Include="Packets\AdlerChecksum.cs" />
     <Compile Include="Packets\HookProxy.cs" />
     <Compile Include="Packets\IncomingPacket.cs" />
     <Compile Include="Packets\Incoming\AnimatedTextPacket.cs" />
