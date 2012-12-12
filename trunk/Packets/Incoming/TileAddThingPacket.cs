@@ -58,15 +58,6 @@ namespace Pokemon.Packets.Incoming
                 Creature.Speed = msg.GetUInt16();
                 Creature.Skull = (Constants.Skull)msg.GetByte();
                 Creature.PartyShield = (PartyShield)msg.GetByte();
-
-
-                if (Client.VersionNumber >= 853)
-                {
-                    if (ThingId == 0x0061)
-                        Creature.WarIcon = (Constants.WarIcon)msg.GetByte();
-
-                    Creature.IsBlocking = msg.GetByte().Equals(0x01);
-                }
             }
             else if (ThingId == 0x0063)
             {
@@ -116,12 +107,6 @@ namespace Pokemon.Packets.Incoming
                 msg.AddUInt16(Creature.Speed);
                 msg.AddByte((byte)Creature.Skull);
                 msg.AddByte((byte)Creature.PartyShield);
-                if (Client.VersionNumber >= 853)
-                {
-                    if (ThingId == 0x0061)
-                        msg.AddByte((byte)Creature.WarIcon);
-                    msg.AddByte(Convert.ToByte(Creature.IsBlocking));
-                }
             }
             else if (ThingId == 0x0063)
             {

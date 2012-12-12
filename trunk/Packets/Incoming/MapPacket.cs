@@ -197,18 +197,6 @@ namespace Pokemon.Packets.Incoming
                 c.PartyShield = (Constants.PartyShield)msg.GetByte();
                 outMsg.AddByte((byte)c.PartyShield);
 
-                if (Client.VersionNumber >= 853)
-                {
-                    if (thingId == 0x0061)
-                    {
-                        c.WarIcon = (Constants.WarIcon)msg.GetByte();
-                        outMsg.AddByte((byte)c.WarIcon);
-                    }
-
-                    c.IsBlocking = msg.GetByte().Equals(0x01);
-                    outMsg.AddByte(Convert.ToByte(c.IsBlocking));
-                }
-
                 creatures.Add(c);
 
                 return true;
@@ -372,12 +360,6 @@ namespace Pokemon.Packets.Incoming
                         msg.AddByte((byte)c.Skull);
 
                         msg.AddByte((byte)c.PartyShield);
-
-                        if (Client.VersionNumber >= 853)
-                        {
-                            msg.AddByte((byte)c.WarIcon);
-                            msg.AddByte(Convert.ToByte(c.IsBlocking));
-                        }
                     }
                     else if (o.Id <= 9999)
                     {
@@ -414,7 +396,6 @@ namespace Pokemon.Packets.Incoming
         public ushort Speed { get; set; }
         public Skull Skull { get; set; }
         public PartyShield PartyShield { get; set; }
-        public WarIcon WarIcon { get; set; }
         public bool IsBlocking { get; set; }
         public uint RemoveId { get; set; }
         public Objects.Location Location { get; set; }

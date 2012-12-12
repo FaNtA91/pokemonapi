@@ -297,12 +297,6 @@ namespace Pokemon.Objects
             set { client.Memory.WriteInt32(address + Addresses.Creature.DistanceParty, (int)value); }
         }
 
-        public Constants.WarIcon WarIcon
-        {
-            get { return (Constants.WarIcon)client.Memory.ReadInt32(address + Addresses.Creature.DistanceWarIcon); }
-            set { client.Memory.WriteInt32(address + Addresses.Creature.DistanceWarIcon, (int)value); }
-        }
-
         public bool IsBlocking
         {
             get { return Convert.ToBoolean(client.Memory.ReadInt32(address + Addresses.Creature.DistanceIsBlocking)); }
