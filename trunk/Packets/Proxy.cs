@@ -316,7 +316,7 @@ namespace Pokemon.Packets
 
                         clientData = clientRecvMsg.Data;
 
-                        if (clientRecvMsg.CheckAdler32() && clientRecvMsg.XteaDecrypt(xteaKey))
+                        if (clientRecvMsg.XteaDecrypt(xteaKey))
                         {
                             clientRecvMsg.Position = clientRecvMsg.GetPacketHeaderSize();
                             int msgLength = (int)clientRecvMsg.GetUInt16() + 8;
@@ -523,7 +523,7 @@ namespace Pokemon.Packets
                     case Protocol.World:
                         OnReceivedDataFromServer(serverRecvMsg.Data);
                         serverData = serverRecvMsg.Data;
-                        if (serverRecvMsg.CheckAdler32() && serverRecvMsg.XteaDecrypt(xteaKey))
+                        if (serverRecvMsg.XteaDecrypt(xteaKey))
                         {
                             serverRecvMsg.Position = serverRecvMsg.GetPacketHeaderSize();
                             int msgSize = (int)serverRecvMsg.GetUInt16() + serverRecvMsg.GetPacketHeaderSize() + 2;
@@ -595,7 +595,7 @@ namespace Pokemon.Packets
         {
             try
             {
-                if (serverRecvMsg.CheckAdler32() && serverRecvMsg.PrepareToRead())
+                if (serverRecvMsg.PrepareToRead())
                 {
                     int msgSize = serverRecvMsg.GetUInt16() + 6;
 

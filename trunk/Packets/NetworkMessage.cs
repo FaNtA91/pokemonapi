@@ -416,28 +416,6 @@ namespace Pokemon.Packets
 
         #endregion
 
-        #region Adler32 Wrappers
-
-        public bool CheckAdler32()
-        {
-            if (Client.VersionNumber >= 831 && AdlerChecksum.Generate(ref buffer, 6, length) != GetAdler32())
-                return false;
-
-            return true;
-        }
-
-        public void AddAdler32()
-        {
-            Array.Copy(BitConverter.GetBytes(AdlerChecksum.Generate(ref buffer, 6, length)), 0, buffer, 2, 4);
-        }
-
-        private uint GetAdler32()
-        {
-            return BitConverter.ToUInt32(buffer, 2);
-        }
-
-        #endregion
-
         #region Xtea Wrappers
 
         public bool XteaDecrypt()

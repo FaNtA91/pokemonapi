@@ -115,9 +115,8 @@ namespace Pokemon.Packets
                 case Protocol.Login:
                     break;
                 case Protocol.World:
-                    bool adlerOkay = serverRecvMsg.CheckAdler32();
                     bool decryptOkay = serverRecvMsg.XteaDecrypt(client.IO.XteaKey);
-                    if (adlerOkay && decryptOkay)
+                    if (decryptOkay)
                     {
                         serverRecvMsg.Position = 6;
                         int msgSize = (int)serverRecvMsg.GetUInt16() + 8;
@@ -179,9 +178,8 @@ namespace Pokemon.Packets
                     ParseFirstClientMsg();
                     break;
                 case Protocol.World:
-                    bool adlerOkay = clientRecvMsg.CheckAdler32();
                     bool decryptOkay = clientRecvMsg.XteaDecrypt(client.IO.XteaKey);
-                    if (adlerOkay && decryptOkay)
+                    if (decryptOkay)
                     {
 
                         clientRecvMsg.Position = 6;
