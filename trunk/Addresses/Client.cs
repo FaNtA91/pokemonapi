@@ -276,7 +276,7 @@ namespace Pokemon.Addresses
         public static byte[] LoginPatchOrig2;
 
         /// <summary>
-        /// The function that tibia calls to parse packets
+        /// The function that calls to parse packets
         /// </summary>
 
         public static uint ParserFunc;

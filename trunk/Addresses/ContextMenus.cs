@@ -8,7 +8,7 @@
         public static uint AddContextMenuPtr;
 
         /// <summary>
-        /// The function used to process Tibia's "OnClick" events,
+        /// The function used to process "OnClick" events,
         /// that is, the events issued when you click a context
         /// menu item.
         /// </summary>
@@ -23,7 +23,7 @@
         /// Moreover, it is HIGHLY (by highly I mean DO IT if you
         /// want to avoid sure trouble) recommended that you call
         /// OnClickContextMenuPtr from your hooked function to
-        /// process standard Tibia events.
+        /// process standard events.
         /// </summary>
         public static uint OnClickContextMenuVf;
 

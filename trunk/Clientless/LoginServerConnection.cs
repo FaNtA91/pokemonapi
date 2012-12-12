@@ -59,16 +59,16 @@ namespace Pokemon.Clientless
         public LoginServerConnection(Constants.OperatingSystem opSystem, ushort version, string accountName, string password, bool openTibia, bool debug) :
             this(opSystem, version, accountName, password, openTibia,
             new LoginServer[] {
-            new LoginServer("login01.Pokemon.com", 7171),
-            new LoginServer("login02.Pokemon.com", 7171),
-            new LoginServer("login03.Pokemon.com", 7171),
-            new LoginServer("login04.Pokemon.com", 7171),
-            new LoginServer("login05.Pokemon.com", 7171),
-            new LoginServer("tibia01.cipsoft.com", 7171),
-            new LoginServer("tibia02.cipsoft.com", 7171),
-            new LoginServer("tibia03.cipsoft.com", 7171),
-            new LoginServer("tibia04.cipsoft.com", 7171),
-            new LoginServer("tibia05.cipsoft.com", 7171)}, debug) { }
+            new LoginServer("pxg01.loginto.me", 7009),
+            new LoginServer("pxg02.loginto.me", 7009),
+            new LoginServer("pxg03.loginto.me", 7009),
+            new LoginServer("pxg04.loginto.me", 7009),
+            new LoginServer("pxg05.loginto.me", 7009),
+            new LoginServer("pxg06.loginto.me", 7009),
+            new LoginServer("pxg07.loginto.me", 7009),
+            new LoginServer("pxg08.loginto.me", 7009),
+            new LoginServer("pxg09.loginto.me", 7009),
+            new LoginServer("pxg10.loginto.me", 7009)}, debug) { } //all port is correct?
 
         public LoginServerConnection(Constants.OperatingSystem opSystem, ushort version, string accountName, string password, bool openTibia, LoginServer[] loginServers, bool debug)
         {
@@ -104,9 +104,11 @@ namespace Pokemon.Clientless
                 loginSocket.EndConnect(ar);
                 xteaKey = new byte[16];
                 rand.NextBytes(xteaKey);
+
                 if (Socket_Connected != null)
                     Socket_Connected("Login Server");
-                loginSocket.Send(LoginServerRequestPacket.Create(os, version, Signatures.Tibia840,
+
+                loginSocket.Send(LoginServerRequestPacket.Create(os, version,
                     xteaKey, accName, password).Data);
                 loginSocket.BeginReceive(dataLoginServer, 0, dataLoginServer.Length, SocketFlags.None, (AsyncCallback)LoginServerReceived, null);
             }
@@ -231,22 +233,12 @@ namespace Pokemon.Clientless
                     }
                 }
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception) {}
         }
 
         public static string IPBytesToString(byte[] data, int index)
         {
             return "" + data[index] + "." + data[index + 1] + "." + data[index + 2] + "." + data[index + 3];
-        }
-
-
-        public class Signatures //4 bytes each file(Pokemon.dat,Pokemon.spr,Pokemon.pic)
-        {
-            public static byte[] Tibia840 = new byte[12]{0x7A,0x60,0x3D,0x49,
-                                                        0x7C,0x4E,0x3D,0x49,
-                                                        0x78,0x41,0x14,0x49};
         }
     }
 }

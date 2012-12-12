@@ -9,7 +9,7 @@ using System.Text;
 namespace Pokemon.Objects
 {
     /// <summary>
-    /// Represents a single Tibia Client. Contains wrapper methods 
+    /// Represents a single Client. Contains wrapper methods 
     /// for memory, packet sending, battlelist, and slots. Also contains
     /// any "helper methods" that automate tasks, such as making a rune.
     /// </summary>
@@ -50,7 +50,7 @@ namespace Pokemon.Objects
         #region Events
 
         /// <summary>
-        /// Event raised when the Tibia client is exited.
+        /// Event raised when the client is exited.
         /// </summary>
         public event EventHandler Exited;
 
@@ -329,7 +329,7 @@ namespace Pokemon.Objects
         /// <returns></returns>
         public static Client Open()
         {
-            return Open(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Tibia\Pokemon.exe"));
+            return Open(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"PokeXGames\Pokemon.exe"));
         }
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace Pokemon.Objects
         public static Client Open(string path)
         {
             ProcessStartInfo psi = new ProcessStartInfo(path);
-            psi.UseShellExecute = true; // to avoid opening currently running Tibia's
+            psi.UseShellExecute = true; // to avoid opening currently running.
             psi.WorkingDirectory = System.IO.Path.GetDirectoryName(path);
             return Open(psi);
         }
@@ -354,7 +354,7 @@ namespace Pokemon.Objects
         public static Client Open(string path, string arguments)
         {
             ProcessStartInfo psi = new ProcessStartInfo(path, arguments);
-            psi.UseShellExecute = true; // to avoid opening currently running Tibia's
+            psi.UseShellExecute = true; // to avoid opening currently running.
             psi.WorkingDirectory = System.IO.Path.GetDirectoryName(path);
             return Open(psi);
         }
@@ -371,7 +371,7 @@ namespace Pokemon.Objects
 
         public static Client OpenMC()
         {
-            return OpenMC(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"Tibia\Pokemon.exe"), "");
+            return OpenMC(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), @"PokeXGames\Pokemon.exe"), "");
         }
 
         /// <summary>
@@ -411,7 +411,7 @@ namespace Pokemon.Objects
         /// <returns></returns>
         public override string ToString()
         {
-            if (!Constants.TAConstants.CurrentTibiaVersion.Equals(Version))
+            if (!Constants.TAConstants.CurrentClientVersion.Equals(Version))
             {
                 Pokemon.Version.Set(Version, Process);
             }

@@ -39,9 +39,11 @@ namespace Pokemon.Packets.RSA
             msg.AddString(AccountName);
             msg.AddString(CharacterName);
             msg.AddString(Password);
-            if (OpenTibia) msg.RsaOTEncrypt(11);
-            else msg.RsaCipEncrypt(11);
-            msg.AddAdler32();
+            if (OpenTibia)
+                msg.RsaOTEncrypt(11);
+            else
+                msg.RsaCipEncrypt(11);
+
             return msg;
         }
     }

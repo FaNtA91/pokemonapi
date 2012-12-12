@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace Pokemon.Exceptions
 {
     /// <summary>
-    /// Thrown when trying to access a resource that is not currently supported, ie. getting the addresses for an unsupported Tibia version.
+    /// Thrown when trying to access a resource that is not currently supported, ie. getting the addresses for an unsupported version.
     /// </summary>
     public class VersionNotSupportedException : InvalidOperationException
     {
@@ -21,7 +21,7 @@ namespace Pokemon.Exceptions
             int reqVersion = VersionStringToInt(requiredVersion);
             if (currVersion < reqVersion)
                 throw new VersionNotSupportedException(
-                    "This method requires a Tibia client version " +
+                    "This method requires a client version " +
                     requiredVersion + " or greater. Your current version, " +
                     client.Version + " is not supported.");
         }
@@ -32,7 +32,7 @@ namespace Pokemon.Exceptions
             int reqVersion = VersionStringToInt(requiredVersion);
             if (currVersion != reqVersion) 
                 throw new VersionNotSupportedException(
-                    "This method requires a Tibia client version " + 
+                    "This method requires a client version " + 
                     requiredVersion + ". Your current version, " + 
                     client.Version + " is not supported.");
         }
