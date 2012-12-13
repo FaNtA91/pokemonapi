@@ -6,12 +6,12 @@ namespace Pokemon.Packets.Incoming
     {
         public ushort Health { get; set; }
         public ushort MaxHealth { get; set; }
-        public uint Capacity { get; set; }
+        public uint PokemonsCount { get; set; }
         public ulong Experience { get; set; }
         public ushort Level { get; set; }
         public byte LevelPercent { get; set; }
-        public ushort Mana { get; set; }
-        public ushort MaxMana { get; set; }
+        public ushort Pokemons { get; set; }
+        public ushort PokemonsMax { get; set; }
         public byte MagicLevel { get; set; }
         public byte MagicLevelPercent { get; set; }
         public byte Soul { get; set; }
@@ -36,7 +36,7 @@ namespace Pokemon.Packets.Incoming
 
             Health = msg.GetUInt16();
             MaxHealth = msg.GetUInt16();
-            Capacity = msg.GetUInt32();
+            PokemonsCount = msg.GetUInt32();
 
             Experience = msg.GetUInt32();
 
@@ -44,8 +44,8 @@ namespace Pokemon.Packets.Incoming
 
             LevelPercent = msg.GetByte();
 
-            Mana = msg.GetUInt16();
-            MaxMana = msg.GetUInt16();
+            Pokemons = msg.GetUInt16();
+            PokemonsMax = msg.GetUInt16();
 
             MagicLevel = msg.GetByte();
             MagicLevelPercent = msg.GetByte();
@@ -62,7 +62,7 @@ namespace Pokemon.Packets.Incoming
 
             msg.AddUInt16(Health);
             msg.AddUInt16(MaxHealth);
-            msg.AddUInt32(Capacity);
+            msg.AddUInt32(PokemonsCount);
 
             msg.AddUInt32((uint)Experience);
 
@@ -70,8 +70,8 @@ namespace Pokemon.Packets.Incoming
 
             msg.AddByte(LevelPercent);
 
-            msg.AddUInt16(Mana);
-            msg.AddUInt16(MaxMana);
+            msg.AddUInt16(Pokemons);
+            msg.AddUInt16(PokemonsMax);
 
             msg.AddByte(MagicLevel);
             msg.AddByte(MagicLevelPercent);

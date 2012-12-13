@@ -140,15 +140,15 @@ namespace Pokemon.Objects
             set { client.Player.MagicLevelPercent = value; }
         }
 
-        public uint Mana
+        public uint Pokemons
         {
-            get { return client.Player.Mana; }
-            set { client.Player.Mana = value; }
+            get { return client.Player.Pokemons; }
+            set { client.Player.Pokemons = value; }
         }
-        public uint ManaMax
+        public uint PokemonsMax
         {
-            get { return client.Player.ManaMax; }
-            set { client.Player.ManaMax = value; }
+            get { return client.Player.PokemonsMax; }
+            set { client.Player.PokemonsMax = value; }
         }
         public uint Health
         {
@@ -166,10 +166,10 @@ namespace Pokemon.Objects
             get { return client.Player.Soul; }
             set { client.Player.Soul = value; }
         }
-        public uint Capacity
+        public uint PokemonsCount
         {
-            get { return client.Player.Capacity; }
-            set { client.Player.Capacity = value; }
+            get { return client.Player.PokemonsCount; }
+            set { client.Player.PokemonsCount = value; }
         }
         public uint Stamina
         {

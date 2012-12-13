@@ -123,15 +123,15 @@ namespace Pokemon.Objects
                 set { client.Memory.WriteUInt32(Addresses.Player.MagicLevelPercent, value); }
             }
 
-            public uint Mana
+            public uint Pokemons
             {
-                get { return client.Memory.ReadUInt32(Addresses.Player.Mana); }
-                set { client.Memory.WriteUInt32(Addresses.Player.Mana, value); }
+                get { return client.Memory.ReadUInt32(Addresses.Player.Pokemons); }
+                set { client.Memory.WriteUInt32(Addresses.Player.Pokemons, value); }
             }
-            public uint ManaMax
+            public uint PokemonsMax
             {
-                get { return client.Memory.ReadUInt32(Addresses.Player.ManaMax); }
-                set { client.Memory.WriteUInt32(Addresses.Player.ManaMax, value); }
+                get { return client.Memory.ReadUInt32(Addresses.Player.PokemonsMax); }
+                set { client.Memory.WriteUInt32(Addresses.Player.PokemonsMax, value); }
             }
             public uint Health
             {
@@ -149,10 +149,10 @@ namespace Pokemon.Objects
                 get { return client.Memory.ReadUInt32(Addresses.Player.Soul); }
                 set { client.Memory.WriteUInt32(Addresses.Player.Soul, value); }
             }
-            public uint Capacity
+            public uint PokemonsCount
             {
-                get { return client.Memory.ReadUInt32(Addresses.Player.Capacity); }
-                set { client.Memory.WriteUInt32(Addresses.Player.Capacity, value); }
+                get { return client.Memory.ReadUInt32(Addresses.Player.PokemonsCount); }
+                set { client.Memory.WriteUInt32(Addresses.Player.PokemonsCount, value); }
             }
             public uint Stamina
             {
