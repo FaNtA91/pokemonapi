@@ -411,11 +411,7 @@ namespace Pokemon.Objects
         /// <returns></returns>
         public override string ToString()
         {
-            if (!Constants.TAConstants.CurrentClientVersion.Equals(Version))
-            {
-                Pokemon.Version.Set(Version, Process);
-            }
-
+            Pokemon.Version.Set(Version);
             string s = "[" + Version + "] ";
             if (!LoggedIn)
                 s += "Not logged in.";

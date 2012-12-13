@@ -7,9 +7,9 @@ namespace Pokemon
         public static void SetVersion100()
         {
             BattleList.Start = 0x613BD0;
-            BattleList.End = 0x619990;
             BattleList.StepCreatures = 0xA0;
             BattleList.MaxCreatures = 150;
+            BattleList.End = BattleList.Start + (BattleList.StepCreatures * BattleList.MaxCreatures);
 
             Client.StartTime = 0x76D90C;
             Client.XTeaKey = 0x768C7C;
@@ -69,7 +69,7 @@ namespace Pokemon
             Client.LoginPatchOrig2 = new byte[] { 0xE8, 0xC8, 0x15, 0x09, 0x00 };
 
             Container.Start = 0x61C0D0;
-            Container.End = 0x61DF90;
+            Container.End = Container.Start + (Container.StepContainer * Container.MaxContainers);
             Container.StepContainer = 492;
             Container.StepSlot = 12;
             Container.MaxContainers = 16;
@@ -169,8 +169,8 @@ namespace Pokemon
             Map.RevealInvisible1 = 0x453AF3;
             Map.RevealInvisible2 = 0x4DE734;
 
-            Player.Flags = 0x00613AF8;
-            Player.Experience = 0x00613B64;
+            Player.Flags = 0x613AF8;
+            Player.Experience = 0x613B64;
             Player.Id = Player.Experience + 12;
             Player.Health = Player.Experience + 8;
             Player.HealthMax = Player.Experience + 4;
@@ -178,11 +178,11 @@ namespace Pokemon
             Player.MagicLevel = Player.Experience - 8;
             Player.LevelPercent = Player.Experience - 12;
             Player.MagicLevelPercent = Player.Experience - 16;
-            Player.Mana = Player.Experience - 20;
-            Player.ManaMax = Player.Experience - 24;
+            Player.Pokemons = Player.Experience - 20;
+            Player.PokemonsMax = Player.Experience - 24;
             Player.Soul = Player.Experience - 28;
             Player.Stamina = Player.Experience - 32;
-            Player.Capacity = Player.Experience - 36;
+            Player.PokemonsCount = Player.Experience - 36;
             Player.FistPercent = 0x00613AFC;
             Player.ClubPercent = Player.FistPercent + 4;
             Player.SwordPercent = Player.FistPercent + 8;
@@ -232,7 +232,7 @@ namespace Pokemon
             TextDisplay.NopFPS = 0x44E68F;
 
             Vip.Start = 0x611890;
-            Vip.End = 0x612128;
+            Vip.End = Vip.Start + (Vip.StepPlayers * Vip.MaxPlayers);
             Vip.StepPlayers = 0x2C;
             Vip.MaxPlayers = 100;
             Vip.DistanceId = 0;

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -182,9 +182,6 @@
     <Compile Include="Packets\Incoming\SafeTradeRequestAckPacket.cs" />
     <Compile Include="Packets\Incoming\SafeTradeRequestNoAckPacket.cs" />
     <Compile Include="Packets\Incoming\SelfAppearPacket.cs" />
-    <Compile Include="Packets\Incoming\ShopSaleGoldCountPacket.cs" />
-    <Compile Include="Packets\Incoming\ShopWindowClosePacket.cs" />
-    <Compile Include="Packets\Incoming\ShopWindowOpenPacket.cs" />
     <Compile Include="Packets\Incoming\TextMessagePacket.cs" />
     <Compile Include="Packets\Incoming\TileAddThingPacket.cs" />
     <Compile Include="Packets\Incoming\TileRemoveThingPacket.cs" />
@@ -216,14 +213,10 @@
     <Compile Include="Packets\Outgoing\LogoutPacket.cs" />
     <Compile Include="Packets\Outgoing\LookAtPacket.cs" />
     <Compile Include="Packets\Outgoing\MovePacket.cs" />
-    <Compile Include="Packets\Outgoing\NpcChannelClosePacket.cs" />
     <Compile Include="Packets\Outgoing\PingPacket.cs" />
     <Compile Include="Packets\Outgoing\PlayerSpeechPacket.cs" />
     <Compile Include="Packets\Outgoing\PrivateChannelOpenPacket.cs" />
     <Compile Include="Packets\Outgoing\SetOutfitPacket.cs" />
-    <Compile Include="Packets\Outgoing\ShopBuyPacket.cs" />
-    <Compile Include="Packets\Outgoing\ShopClosePacket.cs" />
-    <Compile Include="Packets\Outgoing\ShopSellPacket.cs" />
     <Compile Include="Packets\Outgoing\TileUpdatePacket.cs" />
     <Compile Include="Packets\Outgoing\TurnPacket.cs" />
     <Compile Include="Packets\Outgoing\VipAddPacket.cs" />

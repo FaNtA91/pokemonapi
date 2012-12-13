@@ -21,12 +21,12 @@ namespace Pokemon.Addresses
         public static uint LevelPercent;
         public static uint MagicLevelPercent;
 
-        public static uint Mana;
-        public static uint ManaMax;
+        public static uint Pokemons;
+        public static uint PokemonsMax;
 
         public static uint Soul;
         public static uint Stamina;
-        public static uint Capacity;
+        public static uint PokemonsCount;
 
         public static uint Fishing;
         public static uint Shielding;
