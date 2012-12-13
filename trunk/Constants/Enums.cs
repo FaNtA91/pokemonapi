@@ -631,7 +631,6 @@ namespace Pokemon.Constants
         EditMinimapMark = 0x20,
         EditMinimapMark2 = 0x21,
         HelpMenu = 0x22,
-        TutorialHintsMenu = 0x23,
         OptionsMenu = 0x24,
         GraphicsOptionMenu = 0x25,
         AdvancedGraphicsOptionMenu = 0x26,
@@ -653,12 +652,10 @@ namespace Pokemon.Constants
         OpenNPCsChannel = 0x36,
         Undefined8 = 0x37,
         Undefined9 = 0x38,
-        NPCTrade = 0x39,
         Undefined10 = 0x3A,
         Undefined11 = 0x3B,
         Undefined12 = 0x3C,
         Undefined13 = 0x3D,
-        TutorialHint = 0x3E,
         LastLookedItemContextMenu = 0x3F,
         AttackCreatureContextMenu = 0x40,
         AddToVipContextMenu = 0x41,
@@ -681,8 +678,68 @@ namespace Pokemon.Constants
     /// </summary>
     public enum PacketType : byte
     {
+        // Incoming
+        DefaultTemplate = 0x00,
+        CharListLoginData = 0x01,
+        AddCreature = 0x0A,
+        BadLogin = 0x0A,
+        CharList = 0x14,
+        InformationBox = 0x15,
+        Ping = 0x1E,
+        MapItemAdd = 0x6A,
+        MapItemUpdate = 0x6B,
+        MapItemRemove = 0x6C,
+        CreatureMove = 0x6D,
+        ContainerOpened = 0x6E,
+        ContainerClosed = 0x6F,
+        ContainerItemAdd = 0x70,
+        ContainerItemUpdate = 0x71,
+        ContainerItemRemove = 0x72,
+        EqItemAdd = 0x78,
+        EqItemRemove = 0x79,
+        WorldLight = 0x82,
+        TileAnimation = 0x83,
+        AnimatedText = 0x84,
+        Projectile = 0x85,
+        CreatureSquare = 0x86,
+        CreatureHealth = 0x8C,
+        CreatureLight = 0x8D,
+        CreatureOutfit = 0x8E,
+        CreatureSpeed = 0x8F,
+        CreatureSkull = 0x90,
+        PartyInvite = 0x91,
+        BookOpen = 0x96,
+        StatusUpdate = 0xA0,
+        SkillUpdate = 0xA1,
+        FlagUpdate = 0xA2,
+        CancelTarget = 0xA3,
+        ChatMessage = 0xAA,
+        ChannelList = 0xAB,
+        ChannelOpen = 0xAC,
+        PrivateChannelOpen = 0xAD,
+        StatusMessage = 0xB4,
+        CancelAutoWalk = 0xB5,
+        VipAdd = 0xD2,
+        VipLogin = 0xD3,
+        VipLogout = 0xD4,
+
+        // Outgoing
+        Logout = 0x14,
+        ItemMove = 0x78,
+        ItemUse = 0x82,
+        ItemUseOn = 0x83,
+        ItemUseBattlelist = 0x84,
+        ContainerClose = 0x87,
+        ContainerOpenParent = 0x88,
+        LookAt = 0x8C,
+        PlayerSpeech = 0x96,
+        ClientLoggedIn = 0xA0,
+        Attack = 0xA1,
+        CancelMove = 0xBE,
+
         // Pipe
         PipePacket = 0xFF
+
     }
 
     public enum IncomingPacketType : byte
@@ -713,9 +770,6 @@ namespace Pokemon.Constants
         ContainerRemoveItem = 0x72,
         InventorySetSlot = 0x78,
         InventoryResetSlot = 0x79,
-        ShopWindowOpen = 0x7A,
-        ShopSaleGoldCount = 0x7B,
-        ShopWindowClose = 0x7C,
         SafeTradeRequestAck = 0x7D,
         SafeTradeRequestNoAck = 0x7E,
         SafeTradeClose = 0x7F,
@@ -756,7 +810,6 @@ namespace Pokemon.Constants
         VipLogout = 0xD4,
         QuestList = 0xF0,
         QuestPartList = 0xF1,
-        ShowTutorial = 0xDC,
         AddMapMarker = 0xDD,
     }
 
@@ -766,9 +819,6 @@ namespace Pokemon.Constants
         GameServerRequest = 0x0A,
         Logout = 0x14,
         ItemMove = 0x78,
-        ShopBuy = 0x7A,
-        ShopSell = 0x7B,
-        ShopClose = 0x7C,
         ItemUse = 0x82,
         ItemUseOn = 0x83,
         ItemRotate = 0x85,
@@ -804,8 +854,7 @@ namespace Pokemon.Constants
         FightModes = 0xA0,
         ContainerUpdate = 0xCA,
         TileUpdate = 0xC9,
-        PrivateChannelOpen = 0x9A,
-        NpcChannelClose = 0x9E,
+        PrivateChannelOpen = 0x9A
     }
 
     /// <summary>

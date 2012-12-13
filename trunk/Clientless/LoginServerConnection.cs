@@ -109,7 +109,7 @@ namespace Pokemon.Clientless
                     Socket_Connected("Login Server");
 
                 loginSocket.Send(LoginServerRequestPacket.Create(os, version,
-                    xteaKey, accName, password).Data);
+                    xteaKey, accName, password).GetData());
                 loginSocket.BeginReceive(dataLoginServer, 0, dataLoginServer.Length, SocketFlags.None, (AsyncCallback)LoginServerReceived, null);
             }
             catch (Exception)
@@ -201,7 +201,7 @@ namespace Pokemon.Clientless
                             default:
                                 //Notify about an unknown message
                                 if (LoginServer_UnknownMsg != null)
-                                    LoginServer_UnknownMsg(msg.Data.ToHexString());
+                                    LoginServer_UnknownMsg(msg.GetData().ToHexString());
 
                                 loginSocket.Disconnect(true);
                                 if (Socket_Disconnected != null)

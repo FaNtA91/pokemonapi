@@ -99,9 +99,6 @@ namespace Pokemon.Packets
         public event IncomingPacketListener ReceivedSafeTradeRequestAckIncomingPacket;
         public event IncomingPacketListener ReceivedSafeTradeRequestNoAckIncomingPacket;
         public virtual event IncomingPacketListener ReceivedSelfAppearIncomingPacket;
-        public event IncomingPacketListener ReceivedShopSaleGoldCountIncomingPacket;
-        public event IncomingPacketListener ReceivedShopWindowCloseIncomingPacket;
-        public event IncomingPacketListener ReceivedShopWindowOpenIncomingPacket;
         public event IncomingPacketListener ReceivedTextMessageIncomingPacket;
         public event IncomingPacketListener ReceivedTileAddThingIncomingPacket;
         public event IncomingPacketListener ReceivedTileRemoveThingIncomingPacket;
@@ -138,9 +135,6 @@ namespace Pokemon.Packets
         public event OutgoingPacketListener ReceivedPlayerSpeechOutgoingPacket;
         public event OutgoingPacketListener ReceivedPrivateChannelOpenOutgoingPacket;
         public event OutgoingPacketListener ReceivedSetOutfitOutgoingPacket;
-        public event OutgoingPacketListener ReceivedShopBuyOutgoingPacket;
-        public event OutgoingPacketListener ReceivedShopCloseOutgoingPacket;
-        public event OutgoingPacketListener ReceivedShopSellOutgoingPacket;
         public event OutgoingPacketListener ReceivedTitleUpdateOutgoingPacket;
         public event OutgoingPacketListener ReceivedTurnOutgoingPacket;
         public event OutgoingPacketListener ReceivedVipAddOutgoingPacket;
@@ -732,39 +726,6 @@ namespace Pokemon.Packets
                             packet.ToNetworkMessage(outMsg);
                     }
                     break;
-                case IncomingPacketType.ShopSaleGoldCount:
-                    packet = new Packets.Incoming.ShopSaleGoldCountPacket(client);
-                    if (packet.ParseMessage(msg, PacketDestination.Client))
-                    {
-                        if (ReceivedShopSaleGoldCountIncomingPacket != null)
-                            packet.Forward = ReceivedShopSaleGoldCountIncomingPacket.Invoke(packet);
-
-                        if (packet.Forward)
-                            packet.ToNetworkMessage(outMsg);
-                    }
-                    break;
-                case IncomingPacketType.ShopWindowOpen:
-                    packet = new Packets.Incoming.ShopWindowOpenPacket(client);
-                    if (packet.ParseMessage(msg, PacketDestination.Client))
-                    {
-                        if (ReceivedShopWindowOpenIncomingPacket != null)
-                            packet.Forward = ReceivedShopWindowOpenIncomingPacket.Invoke(packet);
-
-                        if (packet.Forward)
-                            packet.ToNetworkMessage(outMsg);
-                    }
-                    break;
-                case IncomingPacketType.ShopWindowClose:
-                    packet = new Packets.Incoming.ShopWindowClosePacket(client);
-                    if (packet.ParseMessage(msg, PacketDestination.Client))
-                    {
-                        if (ReceivedShopWindowCloseIncomingPacket != null)
-                            packet.Forward = ReceivedShopWindowCloseIncomingPacket.Invoke(packet);
-
-                        if (packet.Forward)
-                            packet.ToNetworkMessage(outMsg);
-                    }
-                    break;
                 case IncomingPacketType.OutfitWindow:
                     packet = new Packets.Incoming.OutfitWindowPacket(client);
                     if (packet.ParseMessage(msg, PacketDestination.Client))
@@ -1004,28 +965,6 @@ namespace Pokemon.Packets
                             packet.ToNetworkMessage(outMsg);
                     }
                     break;
-                case OutgoingPacketType.ShopBuy:
-                    packet = new Packets.Outgoing.ShopBuyPacket(client);
-                    if (packet.ParseMessage(msg, PacketDestination.Server))
-                    {
-                        if (ReceivedShopBuyOutgoingPacket != null)
-                            packet.Forward = ReceivedShopBuyOutgoingPacket.Invoke(packet);
-
-                        if (packet.Forward)
-                            packet.ToNetworkMessage(outMsg);
-                    }
-                    break;
-                case OutgoingPacketType.ShopSell:
-                    packet = new Packets.Outgoing.ShopSellPacket(client);
-                    if (packet.ParseMessage(msg, PacketDestination.Server))
-                    {
-                        if (ReceivedShopSellOutgoingPacket != null)
-                            packet.Forward = ReceivedShopSellOutgoingPacket.Invoke(packet);
-
-                        if (packet.Forward)
-                            packet.ToNetworkMessage(outMsg);
-                    }
-                    break;
                 case OutgoingPacketType.TurnDown:
                     msg.GetByte();
                     packet = new Packets.Outgoing.TurnPacket(client, Pokemon.Constants.Direction.Down);
@@ -1260,30 +1199,6 @@ namespace Pokemon.Packets
                     {
                         if (ReceivedTitleUpdateOutgoingPacket != null)
                             packet.Forward = ReceivedTitleUpdateOutgoingPacket.Invoke(packet);
-
-                        if (packet.Forward)
-                            packet.ToNetworkMessage(outMsg);
-                    }
-                    break;
-                case OutgoingPacketType.ShopClose:
-                    packet = new Packets.Outgoing.ShopClosePacket(client);
-
-                    if (packet.ParseMessage(msg, PacketDestination.Server))
-                    {
-                        if (ReceivedShopCloseOutgoingPacket != null)
-                            packet.Forward = ReceivedShopCloseOutgoingPacket.Invoke(packet);
-
-                        if (packet.Forward)
-                            packet.ToNetworkMessage(outMsg);
-                    }
-                    break;
-                case OutgoingPacketType.NpcChannelClose:
-                    packet = new Packets.Outgoing.NpcChannelClosePacket(client);
-
-                    if (packet.ParseMessage(msg, PacketDestination.Server))
-                    {
-                        if (ReceivedNpcChannelCloseOutgoingPacket != null)
-                            packet.Forward = ReceivedNpcChannelCloseOutgoingPacket.Invoke(packet);
 
                         if (packet.Forward)
                             packet.ToNetworkMessage(outMsg);
