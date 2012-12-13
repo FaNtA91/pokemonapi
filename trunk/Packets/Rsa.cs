@@ -17,16 +17,9 @@ namespace Pokemon.Packets
         static BigInteger otServerDP = new BigInteger("11141736698610418925078406669215087697114858422461871124661098818361832856659225315773346115219673296375487744032858798960485665997181641221483584094519937", 10);
         static BigInteger otServerDQ = new BigInteger("4886309137722172729208909250386672706991365415741885286554321031904881408516947737562153523770981322408725111241551398797744838697461929408240938369297973", 10);
         static BigInteger otServerInverseQ = new BigInteger("5610960212328996596431206032772162188356793727360507633581722789998709372832546447914318965787194031968482458122348411654607397146261039733584248408719418", 10);
-        static BigInteger cipM = new BigInteger(Constants.RSAKey.RealTibia, 10);
-        static BigInteger cipE = new BigInteger("65537", 10);
         #endregion
 
         #region Public Functions
-
-        public static bool RsaCipEncrypt(ref byte[] buffer, int position)
-        {
-            return RsaEncrypt(cipE, cipM, ref buffer, position);
-        }
 
         public static bool RsaOTEncrypt(ref byte[] buffer, int position)
         {

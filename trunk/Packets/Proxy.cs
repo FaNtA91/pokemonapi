@@ -104,7 +104,7 @@ namespace Pokemon.Packets
             if (charList != null)
                 client.Login.SetCharListServer(charList);
 
-            client.Login.RSA = Constants.RSAKey.RealTibia;
+            client.Login.RSA = Constants.RSAKey.OpenTibia;
             Stop();
         }
 
@@ -412,10 +412,7 @@ namespace Pokemon.Packets
                         clientRecvMsg.GetUInt32(); // account number
                         clientRecvMsg.GetString(); // password
 
-                        if (isOtServer)
-                            clientRecvMsg.RsaOTEncrypt(position);
-                        else
-                            clientRecvMsg.RsaCipEncrypt(position);
+                        clientRecvMsg.RsaOTEncrypt(position);
 
                         clientRecvMsg.InsertPacketHeader();
 
@@ -455,10 +452,7 @@ namespace Pokemon.Packets
 
                         clientRecvMsg.GetString(); // password
 
-                        if (isOtServer)
-                            clientRecvMsg.RsaOTEncrypt(position);
-                        else
-                            clientRecvMsg.RsaCipEncrypt(position);
+                        clientRecvMsg.RsaOTEncrypt(position);
 
                         clientRecvMsg.InsertPacketHeader();
 

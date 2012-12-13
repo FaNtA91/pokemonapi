@@ -404,11 +404,6 @@ namespace Pokemon.Packets
             return Rsa.RsaOTEncrypt(ref buffer, pos);
         }
 
-        public bool RsaCipEncrypt(int pos)
-        {
-            return Rsa.RsaCipEncrypt(ref buffer, pos);
-        }
-
         public bool RsaOTDecrypt()
         {
             return Rsa.RsaOTDecrypt(ref buffer, position, length);

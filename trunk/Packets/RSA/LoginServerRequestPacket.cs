@@ -43,11 +43,7 @@ namespace Pokemon.Packets.RSA
             msg.AddBytes(XteaKey);
             msg.AddString(AccountName);
             msg.AddString(Password);
-
-            if (OpenTibia)
-                msg.RsaOTEncrypt(23);
-            else
-                msg.RsaCipEncrypt(23);
+            msg.RsaOTEncrypt(23);
 
             return msg;
         }
