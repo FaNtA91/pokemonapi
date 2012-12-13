@@ -31,7 +31,7 @@ namespace Pokemon.Packets.Pipes
 
             msg.AddUInt32((uint)EventId);
 
-            return msg.Data;
+            return msg.GetData();
         }
 
         public static bool Send(Objects.Client client, int eventId)

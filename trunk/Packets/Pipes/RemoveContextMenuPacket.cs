@@ -41,7 +41,7 @@ namespace Pokemon.Packets.Pipes
             msg.AddByte((byte)ContextMenuType);
             msg.AddByte(HasSeparator);
 
-            return msg.Data;
+            return msg.GetData();
         }
 
         public static bool Send(Objects.Client client, int eventId, string text, Constants.ContextMenuType contextMenuType, bool hasSeparator)

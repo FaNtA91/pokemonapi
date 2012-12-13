@@ -50,8 +50,8 @@ namespace Pokemon.Packets
             int length = msg.GetUInt16();
             if (msg.GetByte() == (byte)PipePacketType.HookReceivedPacket)
             {
-                byte[] buf = new byte[msg.Data.Length - 3];
-                Array.Copy(msg.Data, 3, buf, 0, buf.Length);
+                byte[] buf = new byte[msg.GetData().Length - 3];
+                Array.Copy(msg.GetData(), 3, buf, 0, buf.Length);
                 ProcessFromServer(buf);
             }
         }
@@ -61,8 +61,8 @@ namespace Pokemon.Packets
             int length = msg.GetUInt16();
             if (msg.GetByte() == (byte)PipePacketType.HookSentPacket)
             {
-                byte[] buf = new byte[msg.Data.Length - 3];
-                Array.Copy(msg.Data, 3, buf, 0, buf.Length);
+                byte[] buf = new byte[msg.GetData().Length - 3];
+                Array.Copy(msg.GetData(), 3, buf, 0, buf.Length);
                 ProcessFromClient(buf);
             }
         }
@@ -108,7 +108,7 @@ namespace Pokemon.Packets
                 serverRecvMsg.Length = length;
             }
 
-            OnReceivedDataFromServer(serverRecvMsg.Data);
+            OnReceivedDataFromServer(serverRecvMsg.GetData());
 
             switch (protocol)
             {
@@ -169,7 +169,7 @@ namespace Pokemon.Packets
             Array.Copy(buffer, clientRecvMsg.GetBuffer(), length);
             clientRecvMsg.Length = length;
 
-            OnReceivedDataFromClient(clientRecvMsg.Data);
+            OnReceivedDataFromClient(clientRecvMsg.GetData());
 
             switch (protocol)
             {

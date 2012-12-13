@@ -31,7 +31,7 @@ namespace Pokemon.Packets.Pipes
 
             msg.AddString(TextName);
 
-            return msg.Data;
+            return msg.GetData();
         }
 
         public static bool Send(Objects.Client client, string textName)

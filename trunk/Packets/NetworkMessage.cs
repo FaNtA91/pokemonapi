@@ -11,6 +11,38 @@ namespace Pokemon.Packets
         public Objects.Client Client { get; set; }
         #endregion
 
+        #region Properties
+
+        public int Length
+        {
+            get { return length; }
+            set { length = value; }
+        }
+
+        public int Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+
+        public int GetBufferSize()
+        {
+            return bufferSize;
+        }
+
+        public byte[] GetData()
+        {
+            byte[] t = new byte[length];
+            Array.Copy(buffer, t, length);
+            return t;
+        }
+
+        public byte[] GetBuffer()
+        {
+            return buffer;
+        }
+        #endregion
+
         #region Contructors
 
         public NetworkMessage()
@@ -28,7 +60,7 @@ namespace Pokemon.Packets
         }
 
         public NetworkMessage(NetworkMessage msg)
-            : this(msg.Data)
+            : this(msg.GetData())
         {
             this.position = msg.position;
         }
@@ -92,37 +124,6 @@ namespace Pokemon.Packets
             NetworkMessage nm = new NetworkMessage(client, size);
             nm.Position = 0;
             return nm;
-        }
-
-        #endregion
-
-        #region Properties
-
-        public int Length
-        {
-            get { return length; }
-            set { length = value; }
-        }
-
-        public int Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-
-        public byte[] GetBuffer()
-        {
-            return buffer;
-        }
-
-        public byte[] Data
-        {
-            get
-            {
-                byte[] t = new byte[length];
-                Array.Copy(buffer, t, length);
-                return t;
-            }
         }
 
         #endregion

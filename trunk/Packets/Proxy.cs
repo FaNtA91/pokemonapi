@@ -312,9 +312,9 @@ namespace Pokemon.Packets
                         ParseFirstClientMsg();
                         break;
                     case Protocol.World:
-                        OnReceivedDataFromClient(clientRecvMsg.Data);
+                        OnReceivedDataFromClient(clientRecvMsg.GetData());
 
-                        clientData = clientRecvMsg.Data;
+                        clientData = clientRecvMsg.GetData();
 
                         if (clientRecvMsg.XteaDecrypt(xteaKey))
                         {
@@ -346,7 +346,7 @@ namespace Pokemon.Packets
                                 serverSendMsg.InsetLogicalPacketHeader();
                                 serverSendMsg.PrepareToSend(xteaKey);
 
-                                SendToServer(serverSendMsg.Data);
+                                SendToServer(serverSendMsg.GetData());
                             }
                             else
                             {
@@ -515,8 +515,8 @@ namespace Pokemon.Packets
                         ParseCharacterList();
                         break;
                     case Protocol.World:
-                        OnReceivedDataFromServer(serverRecvMsg.Data);
-                        serverData = serverRecvMsg.Data;
+                        OnReceivedDataFromServer(serverRecvMsg.GetData());
+                        serverData = serverRecvMsg.GetData();
                         if (serverRecvMsg.XteaDecrypt(xteaKey))
                         {
                             serverRecvMsg.Position = serverRecvMsg.GetPacketHeaderSize();
@@ -551,7 +551,7 @@ namespace Pokemon.Packets
                                 clientSendMsg.InsetLogicalPacketHeader();
                                 clientSendMsg.PrepareToSend(xteaKey);
 
-                                SendToClient(clientSendMsg.Data);
+                                SendToClient(clientSendMsg.GetData());
                             }
                             else
                             {
@@ -566,7 +566,7 @@ namespace Pokemon.Packets
                         serverStream.BeginRead(serverRecvMsg.GetBuffer(), 0, 2, new AsyncCallback(ServerReadCallBack), null);
                         break;
                     case Protocol.None:
-                        SendToClient(serverRecvMsg.Data);
+                        SendToClient(serverRecvMsg.GetData());
                         break;
                 }
             }

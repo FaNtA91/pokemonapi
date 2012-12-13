@@ -44,7 +44,7 @@ namespace Pokemon.Packets.Pipes
             msg.AddUInt16((ushort)Location.Y);
             msg.AddString(Text);
 
-            return msg.Data;
+            return msg.GetData();
         }
 
         public static bool Send(Objects.Client client, uint creatureId , string creatureName, Location location, string text)

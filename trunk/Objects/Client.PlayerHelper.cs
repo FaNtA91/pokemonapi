@@ -309,27 +309,10 @@ namespace Pokemon.Objects
                 get { return client.Memory.ReadUInt32(Addresses.Player.X); }
                 set { client.Memory.WriteUInt32(Addresses.Player.X, value); }
             }
+
             public string WorldName
             {
                 get { return client.Login.CharacterList[client.Login.SelectedChar].WorldName; }
-            }
-
-            /// <summary>
-            /// The number of times a player has attacked
-            /// </summary>
-            public uint AttackCount
-            {
-                get { return client.Memory.ReadUInt32(Addresses.Player.AttackCount); }
-                set { client.Memory.WriteUInt32(Addresses.Player.AttackCount, value); }
-            }
-
-            /// <summary>
-            /// The number of times a player has followed
-            /// </summary>
-            public uint FollowCount
-            {
-                get { return client.Memory.ReadUInt32(Addresses.Player.FollowCount); }
-                set { client.Memory.WriteUInt32(Addresses.Player.FollowCount, value); }
             }
 
             #endregion

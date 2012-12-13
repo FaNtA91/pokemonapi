@@ -32,7 +32,7 @@ namespace Pokemon.Packets.Pipes
 
             msg.AddUInt32(IconId);
 
-            return msg.Data;
+            return msg.GetData();
         }
 
         public static bool Send(Objects.Client client, uint iconId)

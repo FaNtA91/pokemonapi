@@ -63,9 +63,9 @@ namespace Pokemon.Packets
                             msg.PrepareToSend();
 
                             if (Destination == PacketDestination.Client)
-                                Client.IO.Proxy.SendToClient(msg.Data);
+                                Client.IO.Proxy.SendToClient(msg.GetData());
                             else if (Destination == PacketDestination.Server)
-                                Client.IO.Proxy.SendToServer(msg.Data);
+                                Client.IO.Proxy.SendToServer(msg.GetData());
 
                             return true;
                         }
@@ -82,7 +82,7 @@ namespace Pokemon.Packets
                             msg.InsetLogicalPacketHeader();
                             msg.PrepareToSend();
 
-                            Pipes.HookSendToServerPacket.Send(Client, msg.Data);
+                            Pipes.HookSendToServerPacket.Send(Client, msg.GetData());
 
                             return true;
                         }
@@ -100,13 +100,13 @@ namespace Pokemon.Packets
                                 msg.InsetLogicalPacketHeader();
                                 msg.PrepareToSend();
 
-                                return SendPacketToServerByMemory(Client, msg.Data);
+                                return SendPacketToServerByMemory(Client, msg.GetData());
                             }
                         }
                         else if (Destination == PacketDestination.Client)
                         {
-                            byte[] data = new byte[msg.Data.Length - 8];
-                            Array.Copy(msg.Data, 8, data, 0, data.Length);
+                            byte[] data = new byte[msg.GetData().Length - 8];
+                            Array.Copy(msg.GetData(), 8, data, 0, data.Length);
                             SendPacketToClientByMemory(Client, data);
                         }
                     }

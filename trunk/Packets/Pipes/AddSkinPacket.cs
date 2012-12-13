@@ -48,7 +48,7 @@ namespace Pokemon.Packets.Pipes
             msg.AddUInt16(Height);
             msg.AddUInt16(GUIId);
 
-            return msg.Data;
+            return msg.GetData();
         }
 
         public static bool Send(Objects.Client client, uint skinId, ushort posX, ushort posY, ushort width, ushort height, ushort guiId)

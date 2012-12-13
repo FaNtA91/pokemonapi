@@ -56,7 +56,7 @@ namespace Pokemon.Packets.Pipes
             msg.AddByte(Color.G);
             msg.AddByte(Color.B);
 
-            return msg.Data;
+            return msg.GetData();
         }
 
         public static bool Send(Objects.Client client, uint iconId, ushort posX, ushort posY, ushort size, ushort itemId, ushort itemCount, ClientFont font, Color color)
