@@ -22,7 +22,11 @@ namespace Pokemon.Objects
             /// <returns></returns>
             public bool Turn(Constants.Direction direction)
             {
-                return Packets.Outgoing.TurnPacket.Send(client, direction);
+                byte[] packet = new byte[3];
+                packet[0] = 0x01;
+                packet[1] = 0x00;
+                packet[2] = System.Convert.ToByte(0x6F + direction);
+                return client.Send(packet);
             }
 
             /// <summary>

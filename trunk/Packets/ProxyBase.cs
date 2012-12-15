@@ -965,49 +965,6 @@ namespace Pokemon.Packets
                             packet.ToNetworkMessage(outMsg);
                     }
                     break;
-                case OutgoingPacketType.TurnDown:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.TurnPacket(client, Pokemon.Constants.Direction.Down);
-
-                    if (ReceivedTurnOutgoingPacket != null)
-                        packet.Forward = ReceivedTurnOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-                    break;
-                case OutgoingPacketType.TurnUp:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.TurnPacket(client, Pokemon.Constants.Direction.Up);
-
-                    if (ReceivedTurnOutgoingPacket != null)
-                        packet.Forward = ReceivedTurnOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
-                case OutgoingPacketType.TurnLeft:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.TurnPacket(client, Pokemon.Constants.Direction.Left);
-
-                    if (ReceivedTurnOutgoingPacket != null)
-                        packet.Forward = ReceivedTurnOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
-                case OutgoingPacketType.TurnRight:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.TurnPacket(client, Pokemon.Constants.Direction.Right);
-
-                    if (ReceivedTurnOutgoingPacket != null)
-                        packet.Forward = ReceivedTurnOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
                 case OutgoingPacketType.MoveDown:
                     msg.GetByte();
                     packet = new Packets.Outgoing.MovePacket(client, Pokemon.Constants.Direction.Down);

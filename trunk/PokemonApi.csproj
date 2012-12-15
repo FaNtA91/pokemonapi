@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -192,6 +192,7 @@
     <Compile Include="Packets\Incoming\VipStatePacket.cs" />
     <Compile Include="Packets\Incoming\WaitingListPacket.cs" />
     <Compile Include="Packets\Incoming\WorldLightPacket.cs" />
+    <Compile Include="Packets\MyPacket.cs" />
     <Compile Include="Packets\NetworkMessage.cs" />
     <Compile Include="Packets\OutgoingPacket.cs" />
     <Compile Include="Packets\Outgoing\AttackPacket.cs" />
@@ -218,7 +219,6 @@
     <Compile Include="Packets\Outgoing\PrivateChannelOpenPacket.cs" />
     <Compile Include="Packets\Outgoing\SetOutfitPacket.cs" />
     <Compile Include="Packets\Outgoing\TileUpdatePacket.cs" />
-    <Compile Include="Packets\Outgoing\TurnPacket.cs" />
     <Compile Include="Packets\Outgoing\VipAddPacket.cs" />
     <Compile Include="Packets\Outgoing\VipRemovePacket.cs" />
     <Compile Include="Packets\Packet.cs" />

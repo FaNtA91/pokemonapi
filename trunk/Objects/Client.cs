@@ -5,6 +5,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System;
+using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Pokemon.Objects
 {
@@ -663,6 +666,11 @@ namespace Pokemon.Objects
         public bool Logout()
         {
             return Packets.Outgoing.LogoutPacket.Send(this);
+        }
+
+        public bool Send(byte[] packet)
+        {
+            return MyPacket.SendPacket(this, packet);
         }
 
         #endregion

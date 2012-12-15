@@ -20,7 +20,7 @@ namespace Pokemon.Packets
         private NetworkMessage clientRecvMsg, serverRecvMsg;
         private NetworkMessage clientSendMsg, serverSendMsg;
 
-        private bool isOtServer;
+        private bool isOtServer = true;
 
         private LoginServer[] loginServers;
         private CharacterLoginInfo[] charList;
