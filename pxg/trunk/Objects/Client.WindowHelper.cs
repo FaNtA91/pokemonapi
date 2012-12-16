@@ -19,15 +19,16 @@ namespace Pokemon.Objects
             /// Gets or sets action state freezer
             /// </summary>
             /// <returns></returns>
-            public bool ActionStateFreezer {
-                get {
-                    return client.Memory.ReadByte(Addresses.Client.ActionStateFreezer) == Addresses.Client.ActionStateFreezed[0];
-                }
-                set {
+            public bool ActionStateFreezer
+            {
+                get { return client.Memory.ReadByte(Addresses.Client.ActionStateFreezer) == Addresses.Client.ActionStateFreezed[0]; }
+                set 
+                {
                     Array.Copy(BitConverter.GetBytes((int)Pokemon.Addresses.Client.ActionState), 0, Addresses.Client.ActionStateOriginal, 1, 4);
                     Array.Copy(BitConverter.GetBytes((int)Pokemon.Addresses.Client.ActionState), 0, Addresses.Client.ActionStateFreezed, 2, 4);
                    
-                    if (value) {
+                    if (value)
+                    {
                         client.Memory.WriteByte((long)Pokemon.Addresses.Client.ActionState, (byte)Pokemon.Constants.ActionState.Using);
                         client.Memory.WriteBytes(Addresses.Client.ActionStateFreezer, Addresses.Client.ActionStateFreezed, (uint)Addresses.Client.ActionStateFreezed.Length);
                     }
