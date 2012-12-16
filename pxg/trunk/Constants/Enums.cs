@@ -141,18 +141,18 @@ namespace Pokemon.Constants
     public enum SlotNumber
     {
         None = 0,
-        Head = 1,
-        Necklace = 2,
-        Backpack = 3,
-        Armor = 4,
-        Right = 5,
-        Left = 6,
-        Legs = 7,
-        Feet = 8,
-        Ring = 9,
-        Ammo = 10,
-        First = Head,
-        Last = Ammo
+        Rope = 1,
+        FishingRod = 2,
+        Coins = 3,
+        Order = 4,
+        BadgeBox = 5,
+        Pokedex = 6,
+        PokemonIcon = 7,
+        Pokemon = 8,
+        Caught = 9,
+        Pokebag = 10,
+        First = Rope,
+        Last = Pokebag
     }
 
     #endregion
