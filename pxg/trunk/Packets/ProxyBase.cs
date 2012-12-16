@@ -79,10 +79,6 @@ namespace Pokemon.Packets
         public event IncomingPacketListener ReceivedItemTextWindowIncomingPacket;
         public event IncomingPacketListener ReceivedMagicEffectIncomingPacket;
         public event IncomingPacketListener ReceivedMapDescriptionIncomingPacket;
-        public event IncomingPacketListener ReceivedMoveEastIncomingPacket;
-        public event IncomingPacketListener ReceivedMoveNorthIncomingPacket;
-        public event IncomingPacketListener ReceivedMoveSouthIncomingPacket;
-        public event IncomingPacketListener ReceivedMoveWestIncomingPacket;
         public event IncomingPacketListener ReceivedOutfitWindowIncomingPacket;
         public event IncomingPacketListener ReceivedPingIncomingPacket;
         public event IncomingPacketListener ReceivedPlayerFlagsIncomingPacket;
@@ -426,38 +422,6 @@ namespace Pokemon.Packets
                     {
                         if (ReceivedMapDescriptionIncomingPacket != null)
                             packet.Forward = ReceivedMapDescriptionIncomingPacket.Invoke(packet);
-                    }
-                    break;
-                case IncomingPacketType.MoveNorth:
-                    packet = new Packets.Incoming.MoveNorthPacket(client);
-                    if (packet.ParseMessage(msg, PacketDestination.Client, outMsg))
-                    {
-                        if (ReceivedMoveNorthIncomingPacket != null)
-                            packet.Forward = ReceivedMoveNorthIncomingPacket.Invoke(packet);
-                    }
-                    break;
-                case IncomingPacketType.MoveSouth:
-                    packet = new Packets.Incoming.MoveSouthPacket(client);
-                    if (packet.ParseMessage(msg, PacketDestination.Client, outMsg))
-                    {
-                        if (ReceivedMoveSouthIncomingPacket != null)
-                            packet.Forward = ReceivedMoveSouthIncomingPacket.Invoke(packet);
-                    }
-                    break;
-                case IncomingPacketType.MoveEast:
-                    packet = new Packets.Incoming.MoveEastPacket(client);
-                    if (packet.ParseMessage(msg, PacketDestination.Client, outMsg))
-                    {
-                        if (ReceivedMoveEastIncomingPacket != null)
-                            packet.Forward = ReceivedMoveEastIncomingPacket.Invoke(packet);
-                    }
-                    break;
-                case IncomingPacketType.MoveWest:
-                    packet = new Packets.Incoming.MoveWestPacket(client);
-                    if (packet.ParseMessage(msg, PacketDestination.Client, outMsg))
-                    {
-                        if (ReceivedMoveWestIncomingPacket != null)
-                            packet.Forward = ReceivedMoveWestIncomingPacket.Invoke(packet);
                     }
                     break;
                 case IncomingPacketType.SelfAppear:
@@ -964,94 +928,6 @@ namespace Pokemon.Packets
                         if (packet.Forward)
                             packet.ToNetworkMessage(outMsg);
                     }
-                    break;
-                case OutgoingPacketType.MoveDown:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.MovePacket(client, Pokemon.Constants.Direction.Down);
-
-                    if (ReceivedMoveOutgoingPacket != null)
-                        packet.Forward = ReceivedMoveOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
-                case OutgoingPacketType.MoveDownLeft:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.MovePacket(client, Pokemon.Constants.Direction.DownLeft);
-
-                    if (ReceivedMoveOutgoingPacket != null)
-                        packet.Forward = ReceivedMoveOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
-                case OutgoingPacketType.MoveDownRight:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.MovePacket(client, Pokemon.Constants.Direction.DownRight);
-
-                    if (ReceivedMoveOutgoingPacket != null)
-                        packet.Forward = ReceivedMoveOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
-                case OutgoingPacketType.MoveLeft:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.MovePacket(client, Pokemon.Constants.Direction.Left);
-
-                    if (ReceivedMoveOutgoingPacket != null)
-                        packet.Forward = ReceivedMoveOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
-                case OutgoingPacketType.MoveRight:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.MovePacket(client, Pokemon.Constants.Direction.Right);
-
-                    if (ReceivedMoveOutgoingPacket != null)
-                        packet.Forward = ReceivedMoveOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
-                case OutgoingPacketType.MoveUp:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.MovePacket(client, Pokemon.Constants.Direction.Up);
-
-                    if (ReceivedMoveOutgoingPacket != null)
-                        packet.Forward = ReceivedMoveOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
-                case OutgoingPacketType.MoveUpLeft:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.MovePacket(client, Pokemon.Constants.Direction.UpLeft);
-
-                    if (ReceivedMoveOutgoingPacket != null)
-                        packet.Forward = ReceivedMoveOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
-                    break;
-                case OutgoingPacketType.MoveUpRight:
-                    msg.GetByte();
-                    packet = new Packets.Outgoing.MovePacket(client, Pokemon.Constants.Direction.UpRight);
-
-                    if (ReceivedMoveOutgoingPacket != null)
-                        packet.Forward = ReceivedMoveOutgoingPacket.Invoke(packet);
-
-                    if (packet.Forward)
-                        packet.ToNetworkMessage(outMsg);
-
                     break;
                 case OutgoingPacketType.AutoWalk:
                     packet = new Packets.Outgoing.AutoWalkPacket(client);

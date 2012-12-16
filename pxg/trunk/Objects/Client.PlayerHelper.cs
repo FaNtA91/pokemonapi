@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Pokemon.Objects
 {
@@ -25,7 +26,7 @@ namespace Pokemon.Objects
                 byte[] packet = new byte[3];
                 packet[0] = 0x01;
                 packet[1] = 0x00;
-                packet[2] = System.Convert.ToByte(0x6F + direction);
+                packet[2] = Convert.ToByte(0x6F + direction);
                 return client.Send(packet);
             }
 
@@ -36,7 +37,11 @@ namespace Pokemon.Objects
             /// <returns></returns>
             public bool Walk(Constants.Direction direction)
             {
-                return Packets.Outgoing.MovePacket.Send(client, direction);
+                byte[] packet = new byte[3];
+                packet[0] = 0x01;
+                packet[1] = 0x00;
+                packet[2] = Convert.ToByte(0x65 + direction);
+                return client.Send(packet);
             }
 
             /// <summary>
@@ -46,7 +51,20 @@ namespace Pokemon.Objects
             /// <returns></returns>
             public bool Walk(List<Constants.Direction> list)
             {
-                return Packets.Outgoing.AutoWalkPacket.Send(client, list);
+                int len = 4 + list.Count;
+                byte[] packet = new byte[len];
+                packet[0] = Convert.ToByte(len);
+                packet[1] = 0x00;
+                packet[2] = 0x64;
+                packet[3] = Convert.ToByte(list.Count);
+
+                int i = 4;
+                foreach (Constants.Direction dir in list)
+                {
+                    packet[i] = Convert.ToByte(dir);
+                }
+
+                return client.Send(packet);
             }
 
             /// <summary>

@@ -35,7 +35,6 @@ namespace Pokemon.Addresses
 
         public static uint DistanceSkull;
         public static uint DistanceParty;
-        public static uint DistanceWarIcon;
         public static uint DistanceIsBlocking;
     }
 }
