@@ -73,11 +73,8 @@
     <Compile Include="Addresses\BattleList.cs" />
     <Compile Include="Addresses\Client.cs" />
     <Compile Include="Addresses\Container.cs" />
-    <Compile Include="Addresses\ContextMenus.cs" />
     <Compile Include="Addresses\Creature.cs" />
     <Compile Include="Addresses\DatItem.cs" />
-    <Compile Include="Addresses\DrawItem.cs" />
-    <Compile Include="Addresses\DrawSkin.cs" />
     <Compile Include="Addresses\Hotkey.cs" />
     <Compile Include="Addresses\Map.cs" />
     <Compile Include="Addresses\Player.cs" />
@@ -111,11 +108,9 @@
     <Compile Include="Objects\Client.WindowHelper.cs" />
     <Compile Include="Objects\Console.cs" />
     <Compile Include="Objects\Container.cs" />
-    <Compile Include="Objects\ContextMenu.cs" />
     <Compile Include="Objects\Creature.cs" />
     <Compile Include="Objects\CreatureData.cs" />
     <Compile Include="Objects\Hotkey.cs" />
-    <Compile Include="Objects\Icon.cs" />
     <Compile Include="Objects\Inventory.cs" />
     <Compile Include="Objects\Item.cs" />
     <Compile Include="Objects\ItemData.cs" />
@@ -124,7 +119,6 @@
     <Compile Include="Objects\Outfit.cs" />
     <Compile Include="Objects\Player.cs" />
     <Compile Include="Objects\Screen.cs" />
-    <Compile Include="Objects\Skin.cs" />
     <Compile Include="Objects\Spell.cs" />
     <Compile Include="Objects\Structures.cs" />
     <Compile Include="Objects\Tile.cs" />
@@ -219,29 +213,15 @@
     <Compile Include="Packets\Packet.cs" />
     <Compile Include="Packets\Pipe.cs" />
     <Compile Include="Packets\PipePacket.cs" />
-    <Compile Include="Packets\Pipes\AddContextMenuPacket.cs" />
-    <Compile Include="Packets\Pipes\AddIconPacket.cs" />
-    <Compile Include="Packets\Pipes\AddSkinPacket.cs" />
     <Compile Include="Packets\Pipes\DisplayCreatureTextPacket.cs" />
     <Compile Include="Packets\Pipes\DisplayTextPacket.cs" />
-    <Compile Include="Packets\Pipes\EventTriggerPacket.cs" />
     <Compile Include="Packets\Pipes\HooksEnableDisablePacket.cs" />
     <Compile Include="Packets\Pipes\HookSendToServerPacket.cs" />
-    <Compile Include="Packets\Pipes\OnClickContextMenuPacket.cs" />
-    <Compile Include="Packets\Pipes\OnClickIcon.cs" />
-    <Compile Include="Packets\Pipes\RemoveAllContextMenusPacket.cs" />
-    <Compile Include="Packets\Pipes\RemoveAllIconsPacket.cs" />
-    <Compile Include="Packets\Pipes\RemoveAllSkinsPacket.cs" />
     <Compile Include="Packets\Pipes\RemoveAllTextPacket.cs" />
-    <Compile Include="Packets\Pipes\RemoveContextMenuPacket.cs" />
     <Compile Include="Packets\Pipes\RemoveCreatureTextPacket.cs" />
-    <Compile Include="Packets\Pipes\RemoveIconPacket.cs" />
-    <Compile Include="Packets\Pipes\RemoveSkinPacket.cs" />
     <Compile Include="Packets\Pipes\RemoveTextPacket.cs" />
     <Compile Include="Packets\Pipes\SetConstantPacket.cs" />
     <Compile Include="Packets\Pipes\UpdateCreatureTextPacket.cs" />
-    <Compile Include="Packets\Pipes\UpdateIconPacket.cs" />
-    <Compile Include="Packets\Pipes\UpdateSkinPacket.cs" />
     <Compile Include="Packets\Proxy.cs" />
     <Compile Include="Packets\ProxyBase.cs" />
     <Compile Include="Packets\RawSocket.cs" />
@@ -301,6 +281,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Pokemon_Inject.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PokemonAPI_Inject.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
