@@ -16,7 +16,18 @@ namespace Pokemon.Objects
         {
             this.client = client;
         }
-        
+
+        public bool SayLove()
+        {
+            return Say(new ChatMessage("!love"));
+        }
+
+        public bool SayLevel()
+        {
+            return Say(new ChatMessage("!level"));
+        }
+
+
         /// <summary>
         /// Say something in the default channel (wrapper for Say)
         /// </summary>

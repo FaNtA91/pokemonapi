@@ -155,6 +155,13 @@ namespace Pokemon
             Map.ZAxisDefault = 7;
             Map.PlayerTile = 0x3E3A08;
 
+            Map.FullLightAdr = 0x4D7C9C;
+            Map.FullLightNop = 0x4D7C99;
+            Map.FullLightNopDefault = new byte[] { 0x7E, 0x05 };
+            Map.FullLightNopEdited = new byte[] { 0x90, 0x90 };
+            Map.FullLightAdrDefault = 0x80;
+            Map.FullLightAdrEdited = 0xFF;
+
             Map.NameSpy1 = 0x4DF469;
             Map.NameSpy2 = 0x4DF473;
             Map.NameSpy1Default = 19061;
