@@ -1,0 +1,40 @@
+=================================================
+[SIZE=5][COLOR=DarkOrange]PokemonAPI v1.1 [/COLOR][/SIZE][SIZE=3][I]for PokeXGames client[/I][/SIZE]
+=================================================
+
+[SIZE=3][COLOR=Orange]About this Release[/COLOR][/SIZE][LIST]
+[*]Added packet.dll for hooking packets. 
+[*]Fixed a lot of bugs, including the full light. 
+[*]Fixed PokemonAPI_Inject (removed some parts, we re-add soom as possible). 
+[*]Fixed turn packet, now its called using the packet.dll. 
+[*]Fixed move packet, now its called using the packet.dll. 
+[*]Removed Icons, Skins and ContextMenus? packets, we need to check what of this is crashing client at start up. We add again. 
+[*]Added more functions to Battlelist class. 
+[*]Corrected slot numbers. 
+[*]Replaced Mana, ManaMax to Pokemons, PokemonsMax. 
+[*]Replaced Capacity to PokemonsCount.
+[*]Removed non 8.1 functions and classes. 
+[/LIST]
+
+[SIZE=3][COLOR=Orange]About PokemonAPI[/COLOR][/SIZE][LIST]
+[*]PokemonAPI is a .NET framework for writing programs that interact with the Tibia Client.
+[*]Programmers: If you are interested in helping out with PokemonAPI (adding to the library, bugfixing, etc) please get familiar with the DLL and using it to write programs. Once you create a program using PokemonAPI and publish it, we will be more than happy to have you join the team.
+[*]PokemonAPI is open source and available at Google Code [url=http://code.google.com/p/pokemonapi][COLOR=DeepSkyBlue]http://code.google.com/p/pokemonapi[/COLOR][/url]
+[*]Authors: Tryller, with very special thanks to [url=http://code.google.com/p/tibiaapi/]TibiaAPI [/url]developers and others.
+[/LIST]
+
+[SIZE=3][COLOR=DarkOrange]Downloads[/COLOR][/SIZE]
+[LIST]
+[*][URL=http://code.google.com/p/pokemonapi/downloads/list][COLOR=DeepSkyBlue]Complete Listing[/COLOR][/URL]
+[*][URL=http://pokemonapi.googlecode.com/files/PokemonAPI_v1.1_12-17-2012.rar][COLOR=DeepSkyBlue]PokemonAPI v1.1 DLL[/COLOR][/URL] - Inside you will find a readme for use with Visual Studio.
+[/LIST]
+
+[SIZE=3][COLOR=DarkOrange]Issues and Ideas[/COLOR][/SIZE]
+[LIST]
+[*]Please see this thread: [URL=http://tpforums.org/forum/thread-10211.html][COLOR=DeepSkyBlue]Ideas/Suggestions/Comments[/COLOR][/URL]
+[/LIST]
+
+[SIZE=3][COLOR=DarkOrange]Change Log[/COLOR][/SIZE]
+[LIST]
+[*][URL=http://code.google.com/p/pokemonapi/wiki/Changelog][COLOR=DeepSkyBlue]View complete change log[/COLOR][/URL]
+[/LIST]
