@@ -49,7 +49,7 @@ namespace Pokemon.Packets.Pipes
             msg.AddUInt16((ushort)Font);
             msg.AddString(Text);
 
-            return msg.GetData();
+            return msg.Data;
         }
 
         public static bool Send(Objects.Client client, string textId, Location location, Color color, ClientFont font, string text)

@@ -127,9 +127,22 @@ namespace Pokemon.Objects
         /// <returns></returns>
         public bool Attack()
         {
-            uint creatureId = Id;
-            client.Player.TargetId = creatureId;
-            return Packets.Outgoing.AttackPacket.Send(client, (uint)creatureId);
+            if (client.VersionNumber >= 860)
+            {
+                if (client.Player.TargetId != Id)
+                {
+                    if (client.VersionNumber >= 872)
+                    {
+                        client.Player.AttackCount += 2;
+                    }
+                    else
+                    {
+                        client.Player.AttackCount += 1;
+                    }
+                }
+            }
+            client.Player.TargetId = Id;
+            return Packets.Outgoing.AttackPacket.Send(client, (uint)Id);
         }
 
         /// <summary>
@@ -149,9 +162,22 @@ namespace Pokemon.Objects
         /// <returns></returns>
         public bool Follow()
         {
-            uint creatureId = Id;
-            client.Player.GreenSquare = creatureId;
-            return Packets.Outgoing.FollowPacket.Send(client, (uint)creatureId);
+            if (client.VersionNumber >= 860)
+            {
+                if (client.Player.TargetId != Id)
+                {
+                    if (client.VersionNumber >= 872)
+                    {
+                        client.Player.FollowCount += 2;
+                    }
+                    else
+                    {
+                        client.Player.FollowCount += 1;
+                    }
+                }
+            }
+            client.Player.GreenSquare = Id;
+            return Packets.Outgoing.FollowPacket.Send(client, (uint)Id);
         }
 
         /// <summary>
@@ -297,6 +323,12 @@ namespace Pokemon.Objects
             set { client.Memory.WriteInt32(address + Addresses.Creature.DistanceParty, (int)value); }
         }
 
+        public Constants.WarIcon WarIcon
+        {
+            get { return (Constants.WarIcon)client.Memory.ReadInt32(address + Addresses.Creature.DistanceWarIcon); }
+            set { client.Memory.WriteInt32(address + Addresses.Creature.DistanceWarIcon, (int)value); }
+        }
+
         public bool IsBlocking
         {
             get { return Convert.ToBoolean(client.Memory.ReadInt32(address + Addresses.Creature.DistanceIsBlocking)); }
@@ -339,12 +371,18 @@ namespace Pokemon.Objects
             set { client.Memory.WriteInt32(address + Addresses.Creature.DistanceAddon, (int)value); }
         }
 
+        public int MountId
+        {
+            get { return client.Memory.ReadInt32(address + Addresses.Creature.DistanceMountId); }
+            set { client.Memory.WriteInt32(address + Addresses.Creature.DistanceMountId, (int)value); }
+        }
+
         public Outfit Outfit
         {
             get
             {
                 return new Outfit(this, (ushort)OutfitType, (byte)HeadColor, (byte)BodyColor,
-                    (byte)LegsColor, (byte)FeetColor, (byte)Addon);
+                    (byte)LegsColor, (byte)FeetColor, (byte)Addon, (byte)MountId);
             }
             set
             {
@@ -354,6 +392,7 @@ namespace Pokemon.Objects
                 LegsColor = (int)value.Legs;
                 FeetColor = (int)value.Feet;
                 Addon = (Constants.OutfitAddon)value.Addons;
+                MountId = value.MountId;
             }
         }
 

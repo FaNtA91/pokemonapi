@@ -23,7 +23,7 @@ namespace Pokemon
             return (ushort)(main * 100 + secondary);
         }
 
-        public static void Set(string version)
+        public static void Set(string version, Process p)
             {
 
             CurrentVersion = StringToVersion(version);

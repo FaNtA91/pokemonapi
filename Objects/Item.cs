@@ -463,7 +463,7 @@ namespace Pokemon.Objects
             get
             {
                 return GetFlag(Pokemon.Addresses.DatItem.Flag.IsStackable) ||
-                       GetFlag(Pokemon.Addresses.DatItem.Flag.IsRune) ||
+                       GetFlag(Pokemon.Addresses.DatItem.Flag.IsRune) || // unused in 8.60, always returns false
                        GetFlag(Pokemon.Addresses.DatItem.Flag.IsSplash) ||
                        GetFlag(Pokemon.Addresses.DatItem.Flag.IsFluidContainer);
             }
@@ -475,15 +475,15 @@ namespace Pokemon.Objects
 
         public bool GetFlag(Addresses.DatItem.Flag flag)
         {
-            return (Flags & (uint)flag) == (uint)flag;
+            return (Flags & Addresses.DatItem.GetFlagOffset(client.VersionNumber, flag)) != 0;
         }
 
         public void SetFlag(Addresses.DatItem.Flag flag, bool enable)
         {
             if (enable)
-                Flags |= (uint)flag;
+                Flags |= Addresses.DatItem.GetFlagOffset(client.VersionNumber, flag);
             else
-                Flags &= ~(uint)flag;
+                Flags &= ~Addresses.DatItem.GetFlagOffset(client.VersionNumber, flag);
         }
 
         #endregion

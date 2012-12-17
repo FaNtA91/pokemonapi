@@ -1,0 +1,8 @@
+D:\Bots\PokemonApi\PokemonApi\obj\Release\ResolveAssemblyReference.cache
+D:\Bots\PokemonApi\PokemonApi\obj\Release\PokemonApi.csproj.GenerateResource.Cache
+D:\Bots\PokemonApi\PokemonApi\obj\Release\Pokemon.Properties.Resources.resources
+D:\Bots\PokemonApi\PokemonApi\obj\Release\Pokemon.Util.ClientChooser.resources
+D:\Bots\PokemonApi\PokemonApi\bin\Release\PokemonApi.dll
+D:\Bots\PokemonApi\PokemonApi\bin\Release\PokemonApi.pdb
+D:\Bots\PokemonApi\PokemonApi\obj\Release\PokemonApi.dll
+D:\Bots\PokemonApi\PokemonApi\obj\Release\PokemonApi.pdb

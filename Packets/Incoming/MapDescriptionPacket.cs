@@ -101,6 +101,9 @@ namespace Pokemon.Packets.Incoming
                                 msg.AddByte((byte)c.Skull);
 
                                 msg.AddByte((byte)c.PartyShield);
+
+                                //if (version >= 8.53)
+                                msg.AddByte((byte)c.WarIcon);
                             }
                             else
                             {
@@ -109,7 +112,9 @@ namespace Pokemon.Packets.Incoming
                                 msg.AddUInt16((ushort)item.Id);
 
                                 if (item.HasExtraByte)
+                                {
                                     msg.AddByte(item.Count);
+                                }
                             }
                         }
 

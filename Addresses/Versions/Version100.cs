@@ -7,33 +7,28 @@ namespace Pokemon
         public static void SetVersion100()
         {
             BattleList.Start = 0x613BD0;
+            BattleList.End = 0x619990;
             BattleList.StepCreatures = 0xA0;
-            BattleList.MaxCreatures = 150;
-            BattleList.End = BattleList.Start + (BattleList.StepCreatures * BattleList.MaxCreatures);
+            BattleList.MaxCreatures = 100;
 
             Client.StartTime = 0x76D90C;
             Client.XTeaKey = 0x768C7C;
             Client.SocketStruct = 0x768C50;
             Client.SendPointer = 0x597600;
-
             Client.FrameRatePointer = 0x76CE0C;
             Client.FrameRateCurrentOffset = 0x00;
             Client.FrameRateLimitOffset = 0x58;
-
-            Client.MultiClient = 0xF8944;
+            Client.MultiClient = 0;//?
             Client.Status = 0x76C2C8;
-
             Client.SafeMode = 0x76909C;
             Client.FollowMode = Client.SafeMode + 4;
             Client.AttackMode = Client.FollowMode + 4;
             Client.ActionState = 0x76C328;
-
-            Client.CurrentWindow = 0x61E984;
-            Client.LastMSGText = 0x76DB78;
+            //Client.CurrentWindow = 0x61E984;
             Client.LastMSGAuthor = Client.LastMSGText - 0x28;
+            Client.LastMSGText = 0x76DB78;
             Client.StatusbarText = 0x76D928;
             Client.StatusbarTime = Client.StatusbarText - 4;
-
             Client.ClickId = 0x76C364;
             Client.ClickCount = Client.ClickId + 4;
             Client.ClickZ = Client.ClickId - 0x68;
@@ -41,17 +36,13 @@ namespace Pokemon
             Client.SeeCount = Client.SeeId + 4;
             Client.SeeZ = Client.SeeId - 0x68;
             Client.SeeText = 0x76DB50;
-
             Client.LoginServerStart = 0x763BB8;
             Client.StepLoginServer = 112;
             Client.DistancePort = 100;
             Client.MaxLoginServers = 10;
             Client.RSA = 0x597610;
-
             Client.LoginCharList = 0x76C28C;
-            Client.LoginSelectedChar = 0x76C288;
             Client.LoginCharListLength = 0x76C290;
-
             Client.GameWindowRectPointer = 0x12D624;
             Client.DatPointer = 0x768C9C;
             Client.DialogPointer = 0x61E984;
@@ -60,8 +51,8 @@ namespace Pokemon
             Client.DialogWidth = 0x1C;
             Client.DialogHeight = 0x20;
             Client.DialogCaption = 0x50;
-
-            Client.LoginAccountNum = 0x76C2B4;
+            Client.LoginAccountNum = 0x76C2C0;
+            Client.LoginAccount = 0x76C2B4;
             Client.LoginPassword = 0x76C294;
             Client.LoginPatch = 0x47935E;
             Client.LoginPatch2 = 0x47A2B3;
@@ -69,7 +60,7 @@ namespace Pokemon
             Client.LoginPatchOrig2 = new byte[] { 0xE8, 0xC8, 0x15, 0x09, 0x00 };
 
             Container.Start = 0x61C0D0;
-            Container.End = Container.Start + (Container.StepContainer * Container.MaxContainers);
+            Container.End = 0x61DF90;
             Container.StepContainer = 492;
             Container.StepSlot = 12;
             Container.MaxContainers = 16;
@@ -154,30 +145,20 @@ namespace Pokemon
             Map.MaxTiles = 2016;
             Map.ZAxisDefault = 7;
             Map.PlayerTile = 0x3E3A08;
-
-            Map.FullLightAdr = 0x4D7C9C;
-            Map.FullLightNop = 0x4D7C99;
-            Map.FullLightNopDefault = new byte[] { 0x7E, 0x05 };
-            Map.FullLightNopEdited = new byte[] { 0x90, 0x90 };
-            Map.FullLightAdrDefault = 0x80;
-            Map.FullLightAdrEdited = 0xFF;
-
             Map.NameSpy1 = 0x4DF469;
-            Map.NameSpy2 = 0x4DF473;
+            Map.NameSpy2 = 0x004DF473;
             Map.NameSpy1Default = 19061;
             Map.NameSpy2Default = 16501;
-
             Map.LevelSpy1 = 0x4E115A;
             Map.LevelSpy2 = 0x4E125F;
             Map.LevelSpy3 = 0x4E12E0;
             Map.LevelSpyPtr = 0x61B608;
             Map.LevelSpyAdd2 = 0x25D8;
-
             Map.RevealInvisible1 = 0x453AF3;
             Map.RevealInvisible2 = 0x4DE734;
 
-            Player.Flags = 0x613AF8;
-            Player.Experience = 0x613B64;
+            Player.Flags = 0x00613AF8;
+            Player.Experience = 0x00613B64;
             Player.Id = Player.Experience + 12;
             Player.Health = Player.Experience + 8;
             Player.HealthMax = Player.Experience + 4;
@@ -185,11 +166,11 @@ namespace Pokemon
             Player.MagicLevel = Player.Experience - 8;
             Player.LevelPercent = Player.Experience - 12;
             Player.MagicLevelPercent = Player.Experience - 16;
-            Player.Pokemons = Player.Experience - 20;
-            Player.PokemonsMax = Player.Experience - 24;
+            Player.Mana = Player.Experience - 20;
+            Player.ManaMax = Player.Experience - 24;
             Player.Soul = Player.Experience - 28;
             Player.Stamina = Player.Experience - 32;
-            Player.PokemonsCount = Player.Experience - 36;
+            Player.Capacity = Player.Experience - 36;
             Player.FistPercent = 0x00613AFC;
             Player.ClubPercent = Player.FistPercent + 4;
             Player.SwordPercent = Player.FistPercent + 8;
@@ -239,7 +220,7 @@ namespace Pokemon
             TextDisplay.NopFPS = 0x44E68F;
 
             Vip.Start = 0x611890;
-            Vip.End = Vip.Start + (Vip.StepPlayers * Vip.MaxPlayers);
+            Vip.End = 0x612128;
             Vip.StepPlayers = 0x2C;
             Vip.MaxPlayers = 100;
             Vip.DistanceId = 0;

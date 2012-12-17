@@ -157,7 +157,7 @@ namespace Pokemon.Packets
             if (OnSend != null)
                 OnSend.BeginInvoke(msg, null, null);
 
-            pipe.Write(msg.GetData(), 0, msg.Length);
+            pipe.Write(msg.Data, 0, msg.Length);
         }
 
         /// <summary>

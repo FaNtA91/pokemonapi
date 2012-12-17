@@ -24,7 +24,7 @@ namespace Pokemon.Packets.Pipes
         {
             NetworkMessage msg = NetworkMessage.CreateUnencrypted(Client, 1);
             msg.AddByte((byte)Type);
-            return msg.GetData();
+            return msg.Data;
         }
 
         public static bool Send(Objects.Client client)

@@ -35,7 +35,7 @@ namespace Pokemon.Packets.Pipes
             msg.AddByte((byte)ConstantType);
             msg.AddUInt32((uint)Value);
 
-            return msg.GetData();
+            return msg.Data;
         }
 
         public static bool Send(Objects.Client client, PipeConstantType constantType, uint value)

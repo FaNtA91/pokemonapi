@@ -20,7 +20,7 @@ namespace Pokemon.Packets
         private NetworkMessage clientRecvMsg, serverRecvMsg;
         private NetworkMessage clientSendMsg, serverSendMsg;
 
-        private bool isOtServer = true;
+        private bool isOtServer;
 
         private LoginServer[] loginServers;
         private CharacterLoginInfo[] charList;
@@ -104,7 +104,7 @@ namespace Pokemon.Packets
             if (charList != null)
                 client.Login.SetCharListServer(charList);
 
-            client.Login.RSA = Constants.RSAKey.OpenTibia;
+            client.Login.RSA = Constants.RSAKey.RealTibia;
             Stop();
         }
 
@@ -268,6 +268,18 @@ namespace Pokemon.Packets
                 loginClientTcp.Stop();
                 worldClientTcp.Stop();
 
+                if (Version.CurrentVersion >= 854)
+                {
+                    int type = (int)ar.AsyncState;
+                    //we have to connect to the world server now.. and send w8 for response..
+                    if (type == 1)
+                    {
+                        serverTcp = new TcpClient(BitConverter.GetBytes(charList[client.Login.SelectedChar].WorldIP).ToIPString(), charList[client.Login.SelectedChar].WorldPort);
+                        serverStream = serverTcp.GetStream();
+                        serverStream.BeginRead(serverRecvMsg.GetBuffer(), 0, 2, new AsyncCallback(ServerReadCallBack), null);
+                    }
+                }
+
                 clientStream = new NetworkStream(clientSocket);
                 clientStream.BeginRead(clientRecvMsg.GetBuffer(), 0, 2, new AsyncCallback(ClientReadCallBack), null);
             }
@@ -312,11 +324,11 @@ namespace Pokemon.Packets
                         ParseFirstClientMsg();
                         break;
                     case Protocol.World:
-                        OnReceivedDataFromClient(clientRecvMsg.GetData());
+                        OnReceivedDataFromClient(clientRecvMsg.Data);
 
-                        clientData = clientRecvMsg.GetData();
+                        clientData = clientRecvMsg.Data;
 
-                        if (clientRecvMsg.XteaDecrypt(xteaKey))
+                        if (clientRecvMsg.CheckAdler32() && clientRecvMsg.XteaDecrypt(xteaKey))
                         {
                             clientRecvMsg.Position = clientRecvMsg.GetPacketHeaderSize();
                             int msgLength = (int)clientRecvMsg.GetUInt16() + 8;
@@ -346,7 +358,7 @@ namespace Pokemon.Packets
                                 serverSendMsg.InsetLogicalPacketHeader();
                                 serverSendMsg.PrepareToSend(xteaKey);
 
-                                SendToServer(serverSendMsg.GetData());
+                                SendToServer(serverSendMsg.Data);
                             }
                             else
                             {
@@ -409,11 +421,25 @@ namespace Pokemon.Packets
                         xteaKey[2] = clientRecvMsg.GetUInt32();
                         xteaKey[3] = clientRecvMsg.GetUInt32();
 
-                        clientRecvMsg.GetUInt32(); // account number
+                        if (Version.CurrentVersion >= 830)
+                        {
+                            clientRecvMsg.GetString(); // account name
+                        }
+                        else
+                        {
+                            clientRecvMsg.GetUInt32(); // account number
+                        }
                         clientRecvMsg.GetString(); // password
 
-                        clientRecvMsg.RsaOTEncrypt(position);
+                        if (isOtServer)
+                            clientRecvMsg.RsaOTEncrypt(position);
+                        else
+                            clientRecvMsg.RsaCipEncrypt(position);
 
+                        if (Version.CurrentVersion >= 830)
+                        {
+                            clientRecvMsg.AddAdler32();
+                        }
                         clientRecvMsg.InsertPacketHeader();
 
                         serverTcp = new TcpClient(loginServers[selectedLoginServer].Server, loginServers[selectedLoginServer].Port);
@@ -447,13 +473,28 @@ namespace Pokemon.Packets
 
                         clientRecvMsg.GetByte(); // GM mode
 
-                        clientRecvMsg.GetUInt32(); // account number
+                        if (Version.CurrentVersion >= 830)
+                        {
+                            clientRecvMsg.GetString(); // account name
+                        }
+                        else
+                        {
+                            clientRecvMsg.GetUInt32(); // account number
+                        }
+
                         string characterName = clientRecvMsg.GetString();
 
                         clientRecvMsg.GetString(); // password
 
-                        clientRecvMsg.RsaOTEncrypt(position);
+                        if (isOtServer)
+                            clientRecvMsg.RsaOTEncrypt(position);
+                        else
+                            clientRecvMsg.RsaCipEncrypt(position);
 
+                        if (Version.CurrentVersion >= 830)
+                        {
+                            clientRecvMsg.AddAdler32();
+                        }
                         clientRecvMsg.InsertPacketHeader();
 
                         int index = GetSelectedIndex(characterName);
@@ -515,9 +556,9 @@ namespace Pokemon.Packets
                         ParseCharacterList();
                         break;
                     case Protocol.World:
-                        OnReceivedDataFromServer(serverRecvMsg.GetData());
-                        serverData = serverRecvMsg.GetData();
-                        if (serverRecvMsg.XteaDecrypt(xteaKey))
+                        OnReceivedDataFromServer(serverRecvMsg.Data);
+                        serverData = serverRecvMsg.Data;
+                        if (serverRecvMsg.CheckAdler32() && serverRecvMsg.XteaDecrypt(xteaKey))
                         {
                             serverRecvMsg.Position = serverRecvMsg.GetPacketHeaderSize();
                             int msgSize = (int)serverRecvMsg.GetUInt16() + serverRecvMsg.GetPacketHeaderSize() + 2;
@@ -551,7 +592,7 @@ namespace Pokemon.Packets
                                 clientSendMsg.InsetLogicalPacketHeader();
                                 clientSendMsg.PrepareToSend(xteaKey);
 
-                                SendToClient(clientSendMsg.GetData());
+                                SendToClient(clientSendMsg.Data);
                             }
                             else
                             {
@@ -566,7 +607,7 @@ namespace Pokemon.Packets
                         serverStream.BeginRead(serverRecvMsg.GetBuffer(), 0, 2, new AsyncCallback(ServerReadCallBack), null);
                         break;
                     case Protocol.None:
-                        SendToClient(serverRecvMsg.GetData());
+                        SendToClient(serverRecvMsg.Data);
                         break;
                 }
             }
@@ -589,7 +630,7 @@ namespace Pokemon.Packets
         {
             try
             {
-                if (serverRecvMsg.PrepareToRead())
+                if (serverRecvMsg.CheckAdler32() && serverRecvMsg.PrepareToRead())
                 {
                     int msgSize = serverRecvMsg.GetUInt16() + 6;
 

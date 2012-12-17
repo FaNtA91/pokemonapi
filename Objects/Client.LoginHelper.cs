@@ -65,14 +65,14 @@ namespace Pokemon.Objects
 
             public void SetAccountInfo(string account, string password)
             {
-                AccountNumber = account;
+                AccountName = account;
                 AccountPassword = password;
                 client.Memory.WriteBytes(Addresses.Client.LoginPatch, Pokemon.Misc.CreateNopArray(5), 5);
             }
 
             public void ClearAccountInfo()
             {
-                AccountNumber = "";
+                AccountName = "";
                 AccountPassword = string.Empty;
                 client.Memory.WriteBytes(Addresses.Client.LoginPatch, Addresses.Client.LoginPatchOrig, 5);
                 client.Memory.WriteBytes(Addresses.Client.LoginPatch2, Addresses.Client.LoginPatchOrig2, 5);
@@ -81,9 +81,9 @@ namespace Pokemon.Objects
             /// <summary>
             /// Sets the account number.
             /// </summary>
-            public string AccountNumber
+            public string AccountName
             {
-                set { client.Memory.WriteString(Addresses.Client.LoginAccountNum, value); }
+                set { client.Memory.WriteString(Addresses.Client.LoginAccount, value); }
             }
 
             /// <summary>

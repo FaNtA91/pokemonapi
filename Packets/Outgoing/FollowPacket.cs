@@ -23,6 +23,12 @@ namespace Pokemon.Packets.Outgoing
             Type = OutgoingPacketType.Follow;
 
             CreatureId = msg.GetUInt32();
+
+            if (Client.VersionNumber >= 860)
+            {
+                Count = msg.GetUInt32();
+            }
+
             return true;
         }
 
@@ -30,12 +36,23 @@ namespace Pokemon.Packets.Outgoing
         {
             msg.AddByte((byte)Type);
             msg.AddUInt32(CreatureId);
+
+            if (Client.VersionNumber >= 860)
+            {
+                msg.AddUInt32(Count);
+            }
         }
 
         public static bool Send(Objects.Client client, uint creatureId)
         {
             FollowPacket p = new FollowPacket(client);
             p.CreatureId = creatureId;
+
+            if (client.VersionNumber >= 860)
+            {
+                uint count = client.Player.FollowCount;
+                p.Count = count;
+            }
             return p.Send();
         }
     }

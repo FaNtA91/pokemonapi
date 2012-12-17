@@ -50,8 +50,8 @@ namespace Pokemon.Packets
             int length = msg.GetUInt16();
             if (msg.GetByte() == (byte)PipePacketType.HookReceivedPacket)
             {
-                byte[] buf = new byte[msg.GetData().Length - 3];
-                Array.Copy(msg.GetData(), 3, buf, 0, buf.Length);
+                byte[] buf = new byte[msg.Data.Length - 3];
+                Array.Copy(msg.Data, 3, buf, 0, buf.Length);
                 ProcessFromServer(buf);
             }
         }
@@ -61,8 +61,8 @@ namespace Pokemon.Packets
             int length = msg.GetUInt16();
             if (msg.GetByte() == (byte)PipePacketType.HookSentPacket)
             {
-                byte[] buf = new byte[msg.GetData().Length - 3];
-                Array.Copy(msg.GetData(), 3, buf, 0, buf.Length);
+                byte[] buf = new byte[msg.Data.Length - 3];
+                Array.Copy(msg.Data, 3, buf, 0, buf.Length);
                 ProcessFromClient(buf);
             }
         }
@@ -108,15 +108,16 @@ namespace Pokemon.Packets
                 serverRecvMsg.Length = length;
             }
 
-            OnReceivedDataFromServer(serverRecvMsg.GetData());
+            OnReceivedDataFromServer(serverRecvMsg.Data);
 
             switch (protocol)
             {
                 case Protocol.Login:
                     break;
                 case Protocol.World:
+                    bool adlerOkay = serverRecvMsg.CheckAdler32();
                     bool decryptOkay = serverRecvMsg.XteaDecrypt(client.IO.XteaKey);
-                    if (decryptOkay)
+                    if (adlerOkay && decryptOkay)
                     {
                         serverRecvMsg.Position = 6;
                         int msgSize = (int)serverRecvMsg.GetUInt16() + 8;
@@ -169,7 +170,7 @@ namespace Pokemon.Packets
             Array.Copy(buffer, clientRecvMsg.GetBuffer(), length);
             clientRecvMsg.Length = length;
 
-            OnReceivedDataFromClient(clientRecvMsg.GetData());
+            OnReceivedDataFromClient(clientRecvMsg.Data);
 
             switch (protocol)
             {
@@ -178,8 +179,9 @@ namespace Pokemon.Packets
                     ParseFirstClientMsg();
                     break;
                 case Protocol.World:
+                    bool adlerOkay = clientRecvMsg.CheckAdler32();
                     bool decryptOkay = clientRecvMsg.XteaDecrypt(client.IO.XteaKey);
-                    if (decryptOkay)
+                    if (adlerOkay && decryptOkay)
                     {
 
                         clientRecvMsg.Position = 6;

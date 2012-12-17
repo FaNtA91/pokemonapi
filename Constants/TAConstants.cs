@@ -7,7 +7,7 @@ namespace Pokemon.Constants
 {
     public static class TAConstants
     {
-        public static string CurrentClientVersion = "0";
+        public static string CurrentTibiaVersion = "9.10";
         public static string AppDataPath = System.IO.Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "PokemonApi");
     }
 }

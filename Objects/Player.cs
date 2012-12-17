@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Pokemon.Packets;
 
 namespace Pokemon.Objects
 {
@@ -26,12 +24,7 @@ namespace Pokemon.Objects
         /// <returns></returns>
         public bool Turn(Constants.Direction direction)
         {
-            byte[] packet = new byte[3];
-            packet[0] = 0x01;
-            packet[1] = 0x00;
-            packet[2] = Convert.ToByte(0x6F + direction);
             return client.Player.Turn(direction);
-            //return client.Player.Turn(direction);
         }
 
         /// <summary>
@@ -140,15 +133,15 @@ namespace Pokemon.Objects
             set { client.Player.MagicLevelPercent = value; }
         }
 
-        public uint Pokemons
+        public uint Mana
         {
-            get { return client.Player.Pokemons; }
-            set { client.Player.Pokemons = value; }
+            get { return client.Player.Mana; }
+            set { client.Player.Mana = value; }
         }
-        public uint PokemonsMax
+        public uint ManaMax
         {
-            get { return client.Player.PokemonsMax; }
-            set { client.Player.PokemonsMax = value; }
+            get { return client.Player.ManaMax; }
+            set { client.Player.ManaMax = value; }
         }
         public uint Health
         {
@@ -166,10 +159,10 @@ namespace Pokemon.Objects
             get { return client.Player.Soul; }
             set { client.Player.Soul = value; }
         }
-        public uint PokemonsCount
+        public uint Capacity
         {
-            get { return client.Player.PokemonsCount; }
-            set { client.Player.PokemonsCount = value; }
+            get { return client.Player.Capacity; }
+            set { client.Player.Capacity = value; }
         }
         public uint Stamina
         {

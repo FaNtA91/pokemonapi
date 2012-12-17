@@ -34,7 +34,7 @@ namespace Pokemon.Packets.Pipes
             msg.AddUInt32(CreatureId);
             msg.AddString(CreatureName);
 
-            return msg.GetData();
+            return msg.Data;
         }
 
         public static bool Send(Objects.Client client, uint creatureId, string creatureName)

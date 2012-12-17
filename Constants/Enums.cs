@@ -97,6 +97,7 @@ namespace Pokemon.Constants
     public static class RSAKey
     {
         public static string OpenTibia = "109120132967399429278860960508995541528237502902798129123468757937266291492576446330739696001110603907230888610072655818825358503429057592827629436413108566029093628212635953836686562675849720620786279431090218017681061521755056710823876476444260558147179707119674283982419152118103759076030616683978566631413";
+        public static string RealTibia = "132127743205872284062295099082293384952776326496165507967876361843343953435544496682053323833394351797728954155097012103928360786959821132214473291575712138800495033169914814069637740318278150290733684032524174782740134357629699062987023311132821016569775488792221429527047321331896351555606801473202394175817";
     }
     #endregion
 
@@ -141,18 +142,18 @@ namespace Pokemon.Constants
     public enum SlotNumber
     {
         None = 0,
-        Rope = 1,
-        FishingRod = 2,
-        Coins = 3,
-        Order = 4,
-        BadgeBox = 5,
-        Pokedex = 6,
-        PokemonIcon = 7,
-        Pokemon = 8,
-        Caught = 9,
-        Pokebag = 10,
-        First = Rope,
-        Last = Pokebag
+        Head = 1,
+        Necklace = 2,
+        Backpack = 3,
+        Armor = 4,
+        Right = 5,
+        Left = 6,
+        Legs = 7,
+        Feet = 8,
+        Ring = 9,
+        Ammo = 10,
+        First = Head,
+        Last = Ammo
     }
 
     #endregion
@@ -187,9 +188,380 @@ namespace Pokemon.Constants
         public static int Peach = 1;
     }
 
+    public enum OutfitMount
+    {
+        WidowQueen = 368,
+        RacingBird = 369,
+        WarBear = 370,
+        BlackSheep = 371,
+        MidnightPanther = 372,
+        Draptor = 373,
+        Titanica = 374,
+        TinLizzard = 375,
+        Blazebringer = 376,
+        RapidBoar = 377,
+        Stampor = 378,
+        UndeadCaveBear = 379
+    }
+
     public enum OutfitType
     {
-        Invisible = 0,               // Invisible effect ??
+        Invisible = 0,               // Stealth Ring Effect Also For Item As Outfit
+        OrcWarlord = 2,
+        WarWolf = 3,
+        OrcRider = 4,
+        Orc = 5,
+        OrcShaman = 6,
+        OrcWarrior = 7,
+        OrcBerserker = 8,
+        Necromancer = 9,
+        ButterflyYellow = 10,
+        WaterElemental = 11,
+        DemonColor = 12,
+        BlackSheep = 13,
+        Sheep = 14,
+        Troll = 15,
+        Bear = 16,
+        Beholder = 17,
+        Ghoul = 18,
+        Slime = 19,
+        QuaraPredator = 20,
+        Rat = 21,
+        Cyclops = 22,
+        MinotaurMage = 23,
+        MinotaurArcher = 24,
+        Minotaur = 25,
+        Rotworm = 26,
+        Wolf = 27,
+        Snake = 28,
+        MinotaurGuard = 29,
+        Spider = 30,
+        Deer = 31,
+        Dog = 32,
+        Skeleton = 33,
+        Dragon = 34,
+        Demon = 35,
+        PoisonSpider = 36,
+        DemonSkeleton = 37,
+        GiantSpider = 38,
+        DragonLord = 39,
+        FireDevil = 40,
+        Lion = 41,
+        PolarBear = 42,
+        Scorpion = 43,
+        Wasp = 44,
+        Bug = 45,
+        QuaraConstrictor = 46,
+        QuaraHydromancer = 47,
+        Ghost = 48,
+        FireElemental = 49,
+        OrcSpearman = 50,
+        GreenDjinn = 51,
+        WinterWolf = 52,
+        FrostTroll = 53,
+        Witch = 54,
+        Behemoth = 55,
+        CaveRat = 56,
+        Monk = 57,
+        Priestess = 58,
+        OrcLeader = 59,
+        Pig = 60,
+        Goblin = 61,
+        Elf = 62,
+        ElfArcanist = 63,
+        ElfScout = 64,
+        Mummy = 65,
+        DwarfGeomancer = 66,
+        StoneGolem = 67,
+        Vampire = 68,
+        Dwarf = 69,
+        DwarfGuard = 70,
+        DwarfSoldier = 71,
+        QuaraMantassin = 72,
+        Hero = 73,
+        Rabbit = 74,
+        GameMasterVoluntary = 75,
+        SwampTroll = 76,
+        QuaraPincher = 77,
+        Banshee = 78,
+        AncientScarab = 79,
+        BlueDjinn = 80,
+        Cobra = 81,
+        Larva = 82,
+        Scarab = 83,
+        Pharaoh1 = 84,
+        Pharaoh2 = 85,
+        Pharaoh3 = 86,
+        PharaohDressed1 = 87,
+        PharaohDressed2 = 88,
+        Pharaoh4 = 89,
+        Pharaoh5 = 90,
+        PharaohDressed3 = 91,
+        Mimic = 92,
+        PirateMarauder = 93,
+        Hyaena = 94,
+        Gargoyle = 95,
+        PirateCutthroat = 96,
+        PirateBuccaneer = 97,
+        PirateCorsair = 98,
+        Lich = 99,
+        CryptShambler = 100,
+        Bonebeast = 101,
+        Deathslicer = 102,
+        Efreet = 103,
+        Marid = 104,
+        Badger = 105,
+        Skunk = 106,
+        Demon2 = 107,
+        ElderBeholder = 108,
+        Gazer = 109,
+        Yeti = 110,
+        Chicken = 111,
+        Crab = 112,
+        LizardTemplar = 113,
+        LizardSentinel = 114,
+        LizardSnakecharmer = 115,
+        Kongra = 116,
+        Merlkin = 117,
+        Sibang = 118,
+        Crocodile = 119,
+        Carniphila = 120,
+        Hydra = 121,
+        Bat = 122,
+        Panda = 123,
+        Centipede = 124,
+        Tiger = 125,
+        OldFemale = 126,
+        OldMale = 127,
+        CitizenMale = 128,
+        HunterMale = 129,
+        MageMale = 130,
+        KnightMale = 131,
+        NoblemanMale = 132,
+        SummonerMale = 133,
+        WarriorMale = 134,
+        // Nothing = 135
+        CitizenFemale = 136,
+        HunterFemale = 137,
+        SummonerFemale = 138,
+        KnightFemale = 139,
+        NoblemanFemale = 140,
+        MageFemale = 141,
+        WarriorFemale = 142,
+        BarbarianMale = 143,
+        DruidMale = 144,
+        WizardMale = 145,
+        OrientalMale = 146,
+        BarbarianFemale = 147,
+        DruidFemale = 148,
+        WizardFemale = 149,
+        OrientalFemale = 150,
+        PirateMale = 151,
+        AssassinMale = 152,
+        BeggarMale = 153,
+        ShamanMale = 154,
+        PirateFemale = 155,
+        AssassinFemale = 156,
+        BeggarFemale = 157,
+        ShamanFemale = 158,
+        ElfColor = 159,
+        DwarfColor = 160,
+        // Nothing = 161-191
+        CarrionWorm = 192,
+        EnlightenedsOfTheCult = 193,
+        AdeptsOfTheCult = 194,
+        PirateSkeleton = 195,
+        PirateGhost = 196,
+        Tortoise = 197,
+        ThornbackTortoise = 198,
+        Mammoth = 199,
+        BloodCrab = 200,
+        Demon3 = 201,
+        MinotaurGuard2 = 202,
+        ElfArcanist2 = 203,
+        DragonLord2 = 204,
+        StoneGolem2 = 205,
+        Monk2 = 206,
+        MinotaurGuard3 = 207,
+        GiantSpider2 = 208,
+        Necromancer2 = 209,
+        ElderBeholder2 = 210,
+        Elephant = 211,
+        Flamingo = 212,
+        ButterflyPink = 213,
+        DworcVoodoomaster = 214,
+        DworcFleshhunter = 215,
+        DworcVenomsniper = 216,
+        Parrot = 217,
+        TerrorBird = 218,
+        Tarantula = 219,
+        SerpentSpawn = 220,
+        SpitNettle = 221,
+        Toad = 222,
+        Seagull = 223,
+        AzureFrog = 224,
+        DarkMonk = 225,
+        FrogColor = 226,
+        ButterflyBlue = 227,
+        ButterflyRed = 228,
+        Ferumbras = 229,
+        HandOfCursedFate = 230,
+        UndeadDragon = 231,
+        LostSoul = 232,
+        BetrayedWraith = 233,
+        DarkTorturer = 234,
+        Spectre = 235,
+        Destroyer = 236,
+        DiabloicImp = 237,
+        Defiler = 238,
+        Wyvern = 239,
+        Hellhound = 240,
+        Phantasm = 241,
+        Hellfire = 242,
+        HellfireFighter = 243,
+        Juggernaut = 244,
+        Nightmare = 245,
+        Blightwalker = 246,
+        Plaguesmith = 247,
+        FrostDragon = 248,
+        ChakoyaTribewarden = 249,
+        Penguin = 250,
+        NorsemanMale = 251,
+        NorsemanFemale = 252,
+        BarbarianHeadsplitter = 253,
+        BarbarianSkullhunter = 254,
+        BarbarianBloodwalker = 255,
+        Braindeath = 256,
+        FrostGiant = 257,
+        Husky = 258,
+        ChakoyaToolshaper = 259,
+        ChakoyaWindcaller = 260,
+        IceGolem = 261,
+        SilverRabbit = 262,
+        CrystalSpider = 263,
+        BarbarianBrutetamer = 264,
+        FrostGiantess = 265,
+        GameMasterCustomerSupport = 266,
+        Swimmer = 267,
+        NightmareKnightMale = 268,
+        NightmareKnightFemale = 269,
+        JesterFemale = 270,
+        DragonHatchling = 271,
+        DragonLordHatchling = 272,
+        JesterMale = 273,
+        Squirrel = 274,
+        SeaSerpent = 275,
+        Cat = 276,
+        CyclopsSmith = 277,
+        BrotherhoodOfBonesMale = 278,
+        BrotherhoodOfBonesFemale = 279,
+        CyclopsDrone = 280,
+        TrollChampion = 281,
+        IslandTroll = 282,
+        FrostDragonHatchling = 283,
+        Cockroach = 284,
+        EarthOverlord = 285,
+        SlickWaterElemental = 286,
+        TheCount = 287,
+        DemonHunterFemale = 288,
+        DemonHunterMale = 289,
+        MassiveEnergyElemental = 290,
+        Wyrm = 291,
+        Pumpkin = 292,
+        EnergyElemental = 293,
+        Wisp = 294,
+        RotwormQueen = 295,
+        GoblinAssassin = 296,
+        GoblinScavenger = 297,
+        SkeletonWarrior = 298,
+        BogRaider = 299,
+        GrimReaper = 300,
+        EarthElemental = 301,
+        CommunityManager = 302,
+        Unknown1 = 303,
+        WorkerGolem = 304,
+        MutatedRat = 305,
+        UndeadGladiator = 306,
+        MutatedBat = 307,
+        Werewolf = 308,
+        Azerus = 309,
+        HauntedTreeling = 310,
+        Zombie = 311,
+        VampireBride = 312,
+        Gozzler = 313,
+        AcidBlob = 314,
+        DeathBlob = 315,
+        MercuryBlob = 316,
+        YoungSeaSerpent = 317,
+        MutatedTiger = 318,
+        GhostlyApparition = 319,
+        Nightstalker = 320,
+        NightmareScion = 321,
+        Hellspawn = 322,
+        MutatedHuman = 323,
+        YalaharianFemale = 324,
+        YalaharianMale = 325,
+        WarGolem = 326,
+        WhiteFemale = 327,
+        WeddingMale = 328,
+        WeddingFemale = 329,
+        Medusa = 330,
+        Queen = 331,
+        King = 332,
+        SmallStoneGolem = 333,
+        DrakenWarmaster = 334,
+        WarmasterMale = 335,
+        WarmasterFemale = 336,
+        LizardHighGuard = 337,
+        LizardLegionnaire = 338,
+        LizardDragonPriest = 339,
+        DrakenSpellweaver = 340,
+        Gnarlhound = 341,
+        OrcMarauder = 342,
+        LizardZaogun = 343,
+        LizardChosen = 344,
+        EternalGuardian = 345,
+        Terramite = 346,
+        WailingWidow = 347,
+        LancerBeetle = 348,
+        InsectSwarm = 349,
+        Sandcrawler = 350,
+        GhastlyDragon = 351,
+        BrimstoneBug = 352,
+        SpawnOfDevovorga = 353,
+        Devovorga = 354,
+        Souleater = 355,
+        SnakeGodEssence = 356,
+        DrakenAbomination = 357,
+        KillerCaiman = 358,
+        Irahsae = 359,
+        Teneshpar = 360,
+        Chikhaton = 361,
+        DrakenElite = 362,
+        Anmothra = 363,
+        LizardAbomination = 364,
+        Unknown2 = 365,
+        WayfarerFemale = 366,
+        WayfarerMale = 367,
+        WidowQueenMount = 368,
+        RacingBirdMount = 369,
+        WarBearMount = 370,
+        BlackSheepMount = 371,
+        MidnightPantherMount = 372,
+        DraptorMount = 373,
+        TitanicaMount = 374,
+        TinLizzardMount = 375,
+        BlazebringerMount = 376,
+        RapidBoarMount = 377,
+        StamporMount = 378,
+        UndeadCaveBearMount = 379,
+        Boar = 380,
+        Stampor = 381,
+        Draptor = 382,
+        CrustaceaGigantica = 383,
+        UndeadCavebear = 384,
+        MidnightPanther = 385,
+        GameMasterNew = 386
     }
 
     #endregion
@@ -217,7 +589,9 @@ namespace Pokemon.Constants
         Yellow = 1,
         Green = 2,
         White = 3,
-        Red = 4
+        Red = 4,
+        Black = 5,
+        Orange = 6
     }
 
     public enum PartyShield
@@ -235,6 +609,14 @@ namespace Pokemon.Constants
         LeaderSharedExpInactive = 8,
         MemberNoSharedExp = 9,
         LeaderNoSharedExp = 10
+    }
+
+    public enum WarIcon
+    {
+        None = 0,
+        Green = 1,
+        Red = 2,
+        Blue = 3
     }
 
     #endregion
@@ -338,39 +720,121 @@ namespace Pokemon.Constants
 
     public static class Enums
     {
-        private static Dictionary<byte, SpeechTypeInfo> valueToSpeechTypeInfoPre100 = new Dictionary<byte, SpeechTypeInfo>();
-        private static Dictionary<SpeechType, SpeechTypeInfo> enumToSpeechTypeInfoPre100 = new Dictionary<SpeechType, SpeechTypeInfo>()
+        private static Dictionary<byte, SpeechTypeInfo> valueToSpeechTypeInfo872 = new Dictionary<byte, SpeechTypeInfo>();
+        private static Dictionary<SpeechType, SpeechTypeInfo> enumToSpeechTypeInfo872 = new Dictionary<SpeechType, SpeechTypeInfo>()
         {
             { SpeechType.Say, new SpeechTypeInfo(SpeechType.Say, 0x01, AdditionalSpeechData.Location) },
             { SpeechType.Whisper, new SpeechTypeInfo(SpeechType.Whisper, 0x02, AdditionalSpeechData.Location) },
             { SpeechType.Yell, new SpeechTypeInfo(SpeechType.Yell, 0x03, AdditionalSpeechData.Location) },
-            { SpeechType.Private, new SpeechTypeInfo(SpeechType.Private, 0x04, AdditionalSpeechData.None) },
-            { SpeechType.ChannelYellow, new SpeechTypeInfo(SpeechType.ChannelYellow, 0x05, AdditionalSpeechData.ChannelId) },
-            { SpeechType.RuleViolationReport, new SpeechTypeInfo(SpeechType.RuleViolationReport, 0x06, AdditionalSpeechData.Time) },
-            { SpeechType.RuleViolationAnswer, new SpeechTypeInfo(SpeechType.RuleViolationAnswer, 0x07, AdditionalSpeechData.None) },
-            { SpeechType.RuleViolationContinue, new SpeechTypeInfo( SpeechType.RuleViolationContinue, 0x08, AdditionalSpeechData.None) },
+            { SpeechType.PrivatePlayerToNPC, new SpeechTypeInfo(SpeechType.PrivatePlayerToNPC, 0x0B, AdditionalSpeechData.None) }
+        };
+
+        private static Dictionary<byte, SpeechTypeInfo> valueToSpeechTypeInfoPre872 = new Dictionary<byte, SpeechTypeInfo>();
+        private static Dictionary<SpeechType, SpeechTypeInfo> enumToSpeechTypeInfoPre872 = new Dictionary<SpeechType, SpeechTypeInfo>()
+        {
+            { SpeechType.Say, new SpeechTypeInfo(SpeechType.Say, 0x01, AdditionalSpeechData.Location) },
+            { SpeechType.Whisper, new SpeechTypeInfo(SpeechType.Whisper, 0x02, AdditionalSpeechData.Location) },
+            { SpeechType.Yell, new SpeechTypeInfo(SpeechType.Yell, 0x03, AdditionalSpeechData.Location) },
+            { SpeechType.PrivatePlayerToNPC, new SpeechTypeInfo(SpeechType.PrivatePlayerToNPC, 0x04, AdditionalSpeechData.None) },
+            { SpeechType.PrivateNPCToPlayer, new SpeechTypeInfo(SpeechType.PrivateNPCToPlayer, 0x05, AdditionalSpeechData.Location) },
+            { SpeechType.Private, new SpeechTypeInfo(SpeechType.Private, 0x06, AdditionalSpeechData.None) },
+            { SpeechType.ChannelYellow, new SpeechTypeInfo(SpeechType.ChannelYellow, 0x07, AdditionalSpeechData.ChannelId) },
+            { SpeechType.ChannelWhite, new SpeechTypeInfo(SpeechType.ChannelWhite, 0x08, AdditionalSpeechData.ChannelId) },
             { SpeechType.Broadcast, new SpeechTypeInfo(SpeechType.Broadcast, 0x09, AdditionalSpeechData.None) },
             { SpeechType.ChannelRed, new SpeechTypeInfo(SpeechType.ChannelRed, 0x0A, AdditionalSpeechData.ChannelId) },
             { SpeechType.PrivateRed, new SpeechTypeInfo(SpeechType.PrivateRed, 0x0B, AdditionalSpeechData.None) },
             { SpeechType.ChannelOrange, new SpeechTypeInfo(SpeechType.ChannelOrange, 0x0C, AdditionalSpeechData.ChannelId) },
-            { SpeechType.ChannelRedAnonymous, new SpeechTypeInfo(SpeechType.ChannelRedAnonymous, 0x0E, AdditionalSpeechData.ChannelId) },
-            { SpeechType.MonsterSay, new SpeechTypeInfo(SpeechType.MonsterSay, 0x10, AdditionalSpeechData.Location) },
-            { SpeechType.MonsterYell, new SpeechTypeInfo(SpeechType.MonsterYell, 0x11, AdditionalSpeechData.Location) }
+            { SpeechType.MonsterSay, new SpeechTypeInfo(SpeechType.MonsterSay, 0x0D, AdditionalSpeechData.Location) },
+            { SpeechType.MonsterYell, new SpeechTypeInfo(SpeechType.MonsterYell, 0xE, AdditionalSpeechData.Location) }
+        };
+
+        private static Dictionary<byte, SpeechTypeInfo> valueToSpeechTypeInfo861 = new Dictionary<byte, SpeechTypeInfo>();
+        private static Dictionary<SpeechType, SpeechTypeInfo> enumToSpeechTypeInfo861 = new Dictionary<SpeechType, SpeechTypeInfo>()
+        {
+            { SpeechType.Say, new SpeechTypeInfo(SpeechType.Say, 0x01, AdditionalSpeechData.Location) },
+            { SpeechType.Whisper, new SpeechTypeInfo(SpeechType.Whisper, 0x02, AdditionalSpeechData.Location) },
+            { SpeechType.Yell, new SpeechTypeInfo(SpeechType.Yell, 0x03, AdditionalSpeechData.Location) },
+            { SpeechType.PrivatePlayerToNPC, new SpeechTypeInfo(SpeechType.PrivatePlayerToNPC, 0x04, AdditionalSpeechData.None) },
+            { SpeechType.PrivateNPCToPlayer, new SpeechTypeInfo(SpeechType.PrivateNPCToPlayer, 0x05, AdditionalSpeechData.Location) },
+            { SpeechType.Private, new SpeechTypeInfo(SpeechType.Private, 0x06, AdditionalSpeechData.None) },
+            { SpeechType.ChannelYellow, new SpeechTypeInfo(SpeechType.ChannelYellow, 0x07, AdditionalSpeechData.ChannelId) },
+            { SpeechType.ChannelWhite, new SpeechTypeInfo(SpeechType.ChannelWhite, 0x08, AdditionalSpeechData.ChannelId) },
+            { SpeechType.RuleViolationReport, new SpeechTypeInfo(SpeechType.RuleViolationReport, 0x09, AdditionalSpeechData.Time) },
+            { SpeechType.ChannelRed, new SpeechTypeInfo(SpeechType.ChannelRed, 0x0A, AdditionalSpeechData.ChannelId) },
+            { SpeechType.RuleViolationContinue, new SpeechTypeInfo(SpeechType.RuleViolationContinue, 0x0B, AdditionalSpeechData.None) },
+            { SpeechType.ChannelOrange, new SpeechTypeInfo(SpeechType.ChannelOrange, 0x0C, AdditionalSpeechData.ChannelId) },
+            { SpeechType.MonsterSay, new SpeechTypeInfo(SpeechType.MonsterSay, 0x0D, AdditionalSpeechData.Location) }
+        };
+
+        private static Dictionary<byte, SpeechTypeInfo> valueToSpeechTypeInfoPre861 = new Dictionary<byte, SpeechTypeInfo>();
+        private static Dictionary<SpeechType, SpeechTypeInfo> enumToSpeechTypeInfoPre861 = new Dictionary<SpeechType, SpeechTypeInfo>()
+        {
+            { SpeechType.Say, new SpeechTypeInfo(SpeechType.Say, 0x01, AdditionalSpeechData.Location) },
+            { SpeechType.Whisper, new SpeechTypeInfo(SpeechType.Whisper, 0x02, AdditionalSpeechData.Location) },
+            { SpeechType.Yell, new SpeechTypeInfo(SpeechType.Yell, 0x03, AdditionalSpeechData.Location) },
+            { SpeechType.PrivatePlayerToNPC, new SpeechTypeInfo(SpeechType.PrivatePlayerToNPC, 0x04, AdditionalSpeechData.None) },
+            { SpeechType.PrivateNPCToPlayer, new SpeechTypeInfo(SpeechType.PrivateNPCToPlayer, 0x05, AdditionalSpeechData.Location) },
+            { SpeechType.Private, new SpeechTypeInfo(SpeechType.Private, 0x06, AdditionalSpeechData.None) },
+            { SpeechType.ChannelYellow, new SpeechTypeInfo(SpeechType.ChannelYellow, 0x07, AdditionalSpeechData.ChannelId) },
+            { SpeechType.ChannelWhite, new SpeechTypeInfo(SpeechType.ChannelWhite, 0x08, AdditionalSpeechData.ChannelId) },
+            { SpeechType.RuleViolationReport, new SpeechTypeInfo(SpeechType.RuleViolationReport, 0x09, AdditionalSpeechData.Time) },
+            { SpeechType.RuleViolationAnswer, new SpeechTypeInfo(SpeechType.RuleViolationAnswer, 0x0A, AdditionalSpeechData.None) },
+            { SpeechType.RuleViolationContinue, new SpeechTypeInfo( SpeechType.RuleViolationContinue, 0x0B, AdditionalSpeechData.None) },
+            { SpeechType.Broadcast, new SpeechTypeInfo(SpeechType.Broadcast, 0x0C, AdditionalSpeechData.None) },
+            { SpeechType.ChannelRed, new SpeechTypeInfo(SpeechType.ChannelRed, 0x0D, AdditionalSpeechData.ChannelId) },
+            { SpeechType.PrivateRed, new SpeechTypeInfo(SpeechType.PrivateRed, 0x0E, AdditionalSpeechData.None) },
+            { SpeechType.ChannelOrange, new SpeechTypeInfo(SpeechType.ChannelOrange, 0x0F, AdditionalSpeechData.ChannelId) },
+            { SpeechType.ChannelRedAnonymous, new SpeechTypeInfo(SpeechType.ChannelRedAnonymous, 0x11, AdditionalSpeechData.ChannelId) },
+            { SpeechType.MonsterSay, new SpeechTypeInfo(SpeechType.MonsterSay, 0x13, AdditionalSpeechData.Location) },
+            { SpeechType.MonsterYell, new SpeechTypeInfo(SpeechType.MonsterYell, 0x14, AdditionalSpeechData.Location) }
         };
 
         static Enums()
         {
-            enumToSpeechTypeInfoPre100.Values.Foreach(s => valueToSpeechTypeInfoPre100.Add(s.Value, s));
+            enumToSpeechTypeInfo872.Values.Foreach(s => valueToSpeechTypeInfo872.Add(s.Value, s));
+            enumToSpeechTypeInfoPre872.Values.Foreach(s => valueToSpeechTypeInfoPre872.Add(s.Value, s));
+            enumToSpeechTypeInfo861.Values.Foreach(s => valueToSpeechTypeInfo861.Add(s.Value, s));
+            enumToSpeechTypeInfoPre861.Values.Foreach(s => valueToSpeechTypeInfoPre861.Add(s.Value, s));
         }
 
         public static SpeechTypeInfo GetSpeechTypeInfo(ushort version, byte value)
         {
-            return valueToSpeechTypeInfoPre100[value];
+            if (version >= 872)
+            {
+                return valueToSpeechTypeInfo872[value];
+            }
+            else if (version >= 870)
+            {
+                return valueToSpeechTypeInfoPre872[value];
+            }
+            else if (version >= 861)
+            {
+                return valueToSpeechTypeInfo861[value];
+            }
+            else
+            {
+                return valueToSpeechTypeInfoPre861[value];
+            }
         }
 
         public static SpeechTypeInfo GetSpeechTypeInfo(ushort version, SpeechType speechType)
         {
-            return enumToSpeechTypeInfoPre100[speechType];
+            if (version >= 872)
+            {
+                return enumToSpeechTypeInfo872[speechType];
+            }
+            else if (version >= 870)
+            {
+                return enumToSpeechTypeInfoPre872[speechType];
+            }
+            else if (version >= 861)
+            {
+                return enumToSpeechTypeInfo861[speechType];
+            }
+            else
+            {
+                return enumToSpeechTypeInfoPre861[speechType];
+            }
         }
     }
 
@@ -379,20 +843,22 @@ namespace Pokemon.Constants
         Say,
         Whisper,
         Yell,
+        PrivatePlayerToNPC,
+        PrivateNPCToPlayer,
         Private,
         ChannelYellow,
+        ChannelWhite,
+        ChannelOrange,
+        ChannelRed,
+        ChannelRedAnonymous,
         RuleViolationReport,
         RuleViolationAnswer,
         RuleViolationContinue,
-        Broadcast,
-        ChannelRed,
-        PrivateRed,
-        ChannelOrange,
-        // Unknow
-        ChannelRedAnonymous,
-        // Unknow 2
         MonsterSay,
-        MonsterYell
+        // Old
+        Broadcast,
+        MonsterYell,
+        PrivateRed
     }
 
     public enum TextMessageColor : byte
@@ -631,6 +1097,7 @@ namespace Pokemon.Constants
         EditMinimapMark = 0x20,
         EditMinimapMark2 = 0x21,
         HelpMenu = 0x22,
+        TutorialHintsMenu = 0x23,
         OptionsMenu = 0x24,
         GraphicsOptionMenu = 0x25,
         AdvancedGraphicsOptionMenu = 0x26,
@@ -652,10 +1119,12 @@ namespace Pokemon.Constants
         OpenNPCsChannel = 0x36,
         Undefined8 = 0x37,
         Undefined9 = 0x38,
+        NPCTrade = 0x39,
         Undefined10 = 0x3A,
         Undefined11 = 0x3B,
         Undefined12 = 0x3C,
         Undefined13 = 0x3D,
+        TutorialHint = 0x3E,
         LastLookedItemContextMenu = 0x3F,
         AttackCreatureContextMenu = 0x40,
         AddToVipContextMenu = 0x41,
@@ -678,68 +1147,8 @@ namespace Pokemon.Constants
     /// </summary>
     public enum PacketType : byte
     {
-        // Incoming
-        DefaultTemplate = 0x00,
-        CharListLoginData = 0x01,
-        AddCreature = 0x0A,
-        BadLogin = 0x0A,
-        CharList = 0x14,
-        InformationBox = 0x15,
-        Ping = 0x1E,
-        MapItemAdd = 0x6A,
-        MapItemUpdate = 0x6B,
-        MapItemRemove = 0x6C,
-        CreatureMove = 0x6D,
-        ContainerOpened = 0x6E,
-        ContainerClosed = 0x6F,
-        ContainerItemAdd = 0x70,
-        ContainerItemUpdate = 0x71,
-        ContainerItemRemove = 0x72,
-        EqItemAdd = 0x78,
-        EqItemRemove = 0x79,
-        WorldLight = 0x82,
-        TileAnimation = 0x83,
-        AnimatedText = 0x84,
-        Projectile = 0x85,
-        CreatureSquare = 0x86,
-        CreatureHealth = 0x8C,
-        CreatureLight = 0x8D,
-        CreatureOutfit = 0x8E,
-        CreatureSpeed = 0x8F,
-        CreatureSkull = 0x90,
-        PartyInvite = 0x91,
-        BookOpen = 0x96,
-        StatusUpdate = 0xA0,
-        SkillUpdate = 0xA1,
-        FlagUpdate = 0xA2,
-        CancelTarget = 0xA3,
-        ChatMessage = 0xAA,
-        ChannelList = 0xAB,
-        ChannelOpen = 0xAC,
-        PrivateChannelOpen = 0xAD,
-        StatusMessage = 0xB4,
-        CancelAutoWalk = 0xB5,
-        VipAdd = 0xD2,
-        VipLogin = 0xD3,
-        VipLogout = 0xD4,
-
-        // Outgoing
-        Logout = 0x14,
-        ItemMove = 0x78,
-        ItemUse = 0x82,
-        ItemUseOn = 0x83,
-        ItemUseBattlelist = 0x84,
-        ContainerClose = 0x87,
-        ContainerOpenParent = 0x88,
-        LookAt = 0x8C,
-        PlayerSpeech = 0x96,
-        ClientLoggedIn = 0xA0,
-        Attack = 0xA1,
-        CancelMove = 0xBE,
-
         // Pipe
         PipePacket = 0xFF
-
     }
 
     public enum IncomingPacketType : byte
@@ -754,6 +1163,10 @@ namespace Pokemon.Constants
         Death = 0x28,
         CanReportBugs = 0x32,
         MapDescription = 0x64,
+        MoveNorth = 0x65,
+        MoveEast = 0x66,
+        MoveSouth = 0x67,
+        MoveWest = 0x68,
         TileUpdate = 0x69,
         TileAddThing = 0x6A,
         TileTransformThing = 0x6B,
@@ -766,6 +1179,9 @@ namespace Pokemon.Constants
         ContainerRemoveItem = 0x72,
         InventorySetSlot = 0x78,
         InventoryResetSlot = 0x79,
+        ShopWindowOpen = 0x7A,
+        ShopSaleGoldCount = 0x7B,
+        ShopWindowClose = 0x7C,
         SafeTradeRequestAck = 0x7D,
         SafeTradeRequestNoAck = 0x7E,
         SafeTradeClose = 0x7F,
@@ -806,6 +1222,7 @@ namespace Pokemon.Constants
         VipLogout = 0xD4,
         QuestList = 0xF0,
         QuestPartList = 0xF1,
+        ShowTutorial = 0xDC,
         AddMapMarker = 0xDD,
     }
 
@@ -815,6 +1232,9 @@ namespace Pokemon.Constants
         GameServerRequest = 0x0A,
         Logout = 0x14,
         ItemMove = 0x78,
+        ShopBuy = 0x7A,
+        ShopSell = 0x7B,
+        ShopClose = 0x7C,
         ItemUse = 0x82,
         ItemUseOn = 0x83,
         ItemRotate = 0x85,
@@ -829,8 +1249,20 @@ namespace Pokemon.Constants
         ItemUseBattlelist = 0x84,
         ContainerClose = 0x87,
         ContainerOpenParent = 0x88,
+        TurnUp = 0x6F,
+        TurnRight = 0x70,
+        TurnDown = 0x71,
+        TurnLeft = 0x72,
         AutoWalk = 0x64,
         AutoWalkCancel = 0x69,
+        MoveUp = 0x65,
+        MoveRight = 0x66,
+        MoveDown = 0x67,
+        MoveLeft = 0x68,
+        MoveUpRight = 0x6A,
+        MoveDownRight = 0x6B,
+        MoveDownLeft = 0x6C,
+        MoveUpLeft = 0x6D,
         VipAdd = 0xDC,
         VipRemove = 0xDD,
         SetOutfit = 0xD3,
@@ -838,7 +1270,8 @@ namespace Pokemon.Constants
         FightModes = 0xA0,
         ContainerUpdate = 0xCA,
         TileUpdate = 0xC9,
-        PrivateChannelOpen = 0x9A
+        PrivateChannelOpen = 0x9A,
+        NpcChannelClose = 0x9E,
     }
 
     /// <summary>

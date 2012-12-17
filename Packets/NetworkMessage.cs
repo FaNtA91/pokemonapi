@@ -11,38 +11,6 @@ namespace Pokemon.Packets
         public Objects.Client Client { get; set; }
         #endregion
 
-        #region Properties
-
-        public int Length
-        {
-            get { return length; }
-            set { length = value; }
-        }
-
-        public int Position
-        {
-            get { return position; }
-            set { position = value; }
-        }
-
-        public int GetBufferSize()
-        {
-            return bufferSize;
-        }
-
-        public byte[] GetData()
-        {
-            byte[] t = new byte[length];
-            Array.Copy(buffer, t, length);
-            return t;
-        }
-
-        public byte[] GetBuffer()
-        {
-            return buffer;
-        }
-        #endregion
-
         #region Contructors
 
         public NetworkMessage()
@@ -60,7 +28,7 @@ namespace Pokemon.Packets
         }
 
         public NetworkMessage(NetworkMessage msg)
-            : this(msg.GetData())
+            : this(msg.Data)
         {
             this.position = msg.position;
         }
@@ -128,6 +96,37 @@ namespace Pokemon.Packets
 
         #endregion
 
+        #region Properties
+
+        public int Length
+        {
+            get { return length; }
+            set { length = value; }
+        }
+
+        public int Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
+
+        public byte[] GetBuffer()
+        {
+            return buffer;
+        }
+
+        public byte[] Data
+        {
+            get
+            {
+                byte[] t = new byte[length];
+                Array.Copy(buffer, t, length);
+                return t;
+            }
+        }
+
+        #endregion
+
         #region Packer Header
 
         public void InsertPacketHeader()
@@ -137,7 +136,10 @@ namespace Pokemon.Packets
 
         public int GetPacketHeaderSize()
         {
-            return 2;
+            if (Client.VersionNumber >= 831)
+                return 6; // 4 bytes for Adler checksum
+            else
+                return 2;
         }
 
         #endregion
@@ -203,6 +205,7 @@ namespace Pokemon.Packets
         public Objects.Outfit GetOutfit()
         {
             byte head, body, legs, feet, addons;
+            ushort mountId = 0;
             ushort looktype = GetUInt16();
 
             if (looktype != 0)
@@ -212,8 +215,12 @@ namespace Pokemon.Packets
                 legs = GetByte();
                 feet = GetByte();
                 addons = GetByte();
+                if (Client.VersionNumber >= 870)
+                {
+                    mountId = GetUInt16();
+                }
 
-                return new Objects.Outfit(looktype, head, body, legs, feet, addons);
+                return new Objects.Outfit(looktype, head, body, legs, feet, addons, mountId);
             }
             else
                 return new Pokemon.Objects.Outfit(looktype, GetUInt16());
@@ -367,6 +374,10 @@ namespace Pokemon.Packets
             if (!XteaEncrypt(XteaKey))
                 return false;
 
+            if (Client.VersionNumber >= 831)
+            {
+                AddAdler32();
+            }
             InsertPacketHeader();
 
             return true;
@@ -405,9 +416,36 @@ namespace Pokemon.Packets
             return Rsa.RsaOTEncrypt(ref buffer, pos);
         }
 
+        public bool RsaCipEncrypt(int pos)
+        {
+            return Rsa.RsaCipEncrypt(ref buffer, pos);
+        }
+
         public bool RsaOTDecrypt()
         {
             return Rsa.RsaOTDecrypt(ref buffer, position, length);
+        }
+
+        #endregion
+
+        #region Adler32 Wrappers
+
+        public bool CheckAdler32()
+        {
+            if (Client.VersionNumber >= 831 && AdlerChecksum.Generate(ref buffer, 6, length) != GetAdler32())
+                return false;
+
+            return true;
+        }
+
+        public void AddAdler32()
+        {
+            Array.Copy(BitConverter.GetBytes(AdlerChecksum.Generate(ref buffer, 6, length)), 0, buffer, 2, 4);
+        }
+
+        private uint GetAdler32()
+        {
+            return BitConverter.ToUInt32(buffer, 2);
         }
 
         #endregion

@@ -148,12 +148,26 @@ namespace Pokemon.Objects
                     byte[] existingBytes = File.ReadAllBytes("Pokemon_Inject.dll");
 
                     if (embeddedBytes.Length == existingBytes.Length)
-                        doExtract = true;
+                    {
+                        uint embeddedChecksum = AdlerChecksum.Generate(
+                            ref embeddedBytes, 0, embeddedBytes.Length);
+                        uint existingChecksum = AdlerChecksum.Generate(
+                            ref existingBytes, 0, existingBytes.Length);
+
+                        if (embeddedChecksum != existingChecksum)
+                        {
+                            doExtract = true;
+                        }
+                    }
                     else
+                    {
                         doExtract = true;
+                    }
                 }
                 else
+                {
                     doExtract = true;
+                }
 
                 if (doExtract)
                 {

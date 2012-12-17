@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System;
 
 namespace Pokemon.Objects
 {
@@ -23,11 +22,7 @@ namespace Pokemon.Objects
             /// <returns></returns>
             public bool Turn(Constants.Direction direction)
             {
-                byte[] packet = new byte[3];
-                packet[0] = 0x01;
-                packet[1] = 0x00;
-                packet[2] = Convert.ToByte(0x6F + direction);
-                return client.Send(packet);
+                return Packets.Outgoing.TurnPacket.Send(client, direction);
             }
 
             /// <summary>
@@ -37,11 +32,7 @@ namespace Pokemon.Objects
             /// <returns></returns>
             public bool Walk(Constants.Direction direction)
             {
-                byte[] packet = new byte[3];
-                packet[0] = 0x01;
-                packet[1] = 0x00;
-                packet[2] = Convert.ToByte(0x65 + direction);
-                return client.Send(packet);
+                return Packets.Outgoing.MovePacket.Send(client, direction);
             }
 
             /// <summary>
@@ -51,20 +42,7 @@ namespace Pokemon.Objects
             /// <returns></returns>
             public bool Walk(List<Constants.Direction> list)
             {
-                int len = 4 + list.Count;
-                byte[] packet = new byte[len];
-                packet[0] = Convert.ToByte(len);
-                packet[1] = 0x00;
-                packet[2] = 0x64;
-                packet[3] = Convert.ToByte(list.Count);
-
-                int i = 4;
-                foreach (Constants.Direction dir in list)
-                {
-                    packet[i] = Convert.ToByte(dir);
-                }
-
-                return client.Send(packet);
+                return Packets.Outgoing.AutoWalkPacket.Send(client, list);
             }
 
             /// <summary>
@@ -82,9 +60,9 @@ namespace Pokemon.Objects
             /// <summary>
             /// Set the player's outfit. Sends a packet.
             /// </summary>
-            public bool SetOutfit(Constants.OutfitType outfitType, byte headColor, byte bodyColor, byte legsColor, byte feetColor, Constants.OutfitAddon addons)
+            public bool SetOutfit(Constants.OutfitType outfitType, byte headColor, byte bodyColor, byte legsColor, byte feetColor, Constants.OutfitAddon addons, byte mountId)
             {
-                return Packets.Outgoing.SetOutfitPacket.Send(client, new Outfit((ushort)outfitType, headColor, bodyColor, legsColor, feetColor, (byte)addons));
+                return Packets.Outgoing.SetOutfitPacket.Send(client, new Outfit((ushort)outfitType, headColor, bodyColor, legsColor, feetColor, (byte)addons, mountId));
             }
 
             /// <summary>
@@ -145,15 +123,15 @@ namespace Pokemon.Objects
                 set { client.Memory.WriteUInt32(Addresses.Player.MagicLevelPercent, value); }
             }
 
-            public uint Pokemons
+            public uint Mana
             {
-                get { return client.Memory.ReadUInt32(Addresses.Player.Pokemons); }
-                set { client.Memory.WriteUInt32(Addresses.Player.Pokemons, value); }
+                get { return client.Memory.ReadUInt32(Addresses.Player.Mana); }
+                set { client.Memory.WriteUInt32(Addresses.Player.Mana, value); }
             }
-            public uint PokemonsMax
+            public uint ManaMax
             {
-                get { return client.Memory.ReadUInt32(Addresses.Player.PokemonsMax); }
-                set { client.Memory.WriteUInt32(Addresses.Player.PokemonsMax, value); }
+                get { return client.Memory.ReadUInt32(Addresses.Player.ManaMax); }
+                set { client.Memory.WriteUInt32(Addresses.Player.ManaMax, value); }
             }
             public uint Health
             {
@@ -171,10 +149,10 @@ namespace Pokemon.Objects
                 get { return client.Memory.ReadUInt32(Addresses.Player.Soul); }
                 set { client.Memory.WriteUInt32(Addresses.Player.Soul, value); }
             }
-            public uint PokemonsCount
+            public uint Capacity
             {
-                get { return client.Memory.ReadUInt32(Addresses.Player.PokemonsCount); }
-                set { client.Memory.WriteUInt32(Addresses.Player.PokemonsCount, value); }
+                get { return client.Memory.ReadUInt32(Addresses.Player.Capacity); }
+                set { client.Memory.WriteUInt32(Addresses.Player.Capacity, value); }
             }
             public uint Stamina
             {
@@ -331,10 +309,27 @@ namespace Pokemon.Objects
                 get { return client.Memory.ReadUInt32(Addresses.Player.X); }
                 set { client.Memory.WriteUInt32(Addresses.Player.X, value); }
             }
-
             public string WorldName
             {
                 get { return client.Login.CharacterList[client.Login.SelectedChar].WorldName; }
+            }
+
+            /// <summary>
+            /// The number of times a player has attacked
+            /// </summary>
+            public uint AttackCount
+            {
+                get { return client.Memory.ReadUInt32(Addresses.Player.AttackCount); }
+                set { client.Memory.WriteUInt32(Addresses.Player.AttackCount, value); }
+            }
+
+            /// <summary>
+            /// The number of times a player has followed
+            /// </summary>
+            public uint FollowCount
+            {
+                get { return client.Memory.ReadUInt32(Addresses.Player.FollowCount); }
+                set { client.Memory.WriteUInt32(Addresses.Player.FollowCount, value); }
             }
 
             #endregion

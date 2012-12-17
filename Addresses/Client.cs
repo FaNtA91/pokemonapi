@@ -82,11 +82,6 @@ namespace Pokemon.Addresses
         public static uint AttackMode;
 
         /// <summary>
-        /// The current window
-        /// </summary>
-        public static uint CurrentWindow;
-
-        /// <summary>
         /// Action state (formerly MouseCursor icon)
         /// </summary>
         public static uint ActionState;
@@ -266,7 +261,8 @@ namespace Pokemon.Addresses
         /// Auto login stuff
         /// </summary>
         public static uint LoginPassword;
-        public static uint LoginAccountNum;
+        public static uint LoginAccount;
+        public static uint LoginAccountNum; // deprecated
 
         public static uint LoginPatch;
         public static uint LoginPatch2;
@@ -276,7 +272,7 @@ namespace Pokemon.Addresses
         public static byte[] LoginPatchOrig2;
 
         /// <summary>
-        /// The function that calls to parse packets
+        /// The function that tibia calls to parse packets
         /// </summary>
 
         public static uint ParserFunc;
