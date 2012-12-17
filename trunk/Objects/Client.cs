@@ -37,7 +37,6 @@ namespace Pokemon.Objects
         private Console console;
         private Screen screen;
         private Util.AStarPathFinder pathFinder;
-        private ContextMenu contextMenu;
         private MemoryHelper memory;
         private WindowHelper window;
         private IOHelper io;
@@ -45,8 +44,6 @@ namespace Pokemon.Objects
         private DllHelper dll;
         private InputHelper input;
         private PlayerHelper player;
-        private Icon icon;
-        private Skin skin;
 
         #endregion
 
@@ -97,7 +94,6 @@ namespace Pokemon.Objects
             processHandle = Util.WinApi.OpenProcess(Util.WinApi.PROCESS_ALL_ACCESS, 0, (uint)process.Id);
 
             pathFinder = new Pokemon.Util.AStarPathFinder(this);
-            contextMenu = new ContextMenu(this);
 
             memory = new MemoryHelper(this);
             window = new WindowHelper(this);
@@ -106,9 +102,6 @@ namespace Pokemon.Objects
             dll = new DllHelper(this);
             input = new InputHelper(this);
             player = new PlayerHelper(this);
-
-            icon = new Icon(this);
-            skin = new Skin(this);
 
             // Save the start time (it isn't changing)
             startTime = Memory.ReadInt32(Addresses.Client.StartTime);
@@ -633,21 +626,6 @@ namespace Pokemon.Objects
         public IntPtr ProcessHandle
         {
             get { return processHandle; }
-        }
-
-        public ContextMenu ContextMenu
-        {
-            get { return contextMenu; }
-        }
-
-        public Icon Icon
-        {
-            get { return icon; }
-        }
-
-        public Skin Skin
-        {
-            get { return skin; }
         }
 
         public Util.AStarPathFinder PathFinder

@@ -304,16 +304,6 @@ namespace Pokemon.Constants
     }
     #endregion
 
-    public enum ContextMenuType : byte
-    {
-        AllMenus = 0x00,
-        SetOutfitContextMenu = 0x01,
-        PartyActionContextMenu = 0x02,
-        CopyNameContextMenu = 0x03,
-        TradeWithContextMenu = 0x04,
-        LookContextMenu = 0x05
-    }
-
     public class SpeechTypeInfo
     {
         public readonly SpeechType SpeechType;
@@ -656,13 +646,6 @@ namespace Pokemon.Constants
         Undefined11 = 0x3B,
         Undefined12 = 0x3C,
         Undefined13 = 0x3D,
-        LastLookedItemContextMenu = 0x3F,
-        AttackCreatureContextMenu = 0x40,
-        AddToVipContextMenu = 0x41,
-        CurrentSelectedChannelMessagesContextMenu = 0x42,
-        CurrentSelectedChannelContextMenu = 0x43,
-        EmptyContextMenu = 0x44,
-        PasteContextMenu = 0x45,
         MinimapMark = 0x46,
         SkillsContextMenu = 0x47,
         NPCTradingItemsContextMenu = 0x48,
@@ -883,19 +866,9 @@ namespace Pokemon.Constants
         ShowFPS = 0x03,
         PrintTextFunc = 0x04,
         NopFPS = 0x05,
-        AddContextMenuFunc = 0x06,
-        OnClickContextMenu = 0x07,
-        SetOutfitContextMenu = 0x08,
-        PartyActionContextMenu = 0x09,
-        CopyNameContextMenu = 0x0A,
-        OnClickContextMenuVf = 0x0B,
-        TradeWithContextMenu = 0x0C,
-        Recv = 0x0D,
+
+        //Recv = 0x0D, fix?
         Send = 0x0E,
-        EventTrigger = 0x0F,
-        LookContextMenu = 0x10,
-        DrawItemFunc = 0x11,
-        DrawSkinFunc = 0x12
     }
 
     /// <summary>

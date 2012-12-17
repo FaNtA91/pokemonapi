@@ -22,11 +22,6 @@ namespace Pokemon.Addresses
         public static uint SocketStruct;
 
         /// <summary>
-        /// Pointer to the WS2_32.Recv function
-        /// </summary>
-        public static uint RecvPointer;
-
-        /// <summary>
         /// Pointer to the WS2_32.Send function
         /// </summary>
         public static uint SendPointer;
@@ -128,22 +123,6 @@ namespace Pokemon.Addresses
         /// The floor that was clicked.
         /// </summary>
         public static uint ClickZ;
-
-        /// <summary>
-        /// Used for showing item id functions.
-        /// </summary>
-        public static uint ClickContextMenuItemId; //This is also the "SeeID"
-
-        /// <summary>
-        /// Used for showing item id functions
-        /// Deprecated on 8.5x due to player stacking?
-        /// </summary>
-        public static uint ClickContextMenuItemGroundId;
-
-        /// <summary>
-        /// Used for searching the last right-clicked creature
-        /// </summary>
-        public static uint ClickContextMenuCreatureId;
 
         /// <summary>
         /// The id of the last item seen (looked at).

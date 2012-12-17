@@ -83,10 +83,8 @@ namespace Pokemon.Objects
 
                 pipe = new Pipe(client, "PokemonApi" + client.Process.Id.ToString());
                 pipe.OnConnected += new Pipe.PipeNotification(OnPipeConnect);
-                client.ContextMenu.AddInternalEvents();
-                client.Icon.AddInternalEvents();
 
-                if (!Inject(System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath.ToString(), "Pokemon_Inject.dll")))
+                if (!Inject(System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath.ToString(), "PokemonAPI_Inject.dll")))
                     throw new Pokemon.Exceptions.InjectDLLNotFoundException();
             }
 
@@ -106,28 +104,9 @@ namespace Pokemon.Objects
                 Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.PrintTextFunc, Pokemon.Addresses.TextDisplay.PrintTextFunc);
                 Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.NopFPS, Pokemon.Addresses.TextDisplay.NopFPS);
 
-                //Context Menus
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.AddContextMenuFunc, Pokemon.Addresses.ContextMenus.AddContextMenuPtr);
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.OnClickContextMenu, Pokemon.Addresses.ContextMenus.OnClickContextMenuPtr);
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.SetOutfitContextMenu, Pokemon.Addresses.ContextMenus.AddSetOutfitContextMenu);
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.PartyActionContextMenu, Pokemon.Addresses.ContextMenus.AddPartyActionContextMenu);
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.CopyNameContextMenu, Pokemon.Addresses.ContextMenus.AddCopyNameContextMenu);
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.TradeWithContextMenu, Pokemon.Addresses.ContextMenus.AddTradeWithContextMenu);
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.LookContextMenu, Pokemon.Addresses.ContextMenus.AddLookContextMenu);
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.OnClickContextMenuVf, Pokemon.Addresses.ContextMenus.OnClickContextMenuVf);
-
                 //winsock recv/send
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.Recv, Pokemon.Addresses.Client.RecvPointer);
+                //Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.Recv, Pokemon.Addresses.Client.RecvPointer); // Fix?
                 Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.Send, Pokemon.Addresses.Client.SendPointer);
-
-                //event triggering
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.EventTrigger, Pokemon.Addresses.Client.EventTriggerPointer);
-
-                //image drawing
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.DrawItemFunc, Pokemon.Addresses.DrawItem.DrawItemFunc);
-
-                //skin drawing
-                Packets.Pipes.SetConstantPacket.Send(client, PipeConstantType.DrawSkinFunc, Pokemon.Addresses.DrawSkin.DrawSkinFunc);
 
                 //Hook Display functions
                 Packets.Pipes.HooksEnableDisablePacket.Send(client, true);
@@ -137,15 +116,15 @@ namespace Pokemon.Objects
                     PipeInitialized.BeginInvoke(client, new EventArgs(), null, null);
 
             }
-
+                
             public void Extract()
             {
                 bool doExtract = false;
 
-                if (File.Exists("Pokemon_Inject.dll"))
+                if (File.Exists("PokemonAPI_Inject.dll"))
                 {
-                    byte[] embeddedBytes = Pokemon.Properties.Resources.Pokemon_Inject;
-                    byte[] existingBytes = File.ReadAllBytes("Pokemon_Inject.dll");
+                    byte[] embeddedBytes = Pokemon.Properties.Resources.PokemonAPI_Inject;
+                    byte[] existingBytes = File.ReadAllBytes("PokemonAPI_Inject.dll");
 
                     if (embeddedBytes.Length == existingBytes.Length)
                         doExtract = true;
@@ -157,8 +136,8 @@ namespace Pokemon.Objects
 
                 if (doExtract)
                 {
-                    FileStream fileStream = new FileStream("Pokemon_Inject.dll", FileMode.Create);
-                    fileStream.Write(Pokemon.Properties.Resources.Pokemon_Inject, 0, (int)Pokemon.Properties.Resources.Pokemon_Inject.Length);
+                    FileStream fileStream = new FileStream("PokemonAPI_Inject.dll", FileMode.Create);
+                    fileStream.Write(Pokemon.Properties.Resources.PokemonAPI_Inject, 0, (int)Pokemon.Properties.Resources.PokemonAPI_Inject.Length);
                     fileStream.Close();
                 }
             }
