@@ -57,11 +57,11 @@ if (!MouseHook.Enabled)
 // The function to handle the button down event
 public bool GlobalMouseDown(System.Windows.Forms.MouseButtons button)
 {
-Â  Â  if (button == Windows.Forms.MouseButtons.Left) {
-Â  Â  Â  Â  MessageBox.Show("Left mouse button was clicked down.");
-Â  Â  }
-Â  Â  
-Â  Â  return true;
+	if (button == Windows.Forms.MouseButtons.Left) {
+		MessageBox.Show("Left mouse button was clicked down.");
+	}
+
+	return true;
 }
 }}}
 
