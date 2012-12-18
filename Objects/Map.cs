@@ -151,22 +151,21 @@ namespace Pokemon.Objects
 
         #region Name Spy
         /// <summary>
-        /// Enable name spying.
+        /// Enable or disable name spying
         /// </summary>
         /// <param name="enable"></param>
-        public void NameSpyOn()
+        public void ShowNames(bool enable)
         {
-            client.Memory.WriteBytes(Addresses.Map.NameSpy1, Addresses.Map.Nops, 2);
-            client.Memory.WriteBytes(Addresses.Map.NameSpy2, Addresses.Map.Nops, 2);
-        }
-        /// <summary>
-        /// Disable name spying.
-        /// </summary>
-        /// <param name="enable"></param>
-        public void NameSpyOff()
-        {
-            client.Memory.WriteBytes(Addresses.Map.NameSpy1, BitConverter.GetBytes(Addresses.Map.NameSpy1Default), 2);
-            client.Memory.WriteBytes(Addresses.Map.NameSpy2, BitConverter.GetBytes(Addresses.Map.NameSpy2Default), 2);
+            if (enable)
+            {
+                client.Memory.WriteBytes(Addresses.Map.NameSpy1, Addresses.Map.Nops, 2);
+                client.Memory.WriteBytes(Addresses.Map.NameSpy2, Addresses.Map.Nops, 2);
+            }
+            else
+            {
+                client.Memory.WriteBytes(Addresses.Map.NameSpy1, BitConverter.GetBytes(Addresses.Map.NameSpy1Default), 2);
+                client.Memory.WriteBytes(Addresses.Map.NameSpy2, BitConverter.GetBytes(Addresses.Map.NameSpy2Default), 2);
+            }
         }
         #endregion
 
@@ -226,25 +225,21 @@ namespace Pokemon.Objects
 
         #region Full Light
         /// <summary>
-        /// Enable full light.
+        /// Enable or disable full light
         /// </summary>
         /// <param name="enable"></param>
-        /// <returns></returns>
-        public void FullLightOn()
+        public void FullLight(bool enable)
         {
-            client.Memory.WriteBytes(Addresses.Map.FullLightNop, Addresses.Map.FullLightNopEdited, 2);
-            client.Memory.WriteByte(Addresses.Map.FullLightAdr, Addresses.Map.FullLightAdrEdited);
-        }
-
-        /// <summary>
-        /// Disable full light.
-        /// </summary>
-        /// <param name="enable"></param>
-        /// <returns></returns>
-        public void FullLightOff()
-        {
-            client.Memory.WriteBytes(Addresses.Map.FullLightNop, Addresses.Map.FullLightNopDefault, 2);
-            client.Memory.WriteByte(Addresses.Map.FullLightAdr, Addresses.Map.FullLightAdrDefault);
+            if (enable)
+            {
+                client.Memory.WriteBytes(Addresses.Map.FullLightNop, Addresses.Map.FullLightNopEdited, 2);
+                client.Memory.WriteByte(Addresses.Map.FullLightAdr, Addresses.Map.FullLightAdrEdited);
+            }
+            else
+            {
+                client.Memory.WriteBytes(Addresses.Map.FullLightNop, Addresses.Map.FullLightNopDefault, 2);
+                client.Memory.WriteByte(Addresses.Map.FullLightAdr, Addresses.Map.FullLightAdrDefault);
+            }
         }
         #endregion
     }

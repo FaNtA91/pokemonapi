@@ -126,7 +126,6 @@ namespace Pokemon.Packets
         public event OutgoingPacketListener ReceivedLogoutOutgoingPacket;
         public event OutgoingPacketListener ReceivedLookAtOutgoingPacket;
         public event OutgoingPacketListener ReceivedMoveOutgoingPacket;
-        public event OutgoingPacketListener ReceivedNpcChannelCloseOutgoingPacket;
         public event OutgoingPacketListener ReceivedPingOutgoingPacket;
         public event OutgoingPacketListener ReceivedPlayerSpeechOutgoingPacket;
         public event OutgoingPacketListener ReceivedPrivateChannelOpenOutgoingPacket;
