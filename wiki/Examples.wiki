@@ -1,4 +1,4 @@
-#summary Snippets of code to get you started with TibiaAPI.
+#summary Snippets of code to get you started with PokemonAPI.
 #labels Featured,Phase-Implementation
 
 === Table of Contents ===
@@ -15,16 +15,16 @@
 === Note ===
 All code samples are in C#. You can convert the code samples to VB.NET using this tool: http://www.developerfusion.com/tools/convert/csharp-to-vb/
 
-Most of these samples assume you are using Tibia and Tibia.Objects:
+Most of these samples assume you are using Pokemon and Pokemon.Objects:
 
 {{{
-using Tibia;
-using Tibia.Objects;
+using Pokemon;
+using Pokemon.Objects;
 }}}
 
 == Get a client object to work with ==
 {{{
-using Tibia.Util;
+using Pokemon.Util;
 
 Client client = ClientChooser.ShowBox();
 if (client == null)
@@ -79,7 +79,7 @@ if (!KeyboardHook.Enabled)
             if (KeyboardHook.Control && KeyboardHook.Alt)
             {
                 string text = "You want to capture the hotkey " +
-                Pokemon.KeyboardHook.KeyToString(Keys.A) + " in Tibia!";
+                Pokemon.KeyboardHook.KeyToString(Keys.A) + " in client!";
                 MessageBox.Show(text);
             	return false;
       	     }
@@ -113,8 +113,8 @@ client.Map.ReplaceTrees();
 == Make a simple lighthack ==
 {{{
 Player player=client.GetPlayer();
-player.Light = Tibia.Constants.LightSize.Full;
-player.LightColor = Tibia.Constants.LightColor.White;
+player.Light = Pokemon.Constants.LightSize.Full;
+player.LightColor = Pokemon.Constants.LightColor.White;
 }}}
 
 == Draw players hitpoints in percents above his name ==
@@ -124,7 +124,7 @@ client.Screen.DrawCreatureText(
     player.Id,
     new Location(0, -10, 0),
     Color.Green, 
-    Tibia.Constants.ClientFont.NormalBorder,
+    Pokemon.Constants.ClientFont.NormalBorder,
     player.HPBar.ToString() + "%"
 );
 }}}
