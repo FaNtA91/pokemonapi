@@ -60,9 +60,9 @@ namespace Pokemon.Properties {
             }
         }
         
-        internal static byte[] Pokemon_Inject {
+        internal static byte[] PokemonAPI_Inject {
             get {
-                object obj = ResourceManager.GetObject("Pokemon_Inject", resourceCulture);
+                object obj = ResourceManager.GetObject("PokemonAPI_Inject", resourceCulture);
                 return ((byte[])(obj));
             }
         }
