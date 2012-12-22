@@ -18,7 +18,7 @@ namespace Pokemon.Objects
             : this("") { }
 
         public LoginServer(string server)
-            : this(server, 7171) { }
+            : this(server, 7009) { }
 
         public LoginServer(string server, short port)
             : this(server, port, Pokemon.Version.CurrentVersionString) { }
@@ -123,6 +123,4 @@ namespace Pokemon.Objects
         public string WorldIPString { get; set; }
         public ushort WorldPort { get; set; }
     }
-
-
 }

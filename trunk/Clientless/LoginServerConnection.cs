@@ -59,16 +59,16 @@ namespace Pokemon.Clientless
         public LoginServerConnection(Constants.OperatingSystem opSystem, ushort version, string accountName, string password, bool openTibia, bool debug) :
             this(opSystem, version, accountName, password, openTibia,
             new LoginServer[] {
-            new LoginServer("pxg01.loginto.me", 7009),
-            new LoginServer("pxg02.loginto.me", 7009),
-            new LoginServer("pxg03.loginto.me", 7009),
-            new LoginServer("pxg04.loginto.me", 7009),
-            new LoginServer("pxg05.loginto.me", 7009),
-            new LoginServer("pxg06.loginto.me", 7009),
-            new LoginServer("pxg07.loginto.me", 7009),
-            new LoginServer("pxg08.loginto.me", 7009),
-            new LoginServer("pxg09.loginto.me", 7009),
-            new LoginServer("pxg10.loginto.me", 7009)}, debug) { } //all port is correct?
+            new LoginServer("pxg210.loginto.me", 7009),
+            new LoginServer("pxg209.loginto.me", 7009),
+            new LoginServer("pxg208.loginto.me", 7009),
+            new LoginServer("pxg207.loginto.me", 7009),
+            new LoginServer("pxg206.loginto.me", 7009),
+            new LoginServer("pxg205.loginto.me", 7009),
+            new LoginServer("pxg203.loginto.me", 7009),
+            new LoginServer("pxg203.loginto.me", 7009),
+            new LoginServer("pxg202.loginto.me", 7009),
+            new LoginServer("pxg201.loginto.me", 7009)}, debug) { } //all port is correct?
 
         public LoginServerConnection(Constants.OperatingSystem opSystem, ushort version, string accountName, string password, bool openTibia, LoginServer[] loginServers, bool debug)
         {

@@ -13,16 +13,16 @@ namespace Pokemon.Objects
         {
             public readonly LoginServer[] DefaultServers = 
             {
-                new LoginServer("login01.Pokemon.com"),
-                new LoginServer("login02.Pokemon.com"),
-                new LoginServer("login03.Pokemon.com"),
-                new LoginServer("login04.Pokemon.com"),
-                new LoginServer("login05.Pokemon.com"),
-                new LoginServer("tibia01.cipsoft.com"),
-                new LoginServer("tibia02.cipsoft.com"),
-                new LoginServer("tibia03.cipsoft.com"),
-                new LoginServer("tibia04.cipsoft.com"),
-                new LoginServer("tibia05.cipsoft.com")
+                new LoginServer("pxg210.loginto.me"),
+                new LoginServer("pxg209.loginto.me"),
+                new LoginServer("pxg208.loginto.me"),
+                new LoginServer("pxg207.loginto.me"),
+                new LoginServer("pxg206.loginto.me"),
+                new LoginServer("pxg205 .loginto.me"),
+                new LoginServer("pxg204.loginto.me"),
+                new LoginServer("pxg203.loginto.me"),
+                new LoginServer("pxg202.loginto.me"),
+                new LoginServer("pxg201.loginto.me")
             };
 
             public enum State
