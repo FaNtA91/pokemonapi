@@ -1092,12 +1092,12 @@ namespace Pokemon.Packets
         }
 
         /// <summary>
-        /// Get the first free port on localhost starting at the default 7171
+        /// Get the first free port on localhost starting at the default 7009
         /// </summary>
         /// <returns></returns>
         public static ushort GetFreePort()
         {
-            return GetFreePort(7171);
+            return GetFreePort(7009);
         }
 
         /// <summary>

@@ -501,9 +501,9 @@ namespace Pokemon.Packets
                     for (int i = 0; i < tcptable.Length; i++)
                     {
                         ushort remote_ = BitConverter.ToUInt16(new byte[2] { tcptable[i].remotePort2, tcptable[i].remotePort1 }, 0);
-                        if (remote_ == 7171 && tcptable[i].owningPid == pid)
+                        if (remote_ == 7009 && tcptable[i].owningPid == pid)
                         {
-                            remotePort = 7171;
+                            remotePort = 7009;
                             localPort = BitConverter.ToUInt16(new byte[2] { tcptable[i].localPort2, tcptable[i].localPort1 }, 0);
                             return;
                         }
@@ -530,7 +530,7 @@ namespace Pokemon.Packets
                             localPort = BitConverter.ToUInt16(new byte[2] { tcptable[i].localPort2, tcptable[i].localPort1 }, 0);
                             //:O?
                             localPort++;
-                            remotePort = 7171;
+                            remotePort = 7009;
                             return;
                         }
                     }
