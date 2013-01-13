@@ -205,14 +205,17 @@ namespace Pokemon.Constants
         /// </summary>
         public static class Water
         {
+            /*
+             * Credits goes to brunelli1989 for a fix in this class
+            */
             /// <summary>
             /// The start of the tile ids that contain fish.
             /// </summary>
-            public static uint FishStart = 4597;
+            public static uint FishStart = 4809;
             /// <summary>
             /// The end of the tile ids that contain fish.
             /// </summary>
-            public static uint FishEnd = 4602;
+            public static uint FishEnd = 4814;
 
             /// <summary>
             /// The start of the tile ids that are water but do not contain fish.
@@ -224,34 +227,16 @@ namespace Pokemon.Constants
             public static uint NoFishEnd = 4614;
 
             /// <summary>
-            /// Get a list of all water tiles containing fish
+            /// Get a list of all water tiles
             /// </summary>
             /// <returns></returns>
-            public static List<uint> GetFishIds()
+            public static List<uint> GetWaterTilesIds()
             {
-                List<uint> tileIds = new List<uint>();
-
-                for (uint i = FishStart; i <= FishEnd; i++)
+                var tileIds = new List<uint>();
+                for (var i = FishStart; i <= FishEnd; i++)
                 {
                     tileIds.Add(i);
                 }
-
-                return tileIds;
-            }
-
-            /// <summary>
-            /// Get a list of all water tiles not containing fish
-            /// </summary>
-            /// <returns></returns>
-            public static List<uint> GetNoFishIds()
-            {
-                List<uint> tileIds = new List<uint>();
-
-                for (uint i = NoFishStart; i <= NoFishEnd; i++)
-                {
-                    tileIds.Add(i);
-                }
-
                 return tileIds;
             }
         }

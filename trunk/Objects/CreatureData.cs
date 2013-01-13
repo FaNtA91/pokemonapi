@@ -1,6 +1,10 @@
-﻿using System;
+﻿/*
+ * Credits goes to brunelli1989 for fixing some creatures
+*/
+
+using System;
 using System.Collections.Generic;
-using Pokemon.Packets;
+using System.Linq;
 
 namespace Pokemon.Objects
 {
@@ -8,89 +12,81 @@ namespace Pokemon.Objects
     {
         public string Name;
         public int HitPoints;
+        public int Level;
         public int ExperiencePoints;
-        public int SummonMana;
-        public int ConvinceMana;
         public int MaxDamage;
-        public bool CanIllusion;
-        public bool CanSeeInvisible;
         public FrontAttack FrontAttack;
-        public List<DamageType> Immunities;
-        public List<DamageModifier> Strengths;
-        public List<DamageModifier> Weaknesses;
+        public List<DamageType> Types;
         public List<string> Sounds;
         public List<Loot> Loot;
 
-        public CreatureData(string name, int hitPoints, int experiencePoints, int summonMana, int convinceMana, int maxDamage, bool canIllusion, bool canSeeInvisible, FrontAttack frontAttack, List<DamageType> immunities, List<DamageModifier> strenghts, List<DamageModifier> weakness, List<string> sounds, List<Loot> loot)
+        public CreatureData(string name, int hitPoints, int level, int experiencePoints, int maxDamage, FrontAttack frontAttack, List<DamageType> types, List<string> sounds, List<Loot> loot)
         {
             Name = name;
             HitPoints = hitPoints;
+            Level = level;
             ExperiencePoints = experiencePoints;
-            SummonMana = summonMana;
-            ConvinceMana = convinceMana;
             MaxDamage = maxDamage;
-            CanIllusion = canIllusion;
-            CanSeeInvisible = canSeeInvisible;
-            Immunities = immunities;
-            Strengths = strenghts;
-            Weaknesses = weakness;
             Sounds = sounds;
             FrontAttack = frontAttack;
+            Types = types;
             Loot = loot;
         }
 
-        public DamageType GetWeakness()
+        public List<DamageType> GetWeakness()
         {
-            List<DamageType> damages = new List<DamageType>();
-            foreach (DamageType d in Enum.GetValues(typeof(DamageType)))
-                damages.Add(d);
-
+            var damages = Enum.GetValues(typeof(DamageType)).Cast<DamageType>().ToList();
             return GetWeakness(damages);
         }
 
-        public DamageType GetWeakness(List<DamageType> types)
+        public List<DamageType> GetWeakness(List<DamageType> types)
         {
-            if (Weaknesses.Count > 0)
-            {
-                Weaknesses.Sort();
-                foreach (DamageModifier d in Weaknesses)
-                    if (types.Contains(d.DamageType))
-                        return d.DamageType;
-            }
+            //vou fazer um metodo que pega a fraquesa do poke com base no seus elementos e poderes quando (levitate)
 
-            if (Strengths.Count > 0)
-            {
-                Strengths.Sort();
-                Strengths.Reverse();
+            //if (Weaknesses.Count > 0)
+            //{
+            //    Weaknesses.Sort();
+            //    foreach (var d in Weaknesses.Where(d => types.Contains(d.DamageType)))
+            //        return d.DamageType;
+            //}
 
-                foreach (DamageModifier d in Strengths)
-                    if (types.Contains(d.DamageType))
-                        return d.DamageType;
-            }
+            //if (Strengths.Count > 0)
+            //{
+            //    Strengths.Sort();
+            //    Strengths.Reverse();
 
-            foreach (DamageType d in types)
-            {
-                if (!Immunities.Contains(d))
-                    return d;
-            }
+            //    foreach (var d in Strengths.Where(d => types.Contains(d.DamageType)))
+            //        return d.DamageType;
+            //}
 
-            return DamageType.Physical;
+            //foreach (var d in types.Where(d => !Immunities.Contains(d)))
+            //{
+            //    return d;
+            //}
+
+            return null;
         }
     }
 
     public enum DamageType
     {
-        Death,
-        Drown,
-        Earth,
-        Energy,
+        Bug,
+        Poison,
+        Normal,
+        Flying,
+        Grass,
         Fire,
-        Holy,
+        Water,
+        Ground,
+        Electric,
+        Rock,
+        Fighting,
+        Psychic,
         Ice,
-        LifeDrain,
-        ManaDrain,
-        Paralysis,
-        Physical
+        Ghost,
+        Dragon,
+        Dark,
+        Steel
     }
 
     public class DamageModifier : IComparable<DamageModifier>
