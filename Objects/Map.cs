@@ -26,14 +26,17 @@ namespace Pokemon.Objects
         #region Get Tiles
         public Tile GetTileWithPlayer()
         {
-            if (playerTile == null || playerTile.Location != client.PlayerLocation)
+            /*
+             * Credits goes to brunelli1989 for a fix
+            */
+            if (playerTile == null || playerTile.Location != client.GetPlayer().Location)
             {
                 uint playerId = client.Player.Id;
                 
                 playerTile = GetTiles(false, false).FirstOrDefault(
                     t => t.Objects.Any(
                         o => o.Id == 0x63 && o.Data == playerId));
-                playerTile.Location = client.PlayerLocation;
+                playerTile.Location = client.GetPlayer().Location;
             }
             return playerTile;
         }
