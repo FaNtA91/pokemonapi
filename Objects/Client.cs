@@ -371,6 +371,16 @@ namespace Pokemon.Objects
         }
 
         /// <summary>
+        /// Open a client with path.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static Client OpenMC(string path)
+        {
+            return OpenMC(path, null);
+        }
+
+        /// <summary>
         /// Opens a client with dynamic multi-clienting support
         /// </summary>
         public static Client OpenMC(string path, string arguments)
