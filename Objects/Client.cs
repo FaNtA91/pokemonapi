@@ -163,20 +163,6 @@ namespace Pokemon.Objects
         }
 
         /// <summary>
-        /// Get and set the Statusbar text (the white text above the console).
-        /// </summary>
-        public string Statusbar
-        {
-            get { return Memory.ReadString(Addresses.Client.StatusbarText); }
-            set
-            {
-                Memory.WriteByte(Addresses.Client.StatusbarTime, 50);
-                Memory.WriteString(Addresses.Client.StatusbarText, value);
-                Memory.WriteByte(Addresses.Client.StatusbarText + value.Length, 0x00);
-            }
-        }
-
-        /// <summary>
         /// Gets the last seen item/tile id.
         /// </summary>
         public ushort LastSeenId
