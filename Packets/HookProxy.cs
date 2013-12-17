@@ -35,14 +35,10 @@ namespace Pokemon.Packets
             client.Dll.Pipe.OnSocketRecv += new Pipe.PipeListener(Pipe_OnSocketRecv);
             client.Dll.Pipe.OnSocketSend += new Pipe.PipeListener(Pipe_OnSocketSend);
 
-            if (client.LoggedIn)
-            {
+            if (client.LoggedIn())
                 protocol = Protocol.World;
-            }
             else
-            {
                 protocol = Protocol.None;
-            }
         }
 
         private void Pipe_OnSocketRecv(Pokemon.Packets.NetworkMessage msg)

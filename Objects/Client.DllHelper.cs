@@ -32,30 +32,30 @@ namespace Pokemon.Objects
                 Extract();
 
                 // Get a block of memory to store the filename in the client
-                IntPtr remoteAddress = WinApi.VirtualAllocEx(
-                    client.ProcessHandle,
+                IntPtr remoteAddress = WinAPI.VirtualAllocEx(
+                    client.Handle,
                     IntPtr.Zero,
                     (uint)filename.Length,
-                    WinApi.AllocationType.Commit | WinApi.AllocationType.Reserve,
-                    WinApi.MemoryProtection.ExecuteReadWrite);
+                    WinAPI.AllocationType.Commit | WinAPI.AllocationType.Reserve,
+                    WinAPI.MemoryProtection.ExecuteReadWrite);
 
                 // Write the filename to the client's memory
                 client.Memory.WriteStringNoEncoding(remoteAddress.ToInt32(), filename);
 
                 // Start the remote thread, first loading our library
-                IntPtr thread = WinApi.CreateRemoteThread(
-                    client.ProcessHandle, IntPtr.Zero, 0,
-                    WinApi.GetProcAddress(WinApi.GetModuleHandle("Kernel32"), "LoadLibraryA"),
+                IntPtr thread = WinAPI.CreateRemoteThread(
+                    client.Handle, IntPtr.Zero, 0,
+                    WinAPI.GetProcAddress(WinAPI.GetModuleHandle("Kernel32"), "LoadLibraryA"),
                     remoteAddress, 0, IntPtr.Zero);
 
-                WinApi.WaitForSingleObject(thread, 0xFFFFFFFF); // Infinite
+                WinAPI.WaitForSingleObject(thread, 0xFFFFFFFF); // Infinite
 
                 // Free the memory used for the filename
-                WinApi.VirtualFreeEx(
-                    client.ProcessHandle, 
+                WinAPI.VirtualFreeEx(
+                    client.Handle, 
                     remoteAddress, 
                     (uint)filename.Length, 
-                    WinApi.AllocationType.Release);
+                    WinAPI.AllocationType.Release);
 
                 return thread.ToInt32() > 0 && remoteAddress.ToInt32() > 0;
             }

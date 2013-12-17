@@ -127,7 +127,7 @@ namespace Pokemon.Packets
         /// <returns></returns>
         public static bool SendPacketToServerByMemory(Objects.Client client, byte[] packet)
         {
-            if (client.LoggedIn)
+            if (client.LoggedIn())
             {
                 if (!client.IO.IsSendToServerCodeWritten)
                     if (!client.IO.WriteSocketSendCode()) return false;
@@ -137,19 +137,19 @@ namespace Pokemon.Packets
                 Array.Copy(BitConverter.GetBytes(msg.Length), readyPacket, 4);
                 Array.Copy(packet, 0, readyPacket, 4, packet.Length);
 
-                IntPtr pRemote = WinApi.VirtualAllocEx(client.ProcessHandle, IntPtr.Zero, /*bufferSize*/
+                IntPtr pRemote = WinAPI.VirtualAllocEx(client.Handle, IntPtr.Zero, /*bufferSize*/
                     bufferSize,
-                    WinApi.AllocationType.Commit | WinApi.AllocationType.Reserve,
-                    WinApi.MemoryProtection.ExecuteReadWrite);
+                    WinAPI.AllocationType.Commit | WinAPI.AllocationType.Reserve,
+                    WinAPI.MemoryProtection.ExecuteReadWrite);
 
                 if (pRemote != IntPtr.Zero)
                 {
                     if (client.Memory.WriteBytes(pRemote.ToInt64(), readyPacket, bufferSize))
                     {
-                        IntPtr threadHandle = Pokemon.Util.WinApi.CreateRemoteThread(client.ProcessHandle, IntPtr.Zero, 0,
+                        IntPtr threadHandle = Pokemon.Util.WinAPI.CreateRemoteThread(client.Handle, IntPtr.Zero, 0,
                             client.IO.SendToServerAddress, pRemote, 0, IntPtr.Zero);
-                        Pokemon.Util.WinApi.WaitForSingleObject(threadHandle, 0xFFFFFFFF);//INFINITE=0xFFFFFFFF
-                        Pokemon.Util.WinApi.CloseHandle(threadHandle);
+                        Pokemon.Util.WinAPI.WaitForSingleObject(threadHandle, 0xFFFFFFFF);//INFINITE=0xFFFFFFFF
+                        Pokemon.Util.WinAPI.CloseHandle(threadHandle);
                         return true;
                     }
                 }
@@ -163,19 +163,19 @@ namespace Pokemon.Packets
         public bool SendPacketToClientByMemory(Objects.Client client, byte[] packet)
         {
             bool ret = false;
-            if (client.LoggedIn)
+            if (client.LoggedIn())
             {
                 if (!client.IO.IsSendToClientCodeWritten)
                     if (!client.IO.WriteOnGetNextPacketCode()) return false;
 
                 byte[] originalStream = client.Memory.ReadBytes(Pokemon.Addresses.Client.RecvStream, 12);
 
-                IntPtr myStreamAddress = WinApi.VirtualAllocEx(
-                    client.ProcessHandle,
+                IntPtr myStreamAddress = WinAPI.VirtualAllocEx(
+                    client.Handle,
                     IntPtr.Zero,
                     (uint)packet.Length,
-                    WinApi.AllocationType.Commit | WinApi.AllocationType.Reserve,
-                    WinApi.MemoryProtection.ExecuteReadWrite);
+                    WinAPI.AllocationType.Commit | WinAPI.AllocationType.Reserve,
+                    WinAPI.MemoryProtection.ExecuteReadWrite);
                 if (myStreamAddress != IntPtr.Zero)
                 {
 
@@ -194,16 +194,16 @@ namespace Pokemon.Packets
                             if (client.Memory.WriteByte(client.IO.SendToClientAddress.ToInt64(), 0x1))
                             {
 
-                                IntPtr threadHandle = WinApi.CreateRemoteThread(
-                                                            client.ProcessHandle,
+                                IntPtr threadHandle = WinAPI.CreateRemoteThread(
+                                                            client.Handle,
                                                             IntPtr.Zero,
                                                             0,
                                                             new IntPtr(Pokemon.Addresses.Client.ParserFunc),
                                                             IntPtr.Zero,
                                                             0,
                                                             IntPtr.Zero);
-                                WinApi.WaitForSingleObject(threadHandle, 0xFFFFFFFF);//INFINITE=0xFFFFFFFF
-                                WinApi.CloseHandle(threadHandle);
+                                WinAPI.WaitForSingleObject(threadHandle, 0xFFFFFFFF);//INFINITE=0xFFFFFFFF
+                                WinAPI.CloseHandle(threadHandle);
 
                                 ret = true;
                                 client.Memory.WriteByte(client.IO.SendToClientAddress.ToInt64(), 0x0);
@@ -218,11 +218,11 @@ namespace Pokemon.Packets
                 }
                 if (myStreamAddress != IntPtr.Zero)
                 {
-                    WinApi.VirtualFreeEx(
-                        client.ProcessHandle,
+                    WinAPI.VirtualFreeEx(
+                        client.Handle,
                         myStreamAddress,
                         12,
-                        WinApi.AllocationType.Release);
+                        WinAPI.AllocationType.Release);
                 }
             }
             return ret;

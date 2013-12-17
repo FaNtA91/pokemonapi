@@ -865,7 +865,7 @@ namespace Pokemon.Util
 
             public void Update()
             {
-                if (creature != null && creature.Client != null && creature.Client.LoggedIn)
+                if (creature != null && creature.Client != null && creature.Client.LoggedIn())
                 {
                     name = creature.Name;
                     location = creature.Location;

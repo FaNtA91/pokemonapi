@@ -90,23 +90,22 @@ namespace Pokemon.Objects
         /// <summary>
         /// Show invisible creatures permanently.
         /// </summary>
-        public void ShowInvisible()
+        public void SetVisibleCreatures(bool state)
         {
-            client.Memory.WriteByte(Addresses.Map.RevealInvisible1,
-                Addresses.Map.RevealInvisible1Edited);
-            client.Memory.WriteByte(Addresses.Map.RevealInvisible2,
-                Addresses.Map.RevealInvisible2Edited);
-        }
-
-        /// <summary>
-        /// Hide invisible creatures permanently.
-        /// </summary>
-        public void HideInvisible()
-        {
-            client.Memory.WriteByte(Addresses.Map.RevealInvisible1,
-                Addresses.Map.RevealInvisible1Default);
-            client.Memory.WriteByte(Addresses.Map.RevealInvisible2,
-                Addresses.Map.RevealInvisible2Default);
+            if (state)
+            {
+                client.Memory.WriteByte(Addresses.Map.RevealInvisible1,
+                    Addresses.Map.RevealInvisible1Edited);
+                client.Memory.WriteByte(Addresses.Map.RevealInvisible2,
+                    Addresses.Map.RevealInvisible2Edited);
+            }
+            else
+            {
+                client.Memory.WriteByte(Addresses.Map.RevealInvisible1,
+                    Addresses.Map.RevealInvisible1Default);
+                client.Memory.WriteByte(Addresses.Map.RevealInvisible2,
+                    Addresses.Map.RevealInvisible2Default);
+            }
         }
     }
     

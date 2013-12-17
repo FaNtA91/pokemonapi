@@ -103,7 +103,7 @@ namespace Pokemon.Objects
             public string RSA
             {
                 get { return client.Memory.ReadString(Addresses.Client.RSA, 309); }
-                set { Util.Memory.WriteRSA(client.ProcessHandle, Addresses.Client.RSA, value); }
+                set { Util.Memory.WriteRSA(client.Handle, Addresses.Client.RSA, value); }
             }
 
             public LoginServer OpenTibiaServer
@@ -115,13 +115,13 @@ namespace Pokemon.Objects
             public bool Login(string login, string password, string charName)
             {
                 //if the player is logged or the window is minimazed return false.
-                if (client.Window.IsMinimized)
+                if (client.Window.IsMinimized())
                 {
                     if (Report != null)
                         Report.Invoke(State.Minimized);
                     return false;
                 }
-                else if (client.LoggedIn)
+                else if (client.LoggedIn())
                 {
                     if (client.GetPlayer().HasFlag(Pokemon.Constants.Flag.InBattle))
                     {
@@ -159,13 +159,13 @@ namespace Pokemon.Objects
                         Report.Invoke(State.ResetSelectedCharCount);
 
                     //click the enter the game button
-                    client.Input.Click(120, client.Window.Size.Height - 250);
+                    client.Input.Click(120, client.Window.Size().Height - 250);
                     if (Report != null)
                         Report.Invoke(State.ClickEnterButton);
 
                     //wait the dialog open
                     int waitTime = 2000;
-                    while (!client.IsDialogOpen && client.DialogCaption != "Enter Game")
+                    while (!client.Window.IsDialogOpen() && client.Window.GetDialogCaption() != "Enter Game")
                     {
                         Thread.Sleep(100);
                         waitTime -= 100;
@@ -216,7 +216,7 @@ namespace Pokemon.Objects
                         Report.Invoke(State.CharListReceived);
 
                     waitTime = 1000;
-                    while (client.DialogCaption == "Connecting")
+                    while (client.Window.GetDialogCaption() == "Connecting")
                     {
                         Thread.Sleep(100);
                         waitTime -= 100;
@@ -233,7 +233,7 @@ namespace Pokemon.Objects
                     Thread.Sleep(100);
 
                     // Check if there is a message of the day
-                    if (client.DialogCaption != "Select Character")
+                    if (client.Window.GetDialogCaption() != "Select Character")
                     {
                         client.Input.SendKey(Keys.Enter);
                         Thread.Sleep(100);

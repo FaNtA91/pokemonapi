@@ -102,14 +102,14 @@ namespace Pokemon.Constants
 
     #region Player
 
-    public enum Attack : byte
+    public enum AttackMode : byte
     {
         FullAttack = 1,
         Balance = 2,
         FullDefense = 3
     }
 
-    public enum Follow : byte
+    public enum FollowMode : byte
     {
         DoNotFollow = 0,
         FollowClose = 1,
@@ -504,90 +504,75 @@ namespace Pokemon.Constants
 
     public enum Effect : byte
     {
-        RedSpark = 1,
-        BlueRings = 2,
-        Puff = 3,
-        YellowSpark = 4,
-        MewInvisible = 5,
-        ExplosionDamage = 6,
-        FireArea = 7,
-        YellowRings = 8,
-        GreenRings = 9,
-        BlackSpark = 10,
-        DoubleBlackSpark = 11,
-        EnergyDamage = 12,
-        BlueShimmer = 13,
-        RedShimmer = 14,
-        GreenShimmer = 15,
-        FirePlume = 16,
-        GreenSpark = 17,
-        MortArea = 18,
-        PokemonEvolution = 19,
-        RedNotes = 20,
-        PoisonArea = 21,
-        Teleport = 22,
-        PurpleNotes = 23,
-        PokeballCatchFail = 24,
-        PokeballCatchOk = 25,
-        Bubbles = 26,
-        Dice = 27,
-        GiftWraps = 28,
-        FireworkYellow = 29,
-        FireworkRed = 30,
-        Surffing = 31,
-        Stun = 32,
-        Sleep = 33,
-        Surffing2 = 34,
-        Groundshaker = 35,
-        FireSky = 36,
-        FireAttack = 37,
-        EnergyArea = 38,
-        Rains = 39,
-        HolyDamage = 40,
-        BigClouds = 41,
-        IceArea = 42,
-        Tornado = 43,
-        IceAttack = 44,
-        Stones = 45,
-        SmallPlants = 46,
-        Carniphilia = 47,
-        PurpleEnergy = 48,
-        YellowEnergy = 49,
-        SurffingRight = 50,
-        BigPlants = 51,
-        SurffingLeft = 52,
-        GiantIce = 53,
-        WaterSplash = 54,
-        PlantAttack = 55,
-        GreatFlame = 56,
-        GreatFlame2 = 57,
-        GreatFlame3 = 58,
-        GreatFlame4 = 59,
-        // Notting = 60,
-        FireBlast = 61,
-        FireBlast2 = 62,
-        FireBlast3 = 63,
-        FireBlast4 = 64,
-        HydroPump = 65,
-        HydroPump2 = 66,
-        HydroPump3 = 67,
-        HydroPump4 = 68,
-        BlueExplosion = 69,
-        WaterGun = 70,
-        WaterGun2 = 71,
-        WaterGun3 = 72,
-        WaterGun4 = 73,
-        WaterGun5 = 74,
-        WaterGun6 = 75,
-        WaterGun7 = 76,
-        WaterGun8 = 77,
-        WaterGun9 = 78,
-        WaterGun10 = 79,
-        RazorLeaf = 80,
-        VineWrip = 81,
-        VineWrip2 = 82,
-        VineWrip3 = 83,
-        VineWrip4 = 84
+        AttackBasic = 1,
+        AttackPsyShock = 2,
+        AttackFlameBurst = 7,
+        DamagePoison = 9,
+        MusicalNote = 20,
+        SleepPowder = 28,
+        AttackFireBlast = 37,
+        AttackBulletSeed = 46,
+        AttackSplash = 54,
+        AttackFlameThrower = 59,
+        EffectVineWripNorth = 81,
+        EffectVineWripSouth = 82,
+        EffectVineWripLeft = 83,
+        EffectVineWripRight = 84,
+        EffectPoisonPowder = 85,
+        EffectStunSpore = 86,
+        EffectIscaBoiando = 133,
+        EffectIscaBorbulhando = 134,
+        AttackConfusion = 137,
+        //!troll
+        EmotionTroll = 147,
+        AttackSeedBomb = 150,
+        //!yao
+        EmotionYao = 152,
+        //!face
+        EmotionPokerFace = 153,
+        //!idea
+        EmotionIdea = 165,
+        //!?
+        EmotionInterrogacao = 166,
+        //!...
+        EmotionReticencias = 167,
+        //!:S
+        EmotionDoente = 168,
+        //!:@
+        EmotionBravo = 169,
+        //!:(
+        EmotionTriste = 170,
+        //!:)
+        EmotionCaraNormal = 171,
+        //!$
+        EmotionDinheiro = 172,
+        //!damn
+        EmotionDamn = 173,
+        //!!
+        EmotionExclamacao = 174,
+        EmotionFome = 175,
+        //!yes
+        EmotionYes = 176,
+        //!no
+        EmotioNo = 177,
+        //!go
+        EmotionGo = 178,
+        //!lol
+        EmotionLoL = 180,
+        //!love
+        EmotionLove = 181,
+        //!pikachu
+        EmotionPikachu = 182,
+        //!:l
+        EmotionNormal = 183,
+        //!:D
+        EmotionFeliz = 184,
+        //!xD
+        Emotionxd = 186,
+        //!O.o
+        EmotionOo = 187,
+        EffectTeleport = 212,
+        AttackSuperVines = 214
     }
 
     // (http://www.tpforums.org/forum/showthread.php?t=2399)
