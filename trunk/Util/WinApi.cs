@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pokemon.Util
 {
-    public static class WinApi
+    public static class WinAPI
     {
 
         [DllImport("user32.dll")]

@@ -12,7 +12,10 @@ namespace Pokemon.Objects
         {
             private Client client;
 
-            internal InputHelper(Client client) { this.client = client; }
+            internal InputHelper(Client client)
+            {
+                this.client = client;
+            }
 
             /// <summary>
             /// Sends a string to the client
@@ -55,7 +58,7 @@ namespace Pokemon.Objects
             /// <returns></returns>
             public void SendMessage(uint MessageId, int wParam, int lParam)
             {
-                Util.WinApi.SendMessage(client.Window.Handle, MessageId, wParam, lParam);
+                Util.WinAPI.SendMessage(client.Window.Handle, MessageId, wParam, lParam);
             }
 
             /// <summary>
@@ -65,10 +68,10 @@ namespace Pokemon.Objects
             /// <param name="y"></param>
             public void Click(int x, int y)
             {
-                SendMessage(Util.WinApi.WM_LBUTTONUP, 0, 0);
-                int lpara = Util.WinApi.MakeLParam(x, y);
-                SendMessage(Util.WinApi.WM_LBUTTONDOWN, 0, lpara);
-                SendMessage(Util.WinApi.WM_LBUTTONUP, 0, lpara);
+                SendMessage(Util.WinAPI.WM_LBUTTONUP, 0, 0);
+                int lpara = Util.WinAPI.MakeLParam(x, y);
+                SendMessage(Util.WinAPI.WM_LBUTTONDOWN, 0, lpara);
+                SendMessage(Util.WinAPI.WM_LBUTTONUP, 0, lpara);
             }
         }
     }

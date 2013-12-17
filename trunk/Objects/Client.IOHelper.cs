@@ -124,12 +124,12 @@ namespace Pokemon.Objects
 
                 if (pSendToServer == IntPtr.Zero)
                 {
-                    pSendToServer = Pokemon.Util.WinApi.VirtualAllocEx(
-                        client.ProcessHandle,
+                    pSendToServer = Pokemon.Util.WinAPI.VirtualAllocEx(
+                        client.Handle,
                         IntPtr.Zero,
                         (uint)OpCodes.Length,
-                        WinApi.AllocationType.Commit | WinApi.AllocationType.Reserve,
-                        WinApi.MemoryProtection.ExecuteReadWrite);
+                        WinAPI.AllocationType.Commit | WinAPI.AllocationType.Reserve,
+                        WinAPI.MemoryProtection.ExecuteReadWrite);
                 }
 
                 if (pSendToServer != IntPtr.Zero)
@@ -140,11 +140,11 @@ namespace Pokemon.Objects
                         sendToServerCodeWritten = true;
                         return true;
                     }
-                    WinApi.VirtualFreeEx(
-                        client.ProcessHandle,
+                    WinAPI.VirtualFreeEx(
+                        client.Handle,
                         pSendToServer,
                         0,
-                        WinApi.AllocationType.Release);
+                        WinAPI.AllocationType.Release);
                     pSendToServer = IntPtr.Zero;
                 }
                 sendToServerCodeWritten = false;
@@ -265,30 +265,30 @@ namespace Pokemon.Objects
                     4);//mov ebx,ADDR_RECV_STREAM+8
                 #endregion
 
-                pSendToClient = WinApi.VirtualAllocEx(
-                    client.ProcessHandle,
+                pSendToClient = WinAPI.VirtualAllocEx(
+                    client.Handle,
                     IntPtr.Zero,
                     (uint)opCodes.Length,
-                    WinApi.AllocationType.Commit | WinApi.AllocationType.Reserve,
-                    WinApi.MemoryProtection.ExecuteReadWrite);
+                    WinAPI.AllocationType.Commit | WinAPI.AllocationType.Reserve,
+                    WinAPI.MemoryProtection.ExecuteReadWrite);
 
                 if (pSendToClient != IntPtr.Zero)
                 {
                     Array.Copy(BitConverter.GetBytes(pSendToClient.ToInt32()), 0, opCodes, 5, 4);
 
                     //Begin HookCall
-                    WinApi.MemoryProtection oldProtect = WinApi.MemoryProtection.NoAccess;
-                    WinApi.MemoryProtection newProtect = WinApi.MemoryProtection.NoAccess;
+                    WinAPI.MemoryProtection oldProtect = WinAPI.MemoryProtection.NoAccess;
+                    WinAPI.MemoryProtection newProtect = WinAPI.MemoryProtection.NoAccess;
                     uint newCall, oldCall;
                     byte[] call = new byte[] { 0xE8, 0x00, 0x00, 0x00, 0x00 };
 
                     newCall = (uint)(pSendToClient.ToInt32() + 4) - Pokemon.Addresses.Client.GetNextPacketCall - 5;
                     Array.Copy(BitConverter.GetBytes(newCall), 0, call, 1, 4);
 
-                    if (WinApi.VirtualProtectEx(client.ProcessHandle,
+                    if (WinAPI.VirtualProtectEx(client.Handle,
                         new IntPtr(Pokemon.Addresses.Client.GetNextPacketCall),
                         new IntPtr(5),
-                        WinApi.MemoryProtection.ReadWrite,
+                        WinAPI.MemoryProtection.ReadWrite,
                         ref oldProtect))
                     {
 
@@ -309,7 +309,7 @@ namespace Pokemon.Objects
                         {
                             if (client.Memory.WriteBytes(Pokemon.Addresses.Client.GetNextPacketCall, call, 5))
                             {
-                                WinApi.VirtualProtectEx(client.ProcessHandle,
+                                WinAPI.VirtualProtectEx(client.Handle,
                                     new IntPtr(Pokemon.Addresses.Client.GetNextPacketCall),
                                     new IntPtr(5),
                                     oldProtect,
@@ -318,7 +318,7 @@ namespace Pokemon.Objects
                                 return true;
                             }
                         }
-                        WinApi.VirtualProtectEx(client.ProcessHandle,
+                        WinAPI.VirtualProtectEx(client.Handle,
                             new IntPtr(Pokemon.Addresses.Client.GetNextPacketCall),
                             new IntPtr(5),
                             oldProtect,
@@ -327,11 +327,11 @@ namespace Pokemon.Objects
                 }
                 if (pSendToClient == IntPtr.Zero)
                 {
-                    WinApi.VirtualFreeEx(
-                        client.ProcessHandle,
+                    WinAPI.VirtualFreeEx(
+                        client.Handle,
                         pSendToClient,
                         (uint)opCodes.Length,
-                        WinApi.AllocationType.Release);
+                        WinAPI.AllocationType.Release);
                 }
                 sendToClientCodeWritten = false;
                 return false;
@@ -342,11 +342,11 @@ namespace Pokemon.Objects
                 if (oldCallBytes != null && sendToClientCodeWritten)
                 {
                     if (client.Memory.WriteBytes(Pokemon.Addresses.Client.GetNextPacketCall, oldCallBytes, 5) &&
-                        WinApi.VirtualFreeEx(
-                            client.ProcessHandle,
+                        WinAPI.VirtualFreeEx(
+                            client.Handle,
                             pSendToClient,
                             60/*(uint)opCodes.Length*/,
-                            WinApi.AllocationType.Release))
+                            WinAPI.AllocationType.Release))
                     {
                         pSendToClient = IntPtr.Zero;
                         sendToClientCodeWritten = false;

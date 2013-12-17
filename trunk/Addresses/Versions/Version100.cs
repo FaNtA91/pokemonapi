@@ -15,13 +15,15 @@ namespace Pokemon
             Client.XTeaKey = 0x768C7C;
             Client.SocketStruct = 0x768C50;
             Client.SendPointer = 0x597600;
+            Client.Status = 0x76C2C8;
 
             Client.FrameRatePointer = 0x76CE0C;
             Client.FrameRateCurrentOffset = 0x00;
             Client.FrameRateLimitOffset = 0x58;
 
             Client.MultiClient = 0xF8944;
-            Client.Status = 0x76C2C8;
+            Client.MultiClientJMP = 0xEB;
+            Client.MultiClientJNZ = 0x75;
 
             Client.SafeMode = 0x76909C;
             Client.FollowMode = Client.SafeMode + 4;

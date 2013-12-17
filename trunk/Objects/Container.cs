@@ -166,9 +166,9 @@ namespace Pokemon.Objects
                 else
                 {
                     client.Memory.WriteString(address + Addresses.Container.DistanceName, value);
-                    Pokemon.Util.WinApi.RECT clientRect = new Pokemon.Util.WinApi.RECT();
-                    Pokemon.Util.WinApi.GetClientRect(client.Process.MainWindowHandle, out clientRect);
-                    client.Input.SendMessage(Hooks.WM_SIZE, 0, Pokemon.Util.WinApi.MakeLParam(clientRect.right, clientRect.bottom));
+                    Pokemon.Util.WinAPI.RECT clientRect = new Pokemon.Util.WinAPI.RECT();
+                    Pokemon.Util.WinAPI.GetClientRect(client.Process.MainWindowHandle, out clientRect);
+                    client.Input.SendMessage(Hooks.WM_SIZE, 0, Pokemon.Util.WinAPI.MakeLParam(clientRect.right, clientRect.bottom));
                 }
             }
         }

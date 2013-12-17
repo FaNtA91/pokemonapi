@@ -75,13 +75,13 @@ namespace Pokemon.Util
 
             // Set addresses
             if (client != null)
-                Version.Set(client.Version);
+                Version.Set(client.GetVersion());
 
             // Set OT server
             if (client != null && options.UseOT)
             {
                 client.Login.SetOT(ls);
-                SaveOtServer(options.SavedServersLocation, ls, client.Version);
+                SaveOtServer(options.SavedServersLocation, ls, client.GetVersion());
             }
             
             // Set client to run on one processor if instructed by the user

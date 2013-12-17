@@ -87,7 +87,7 @@ namespace Pokemon.Objects
             get { return width; }
         }
 
-        public Rect(Util.WinApi.RECT r)
+        public Rect(Util.WinAPI.RECT r)
         {
             top = r.top;
             bottom = r.bottom;

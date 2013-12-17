@@ -10,12 +10,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Pokemon</RootNamespace>
     <AssemblyName>PokemonApi</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -109,7 +110,6 @@
     <Compile Include="Objects\Client.LoginHelper.cs" />
     <Compile Include="Objects\Client.MemoryHelper.cs" />
     <Compile Include="Objects\Client.PlayerHelper.cs" />
-    <Compile Include="Objects\Client.WindowHelper.cs" />
     <Compile Include="Objects\Console.cs" />
     <Compile Include="Objects\Container.cs" />
     <Compile Include="Objects\Creature.cs" />
@@ -129,6 +129,7 @@
     <Compile Include="Objects\Tile.cs" />
     <Compile Include="Objects\Vip.cs" />
     <Compile Include="Objects\VipList.cs" />
+    <Compile Include="Objects\Window.cs" />
     <Compile Include="Packets\HookProxy.cs" />
     <Compile Include="Packets\IncomingPacket.cs" />
     <Compile Include="Packets\Incoming\AnimatedTextPacket.cs" />

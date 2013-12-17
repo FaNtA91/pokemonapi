@@ -19,7 +19,7 @@ namespace Pokemon.Util
             IntPtr ptrBytesRead;
             byte[] buffer = new byte[bytesToRead];
 
-            Util.WinApi.ReadProcessMemory(handle, new IntPtr(address), buffer, bytesToRead, out ptrBytesRead);
+            Util.WinAPI.ReadProcessMemory(handle, new IntPtr(address), buffer, bytesToRead, out ptrBytesRead);
 
             return buffer;
         }
@@ -165,7 +165,7 @@ namespace Pokemon.Util
             IntPtr bytesWritten;
 
             // Write to memory
-            int result = Util.WinApi.WriteProcessMemory(handle, new IntPtr(address), bytes, length, out bytesWritten);
+            int result = Util.WinAPI.WriteProcessMemory(handle, new IntPtr(address), bytes, length, out bytesWritten);
 
             return result != 0;
         }
@@ -301,23 +301,23 @@ namespace Pokemon.Util
         {
             IntPtr bytesWritten;
             int result;
-            WinApi.MemoryProtection oldProtection = 0;
+            WinAPI.MemoryProtection oldProtection = 0;
 
             System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
             byte[] bytes = enc.GetBytes(newKey);
 
             // Make it so we can write to the memory block
-            WinApi.VirtualProtectEx(
+            WinAPI.VirtualProtectEx(
                 handle,
                 new IntPtr(address),
                 new IntPtr(bytes.Length),
-                WinApi.MemoryProtection.ExecuteReadWrite, ref oldProtection);
+                WinAPI.MemoryProtection.ExecuteReadWrite, ref oldProtection);
 
             // Write to memory
-            result = WinApi.WriteProcessMemory(handle, new IntPtr(address), bytes, (uint)bytes.Length, out bytesWritten);
+            result = WinAPI.WriteProcessMemory(handle, new IntPtr(address), bytes, (uint)bytes.Length, out bytesWritten);
 
             // Put the protection back on the memory block
-            WinApi.VirtualProtectEx(handle, new IntPtr(address), new IntPtr(bytes.Length), oldProtection, ref oldProtection);
+            WinAPI.VirtualProtectEx(handle, new IntPtr(address), new IntPtr(bytes.Length), oldProtection, ref oldProtection);
 
             return (result != 0);
         }

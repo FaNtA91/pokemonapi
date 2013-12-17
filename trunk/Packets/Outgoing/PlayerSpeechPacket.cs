@@ -25,7 +25,7 @@ namespace Pokemon.Packets.Outgoing
             Destination = destination;
             Type = OutgoingPacketType.PlayerSpeech;
 
-            SpeechTypeInfo info = Enums.GetSpeechTypeInfo(Client.VersionNumber, msg.GetByte());
+            SpeechTypeInfo info = Enums.GetSpeechTypeInfo(Client.GetVersionNumber(), msg.GetByte());
             SpeechType = info.SpeechType;
 
             if (SpeechType == SpeechType.Private)
@@ -46,7 +46,7 @@ namespace Pokemon.Packets.Outgoing
         {
             msg.AddByte((byte)Type);
 
-            SpeechTypeInfo info = Enums.GetSpeechTypeInfo(Client.VersionNumber, SpeechType);
+            SpeechTypeInfo info = Enums.GetSpeechTypeInfo(Client.GetVersionNumber(), SpeechType);
 
             msg.AddByte(info.Value);
 

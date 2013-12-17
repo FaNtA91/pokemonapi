@@ -34,7 +34,7 @@ namespace Pokemon.Packets.Incoming
             SenderName = msg.GetString();
             SenderLevel = msg.GetUInt16();
 
-            SpeechTypeInfo info = Enums.GetSpeechTypeInfo(Client.VersionNumber, msg.GetByte());
+            SpeechTypeInfo info = Enums.GetSpeechTypeInfo(Client.GetVersionNumber(), msg.GetByte());
             SpeechType = info.SpeechType;
 
             switch (info.AdditionalSpeechData)
@@ -131,7 +131,7 @@ namespace Pokemon.Packets.Incoming
             msg.AddString(SenderName);
             msg.AddUInt16(SenderLevel);
 
-            SpeechTypeInfo info = Enums.GetSpeechTypeInfo(Client.VersionNumber, SpeechType);
+            SpeechTypeInfo info = Enums.GetSpeechTypeInfo(Client.GetVersionNumber(), SpeechType);
 
             msg.AddByte(info.Value);
 
